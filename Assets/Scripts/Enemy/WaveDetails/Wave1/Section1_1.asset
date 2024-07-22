@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4cdf06b6e89244685bf581d0b7eee6, type: 3}
+  m_Name: Section1_1
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 950314080141257451, guid: 54818adb4df5d8b4cb936dc798bc6be6, type: 3}
+  amount: 3
+  offsetList:
+  - {x: -9.3, y: 4.3}
+  - {x: -6.8, y: 7.1}
+  - {x: -10.2, y: 0.4}
+  spawnDelay: 0.75
+  endSectionDelay: 1
