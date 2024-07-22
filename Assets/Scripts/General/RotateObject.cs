@@ -6,7 +6,13 @@ using UnityEngine;
 public class RotateObject : MonoBehaviour
 {
     [SerializeField] float rotateSpeed;
-    [SerializeField] float duration; // negative duration for infinite duration
+    public float RotateSpeed
+    {
+        get { return rotateSpeed; }
+        set { rotateSpeed = value; }
+    }
+    [SerializeField] float duration;
+    [SerializeField] bool loop;
     bool isRotating;
     float timer;
 
@@ -14,13 +20,16 @@ public class RotateObject : MonoBehaviour
     {
         if (isRotating)
         {
-            timer += Time.fixedDeltaTime;
-            if (timer > duration && duration > 0) Stop();
+            if (!loop)
+            {
+                timer += Time.fixedDeltaTime;
+                if (timer > duration) Stop();
+            }
             transform.Rotate(Vector3.forward * rotateSpeed * Time.fixedDeltaTime);
         }
     }
 
-    public void SetRotateSpeed(float _rotateSpeed) => rotateSpeed = _rotateSpeed;
+    public void SetRotateSpeed(float _value) => rotateSpeed = _value;
 
     public void Rotate(float _duration = -1f)
     {

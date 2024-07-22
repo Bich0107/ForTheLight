@@ -249,7 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1d09521a7abd047946b498b99d8795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 4305620740332409097}
+  lightList:
+  - {fileID: 4305620740332409097}
   intensityList:
   - 3
   - 5
@@ -304,7 +305,6 @@ MonoBehaviour:
   attackDistance: 4.5
   chargeTime: 0.75
   chargeSpeedFactor: 2.5
-  selfDestructDelay: 10
 --- !u!114 &4093120133542515547
 MonoBehaviour:
   m_ObjectHideFlags: 0

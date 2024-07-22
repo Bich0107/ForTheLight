@@ -5,7 +5,7 @@ using UnityEngine.Rendering.Universal;
 
 public class LightObject : MonoBehaviour
 {
-    [SerializeField] new Light2D light;
+    [SerializeField] List<Light2D> lightList;
     [Space]
     [Tooltip("Intensity value of this object will loop through this list")]
     [SerializeField] List<float> intensityList;
@@ -44,17 +44,21 @@ public class LightObject : MonoBehaviour
             timer += Time.deltaTime;
             tick += Time.deltaTime;
 
-            light.intensity = Mathf.Lerp(light.intensity, targetValue, tick * intensityChangeRate);
-
-            if (Mathf.Approximately(light.intensity, targetValue))
+            foreach (Light2D light in lightList)
             {
-                index = (index + 1) % intensityList.Count;
-                targetValue = intensityList[index];
-                tick = 0;
+                light.intensity = Mathf.Lerp(light.intensity, targetValue, tick * intensityChangeRate);
+
+                if (Mathf.Approximately(light.intensity, targetValue))
+                {
+                    index = (index + 1) % intensityList.Count;
+                    targetValue = intensityList[index];
+                    tick = 0;
+                }
             }
 
             yield return new WaitForSeconds(blinkDelay);
-        } while (loop || timer <= blinkDuration || !Mathf.Approximately(light.intensity, intensityList[0]));
+            // keep blinking if this blink is loop | duration hasn't ended | light intensity didn't end at the base value
+        } while (loop || timer <= blinkDuration || !Mathf.Approximately(lightList[lightList.Count - 1].intensity, intensityList[0]));
     }
 
     IEnumerator CR_BlinkFalloff()
@@ -70,17 +74,21 @@ public class LightObject : MonoBehaviour
             timer += Time.deltaTime;
             tick += Time.deltaTime;
 
-            light.falloffIntensity = Mathf.Lerp(light.falloffIntensity, targetValue, tick * falloffChangeRate);
-
-            if (Mathf.Approximately(light.falloffIntensity, targetValue))
+            foreach (Light2D light in lightList)
             {
-                index = (index + 1) % falloffList.Count;
-                targetValue = falloffList[index];
-                tick = 0;
+                light.falloffIntensity = Mathf.Lerp(light.falloffIntensity, targetValue, tick * falloffChangeRate);
+
+                if (Mathf.Approximately(light.falloffIntensity, targetValue))
+                {
+                    index = (index + 1) % falloffList.Count;
+                    targetValue = falloffList[index];
+                    tick = 0;
+                }
             }
 
             yield return new WaitForSeconds(blinkDelay);
-        } while (loop || timer <= blinkDuration || !Mathf.Approximately(light.falloffIntensity, falloffList[0]));
+            // keep blinking if this blink is loop | duration hasn't ended | falloff intensity didn't end at the base value
+        } while (loop || timer <= blinkDuration || !Mathf.Approximately(lightList[lightList.Count - 1].falloffIntensity, falloffList[0]));
     }
 
     public void StopBlinkIntensity() => StopCoroutine(intensityCoroutine);

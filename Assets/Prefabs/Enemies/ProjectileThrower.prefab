@@ -309,7 +309,6 @@ MonoBehaviour:
   enemy: {fileID: 0}
   attackList:
   - {fileID: 11400000, guid: 61cbc133eb98b924cbf35aec94b886e7, type: 2}
-  projectileParent: {fileID: 0}
   projectileSpawnPos: {fileID: 478157443535976266}
   attacking: 0
 --- !u!114 &6600055416679660970
@@ -369,7 +368,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1d09521a7abd047946b498b99d8795, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 9076731726937570907}
+  lightList:
+  - {fileID: 9076731726937570907}
   intensityList:
   - 1
   - 1.5

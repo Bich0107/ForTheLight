@@ -10,6 +10,7 @@ TagManager:
   - LightSnatcher
   - ProjectileThrower
   - Projectile
+  - Spinners
   layers:
   - Default
   - TransparentFX

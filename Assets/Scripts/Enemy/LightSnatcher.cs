@@ -3,23 +3,22 @@ using UnityEngine;
 
 public class LightSnatcher : Enemy
 {
-    [SerializeField] float attackDistance;
-    [SerializeField] float chargeTime;
-    [SerializeField] float chargeSpeedFactor;
-    [SerializeField] float selfDestructDelay;
-    bool isAttacking = false;
-    Coroutine attackCoroutine;
+    [SerializeField] protected float attackDistance;
+    [SerializeField] protected float chargeTime;
+    [SerializeField] protected float chargeSpeedFactor;
+    protected bool isAttacking = false;
+    protected Coroutine attackCoroutine;
 
     protected new void OnEnable() {
         base.OnEnable();
     }
 
-    void Update() {
+    protected void Update() {
         if (isAttacking) return;
         MoveTorwardTarget();    
     }
 
-    void MoveTorwardTarget() {
+    protected void MoveTorwardTarget() {
         if (GetDistanceToPlayer > attackDistance) {
             moveController.Move(GetDirectionToPlayer);
         } else {
@@ -28,11 +27,11 @@ public class LightSnatcher : Enemy
         }
     }
 
-    void Attack() {
+    protected virtual void Attack() {
         attackCoroutine = StartCoroutine(CR_Attack());
     }
 
-    IEnumerator CR_Attack() {
+    protected virtual IEnumerator CR_Attack() {
         moveController.Stop();
         
         yield return new WaitForSeconds(chargeTime);
