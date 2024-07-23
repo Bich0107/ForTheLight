@@ -13,8 +13,13 @@ public class RotateObject : MonoBehaviour
     }
     [SerializeField] float duration;
     [SerializeField] bool loop;
+    [SerializeField] bool rotateOnAwake = false;
     bool isRotating;
     float timer;
+
+    private void OnEnable() {
+        if (rotateOnAwake) Rotate();
+    }
 
     void FixedUpdate()
     {

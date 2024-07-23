@@ -5,54 +5,70 @@ public class Bullet : MonoBehaviour
     [SerializeField] MovingObject movingObject;
     [SerializeField] float maxDmgMultiplier = 1.8f;
     [SerializeField] Vector3 maxScale;
+    [SerializeField] float maxHitCountWhenCharge = 2;
+    [SerializeField] float maxHitCount = 1;
     Vector3 baseScale;
+    float hitCount = 0;
     float damage;
 
-    private void Awake() {
+    private void Awake()
+    {
         baseScale = transform.localScale;
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         movingObject = GetComponent<MovingObject>();
     }
 
-    public void Shoot(Vector2 _direction, float _speedMultiplier, float _damage) {
+    public void Shoot(Vector2 _direction, float _speedMultiplier, float _damage)
+    {
         if (movingObject == null) return;
         ToggleChildren();
-
+        hitCount = maxHitCount;
         damage = _damage;
         movingObject.Move(_direction, _speedMultiplier);
     }
 
-    public void Shoot(Vector2 _direction, float _speedMultiplier, float _damage, float _chargePercent) {
+    public void Shoot(Vector2 _direction, float _speedMultiplier, float _damage, float _chargePercent)
+    {
         if (movingObject == null) return;
         ToggleChildren();
+
+        hitCount = maxHitCountWhenCharge;
 
         transform.localScale = maxScale * _chargePercent;
         damage = _damage * maxDmgMultiplier * _chargePercent;
         movingObject.Move(_direction, _speedMultiplier);
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         IHitByPlayer hit = other.GetComponent<IHitByPlayer>();
-        if (hit != null) {
+        if (hit != null)
+        {
             hit.Hit(damage);
-            gameObject.SetActive(false);
+            hitCount--;
+            if (hitCount <= 0) gameObject.SetActive(false);
         }
     }
 
-    void ToggleChildren() {
-        for (int i = 0; i < transform.childCount; i++) {
+    void ToggleChildren()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
             var child = transform.GetChild(i);
             child.gameObject.SetActive(!child.gameObject.activeSelf);
         }
     }
 
-    void OnDisable() {
-        Reset();    
+    void OnDisable()
+    {
+        Reset();
     }
 
-    void Reset() {
+    void Reset()
+    {
         movingObject.Stop();
         transform.localScale = baseScale;
         ToggleChildren();

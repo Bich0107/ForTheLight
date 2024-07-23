@@ -7,14 +7,12 @@ public class Enemy : MonoBehaviour, IHitByPlayer
 {
     [SerializeField] protected GameObject player;
     protected MovementController moveController;
-    protected EnemyAttackController attackController;
     protected HealthController healthController;
 
     protected void OnEnable()
     {
         player = FindObjectOfType<PlayerInput>().gameObject;
         moveController = GetComponent<MovementController>();
-        attackController = GetComponent<EnemyAttackController>();
         healthController = GetComponent<HealthController>();
 
         healthController?.AddEventOnHealthReachZero((object _obj) => Die());
@@ -34,7 +32,6 @@ public class Enemy : MonoBehaviour, IHitByPlayer
 
     public void Reset() {
         moveController?.Reset();
-        attackController?.Reset();
         healthController?.Reset();
     }
 

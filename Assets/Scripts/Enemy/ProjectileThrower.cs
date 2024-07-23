@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class ProjectileThrower : Enemy
 {
+    [SerializeField] EnemyAttackController attackController;
     [SerializeField] Vector3 offset;
     [SerializeField] float minDistanceToTarget = 5f;
     [SerializeField] float minDistanceToOffset = 1.5f;
 
     protected new void OnEnable() {
         base.OnEnable();
+        attackController = GetComponent<EnemyAttackController>();
     }
 
     void FixedUpdate()
@@ -42,5 +44,10 @@ public class ProjectileThrower : Enemy
                 moveController.Stop();
             }
         }
+    }
+
+    public new void Reset() {
+        base.Reset();
+        attackController?.Reset();
     }
 }
