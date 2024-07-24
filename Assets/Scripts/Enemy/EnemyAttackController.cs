@@ -49,7 +49,7 @@ public class EnemyAttackController : MonoBehaviour
     {
         if (!attacking) return;
         
-        StopCoroutine(attackCoroutine);
+        if (attackCoroutine != null) StopCoroutine(attackCoroutine);
         attacking = false;
     }
 

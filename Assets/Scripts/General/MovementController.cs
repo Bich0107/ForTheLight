@@ -43,7 +43,6 @@ public class MovementController : MonoBehaviour
     }
 
     public void Reset() => Stop();
-
     
     public void BlockHorizontal() => onlyVertical = true;
     public void BlockVertical() => onlyHorizontal = true;

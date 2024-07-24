@@ -6,7 +6,8 @@ public class JumpController : MonoBehaviour
     Rigidbody2D rigid;
     Vector2 velocity = Vector2.zero;
     [SerializeField] AffectedByGravity affectedByGravity;
-
+    [SerializeField] int airJumpCount = 1;
+    int counter;
     [Space]
     [SerializeField] float jumpForce;
 
@@ -19,8 +20,20 @@ public class JumpController : MonoBehaviour
 
     void Jump()
     {
-        if (!affectedByGravity.CheckGround()) return;
+        if (!affectedByGravity.CheckGround())
+        {
+            if (counter < airJumpCount)
+            {
+                counter++;
 
+                velocity.x = rigid.velocity.x;
+                velocity.y = jumpForce;
+                rigid.velocity = velocity;
+            }
+            return;
+        }
+
+        counter = 0;
         velocity.x = rigid.velocity.x;
         velocity.y = jumpForce;
         rigid.velocity = velocity;

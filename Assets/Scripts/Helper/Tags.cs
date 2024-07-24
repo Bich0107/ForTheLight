@@ -6,4 +6,7 @@ public class Tags {
     public static string LightSnatcher = "LightSnatcher";
     public static string ProjtectileThrower = "ProjtectileThrower";
     public static string Yoyo = "Yoyo";
+    public static string Spinners = "Spinners";
+    public static string Shielder = "Shielder";
+    public static string Ground = "Ground";
 }

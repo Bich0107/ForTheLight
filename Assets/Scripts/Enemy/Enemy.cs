@@ -1,9 +1,8 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(HealthController), typeof(MovementController))]
-public class Enemy : MonoBehaviour, IHitByPlayer
+public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
 {
     [SerializeField] protected GameObject player;
     protected MovementController moveController;

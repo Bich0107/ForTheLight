@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  attackController: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
   minDistanceToTarget: 5
   minDistanceToOffset: 1

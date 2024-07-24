@@ -5,7 +5,7 @@ public class RotateToMouse : MonoBehaviour
     Camera cam;
     float angle;
     [Tooltip("Flip object when rotate over 90 degree")]
-    [SerializeField] bool flip = true;
+    [SerializeField] bool flip;
 
     private void Start()
     {

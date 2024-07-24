@@ -11,6 +11,8 @@ TagManager:
   - ProjectileThrower
   - Projectile
   - Spinners
+  - Ground
+  - Shielder
   layers:
   - Default
   - TransparentFX

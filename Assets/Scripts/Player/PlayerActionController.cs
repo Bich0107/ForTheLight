@@ -34,8 +34,8 @@ public class PlayerActionController : MonoBehaviour
                 float chargePercent = chargeTime / maxChargeTime;
                 chargePercent = chargePercent > minChargePercent ? chargePercent : minChargePercent;
                 gunHolder.ChargeShot(chargePercent);
-                chargeTime = 0;
             }
+            chargeTime = 0;
         }
     }
 }

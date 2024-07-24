@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField] TrailRenderer trail;
     [SerializeField] MovingObject movingObject;
     [SerializeField] float maxDmgMultiplier = 1.8f;
     [SerializeField] Vector3 maxScale;
@@ -18,7 +19,10 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
+        trail = GetComponent<TrailRenderer>();
         movingObject = GetComponent<MovingObject>();
+
+        if (trail != null)  trail.enabled = true;
     }
 
     public void Shoot(Vector2 _direction, float _speedMultiplier, float _damage)
@@ -69,6 +73,7 @@ public class Bullet : MonoBehaviour
 
     void Reset()
     {
+        trail.enabled = false;
         movingObject.Stop();
         transform.localScale = baseScale;
         ToggleChildren();
