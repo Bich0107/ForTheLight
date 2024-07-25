@@ -3,13 +3,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Projectile", fileName = "New projectile")]
 public class ProjectileSO : ScriptableObject
 {
-    [SerializeField] new string name;
+    [Tooltip("Delay time before moving")]
+    [SerializeField] float attackDelay = 0;
     [SerializeField] float moveSpeed;
-    [SerializeField] float rotateSpeed;
     [SerializeField] float damage;
 
-    public string GetName => name;
+    
     public float GetMoveSpeed => moveSpeed;
-    public float GetRotateSpeed => rotateSpeed;
+    public float GetAttackDelay => attackDelay;
     public float GetDamage => damage;
 }

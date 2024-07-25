@@ -13,6 +13,8 @@ TagManager:
   - Spinners
   - Ground
   - Shielder
+  - ThornProjectile
+  - CircleLaser
   layers:
   - Default
   - TransparentFX

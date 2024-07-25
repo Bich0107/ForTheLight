@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyAttackController : MonoBehaviour
@@ -21,17 +22,21 @@ public class EnemyAttackController : MonoBehaviour
         do
         {
             EnemyAttackSO attack = GetRandomAttack();
-            yield return new WaitForSeconds(attack.GetAttackDelay());
+            for (int i = 0; i < attack.GetAmount(); i++)
+            {
+                GameObject g = ObjectPool.Instance.Spawn(attack.GetProjectile.tag);
+                if (g == null)
+                {
+                    Debug.LogWarning("Projectile null");
+                    yield break;
+                }
+                g.transform.position = projectileSpawnPos.position;
+                g.SetActive(true);
 
-            GameObject g = ObjectPool.Instance.Spawn(attack.GetProjectile.tag);
-            if (g == null) {
-                Debug.LogWarning("Projectile null");
-                yield break;
+                g.GetComponent<Projectile>().Fire(GetTargetDirection());
+
+                yield return new WaitForSeconds(attack.GetAttackDelay());
             }
-            g.transform.position = projectileSpawnPos.position;
-            g.SetActive(true);
-            
-            g.GetComponent<Projectile>().Fire(GetTargetDirection());
 
             yield return new WaitForSeconds(attack.GetCooldown());
         } while (attacking);
@@ -48,12 +53,13 @@ public class EnemyAttackController : MonoBehaviour
     public void Stop()
     {
         if (!attacking) return;
-        
+
         if (attackCoroutine != null) StopCoroutine(attackCoroutine);
         attacking = false;
     }
 
-    public void Reset() {
+    public void Reset()
+    {
         attacking = false;
         StopAllCoroutines();
         attackCoroutine = null;

@@ -10,9 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc824b1a2f56c644a90635c7fcf7fd34, type: 3}
-  m_Name: SlowProjectile
+  m_Name: CircleLaserProjectile
   m_EditorClassIdentifier: 
-  name: Slow projectile
-  moveSpeed: 3
-  rotateSpeed: 360
-  damage: 3
+  attackDelay: 1.25
+  moveSpeed: 0
+  damage: 20
