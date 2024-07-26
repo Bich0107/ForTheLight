@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyAttackController : MonoBehaviour
@@ -10,6 +9,9 @@ public class EnemyAttackController : MonoBehaviour
     [SerializeField] List<EnemyAttackSO> attackList;
     [SerializeField] Transform projectileSpawnPos;
     [SerializeField] bool attacking;
+    public bool IsAttacking => attacking;
+    // if true, enemy will continue to attack until it dies.
+    bool continuous;
     Coroutine attackCoroutine;
 
     private void Start()
@@ -21,6 +23,7 @@ public class EnemyAttackController : MonoBehaviour
     {
         do
         {
+            attacking = true;
             EnemyAttackSO attack = GetRandomAttack();
             for (int i = 0; i < attack.GetAmount(); i++)
             {
@@ -39,12 +42,15 @@ public class EnemyAttackController : MonoBehaviour
             }
 
             yield return new WaitForSeconds(attack.GetCooldown());
-        } while (attacking);
+            attacking = false;
+        } while (continuous);
     }
 
-    public void Attack()
+    public void Attack(bool _continuous = true)
     {
-        if (attacking) return;
+        if (attacking || continuous) return;
+
+        continuous = _continuous;
 
         attacking = true;
         attackCoroutine = StartCoroutine(CR_Attack());
@@ -52,16 +58,16 @@ public class EnemyAttackController : MonoBehaviour
 
     public void Stop()
     {
-        if (!attacking) return;
+        if (!attacking && !continuous) return;
 
-        if (attackCoroutine != null) StopCoroutine(attackCoroutine);
-        attacking = false;
+        Reset();
     }
 
     public void Reset()
     {
         attacking = false;
-        StopAllCoroutines();
+        continuous = false;
+        if (attackCoroutine != null) StopCoroutine(attackCoroutine);
         attackCoroutine = null;
     }
 

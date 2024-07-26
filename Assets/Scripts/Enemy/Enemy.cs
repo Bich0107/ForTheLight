@@ -37,4 +37,6 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
     public GameObject GetPlayer => player;
     protected Vector2 GetDirectionToPlayer => (player.transform.position - transform.position).normalized;
     protected float GetDistanceToPlayer => Vector2.Distance(transform.position, player.transform.position);
+    protected float GetHorizontalDistanceToPlayer => Mathf.Abs(transform.position.x - player.transform.position.x);
+    protected float GetVerticalDistanceToPlayer => Mathf.Abs(transform.position.y - player.transform.position.y);
 }

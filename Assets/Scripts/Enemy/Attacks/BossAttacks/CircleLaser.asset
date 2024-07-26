@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CircleLaser
   m_EditorClassIdentifier: 
   projectile: {fileID: 2262982613560073449, guid: 31f0fc6098a1ff84cb3c6b967114588d, type: 3}
-  attackDelay: 1
+  attackDelay: 1.5
   cd: 5
   amount: 1
