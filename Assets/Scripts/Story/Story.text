@@ -1,0 +1,24 @@
+bối cảnh: chỉ tiết lộ ở khúc cuối
+-cube và gun là 2 con quỷ có nhiệm vụ xâm nhập thiên đường và lấy trộm thứ gì đó (chưa nghĩ ra) 
+-cube bị gun hút mất kí ức và thôi miên để nghĩ bản thân là một linh hồn vô tội bị rơi xuống địa ngục nhằm vượt qua được rào chắn của thiên đường, 
+-gun vượt qua được rào chắn do đã biến bản thân thành một món đồ, chỉ có thể kích hoạt 1 phần nhỏ sức mạnh khi có ai đó sử dụng.
+-khi bắn chết một linh hồn trên thiên đường, cube được hồi máu, gun nói đó là do gun đã hấp thụ năng lượng của ác quỷ bị giết và truyền cho
+cube, thực chất đó là gun hấp chuyển hóa thánh lực thành ma lực.
+-giết càng nhiều thì gun sẽ mở khóa thêm các hình dạng mới, tăng sát thương, hồi phục, v.v
+
+main story line:
+cube rơi xuống một cái hố, gần đó là một đống cube đã bị móc tim, đi qua phải một lúc thì thấy gun.
+
+cube bị gun dụ nhặt mình rồi bám chặt lấy và bắt cube giúp mình thoát khỏi địa ngục, cube đồng ý vì cũng muốn thoát khỏi địa ngục.
+
+gun hướng dẫn về nhảy đôi, charge attack.
+
+hồi một: khu vực rìa (demo)
+    + khung cảnh: các cube bị mất tim lơ lửng rải rác khắp nơi, có các platform để cube leo lên, kích thước ngẫu nhiên.
+    + kẻ địch: 4 loại thường, 1 boss.
+    + phân vùng: 
+        - 4 khu vực: 3 thường, 1 boss.
+            _ khu vực 1: platform bình thường, kẻ địch: light snatcher (LS) và projectile throwers (PT)
+            _ khu vực 2: có platform dịch chuyển, platform nảy, kẻ địch: LS, PT, spinners
+            _ khu vực 3: platform tự động biến mất, bẫy chuột, kẻ địch: LS, PT, spinners, shielder
+            _ khu vực 4: platform dài vô tận, quái nhỏ xuất hiện liên tục (không gọi shielder), boss (khi còn 1/2 máu bắt đầu gọi quái nhỏ) 

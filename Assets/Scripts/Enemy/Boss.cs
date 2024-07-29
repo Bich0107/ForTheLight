@@ -37,8 +37,7 @@ public class Boss : Enemy
         // choose random between attack with projectile or attack with body
         if (projectileReady && bodyReady)
         {
-            //int num = Random.Range(0, 100);
-            int num = Random.Range(50, 100);
+            int num = Random.Range(0, 100);
             if (num < 50)
             {
                 projectileAttackController.Attack(false);
@@ -52,8 +51,7 @@ public class Boss : Enemy
 
     void ChooseRandomAttack()
     {
-        //int num = Random.Range(0, 2);
-        int num = 1;
+        int num = Random.Range(0, 2);
         switch (num)
         {
             case 0:

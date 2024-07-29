@@ -5,6 +5,7 @@ public class EnemyAttackSO : ScriptableObject {
     [SerializeField] GameObject projectile;
     [Tooltip("Delay time between shot")]
     [SerializeField] float attackDelay;
+    [Tooltip("Wait time after the attack end")]
     [SerializeField] float cd;
     [Tooltip("The number of shot")]
     [SerializeField] int amount;

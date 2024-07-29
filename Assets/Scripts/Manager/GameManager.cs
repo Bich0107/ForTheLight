@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoSingleton<GameManager>
 {
     public bool gameStarted;
+    bool playerControl = true;
 
     new void Awake()
     {
@@ -25,4 +26,10 @@ public class GameManager : MonoSingleton<GameManager>
         }
 #endif
     }
+
+    public void SetPlayerControlStatus(bool _value) {
+        playerControl = _value;
+    }
+
+    public bool PlayerControlStatus() => playerControl;
 }

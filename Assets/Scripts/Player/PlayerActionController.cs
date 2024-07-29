@@ -20,6 +20,12 @@ public class PlayerActionController : MonoBehaviour
 
     void OnFire(InputValue _value)
     {
+        if (!GameManager.Instance.PlayerControlStatus()) 
+        {
+            ResetFireStatus();
+            return;
+        }
+
         if (_value.isPressed)
         {
             isCharging = true;
@@ -27,6 +33,7 @@ public class PlayerActionController : MonoBehaviour
         }
         else
         {
+            // calculate charge time to increase gun power
             isCharging = false;
             if (chargeTime > minChargeTime)
             {
@@ -37,5 +44,18 @@ public class PlayerActionController : MonoBehaviour
             }
             chargeTime = 0;
         }
+    }
+
+    void OnTalk(InputValue _value)
+    {
+        if (_value.isPressed)
+        {
+            DialogueSystem.Instance.NextDialogue();
+        }
+    }
+
+    void ResetFireStatus() {
+        isCharging = false;
+        chargeTime = 0;
     }
 }

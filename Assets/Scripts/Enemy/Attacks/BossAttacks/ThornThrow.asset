@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 5092348833160600266, guid: 3aeeccdaa6ba39f4fa252f06e3cdda20, type: 3}
   attackDelay: 0.5
-  cd: 5
+  cd: 1.5
   amount: 4
