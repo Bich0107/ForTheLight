@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Teleporter : MonoBehaviour
 {
-    [SerializeField] Vector3 destination;
+    [SerializeField] Transform destination;
     [SerializeField] float delayTime;
     bool isTeleporting;
 
@@ -27,7 +27,7 @@ public class Teleporter : MonoBehaviour
         GameManager.Instance.SetPlayerControlStatus(false);
         yield return new WaitForSeconds(delayTime);
 
-        _target.transform.position = destination;
+        _target.transform.position = destination.position;
         GameManager.Instance.SetPlayerControlStatus(true);
     }
 }
