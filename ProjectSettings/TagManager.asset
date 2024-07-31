@@ -73,3 +73,6 @@ TagManager:
   - name: Bullet
     uniqueID: 2179404763
     locked: 0
+  - name: Guide
+    uniqueID: 3170969613
+    locked: 0

@@ -8,6 +8,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] List<Vector3> targetList;
     [SerializeField] List<float> moveTimeList;
     [SerializeField] List<float> delayList;
+    [SerializeField] bool loop = true;
     [Space]
 
     [SerializeField] float minDistanceToPos;
@@ -45,7 +46,7 @@ public class MovingPlatform : MonoBehaviour
             yield return new WaitForSeconds(delayList[index]);
 
             NextIndex();
-        } while (true);
+        } while (loop);
     }
 
     void NextIndex()

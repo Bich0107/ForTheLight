@@ -3,10 +3,16 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
+public enum Language
+{
+    Vietnamese,
+    English
+}
+
 public class DialogueSystem : MonoSingleton<DialogueSystem>
 {
-    [SerializeField] int langueIndex = 0;
-    [Header("Display GOs")]
+    [SerializeField] Language language;
+    [Header("Display")]
     [SerializeField] GameObject dialogueCanvas;
     [SerializeField] TextMeshProUGUI actorText;
     [SerializeField] TextMeshProUGUI contextText;
@@ -42,7 +48,6 @@ public class DialogueSystem : MonoSingleton<DialogueSystem>
         dialogueIndex = 0;
     }
 
-
     public void NextDialogue()
     {
         if (isTyping) return;
@@ -60,12 +65,18 @@ public class DialogueSystem : MonoSingleton<DialogueSystem>
         }
     }
 
+    public void SetConversation(List<ConversationSO> _conversations)
+    {
+        conversationsList = _conversations;
+        conversationsIndex = 0;
+    }
+
     IEnumerator CR_ShowDialogue(DialogueSO dialogue)
     {
         isTyping = true;
 
         string text = "";
-        string content = dialogue.GetContentList[langueIndex];
+        string content = dialogue.GetContentList[(int)language];
         DisplayActorName(dialogue.GetActor);
         for (int i = 0; i < content.Length; i++)
         {

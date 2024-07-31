@@ -17,12 +17,9 @@ public class EnemySpawner : MonoBehaviour
     {
         basePos = transform.position;
         Reset();
-
-        // testing
-        Spawn();
     }
 
-    public void Spawn()
+    public void SpawnAll()
     {
         spawnCoroutine = StartCoroutine(CR_Spawn());
     }
