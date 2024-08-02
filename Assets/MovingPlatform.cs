@@ -9,25 +9,26 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] List<float> moveTimeList;
     [SerializeField] List<float> delayList;
     [SerializeField] bool loop = true;
+    [SerializeField] bool playOnEnable = true;
     [Space]
-
     [SerializeField] float minDistanceToPos;
+
     int index = 0;
     float timer = 0;
     Vector3 startPos;
     Vector3 targetPos;
     bool isMoving;
 
-    private void Start()
+    void OnEnable()
     {
-        StartCoroutine(CR_Move());
+        if (playOnEnable) StartCoroutine(CR_Move());
     }
 
     void FixedUpdate()
     {
         if (!isMoving) return;
         timer += Time.fixedDeltaTime / moveTimeList[index];
-        transform.position = Vector2.Lerp(startPos, targetPos, timer);
+        transform.position = Vector2.Lerp(startPos, targetPos, Mathf.Min(timer, 1f));
     }
 
     IEnumerator CR_Move()

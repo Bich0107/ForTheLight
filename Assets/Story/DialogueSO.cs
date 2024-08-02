@@ -8,8 +8,10 @@ public class DialogueSO : ScriptableObject
     [SerializeField] string[] contentList; 
     [Tooltip("Delay time (second) between each word when displayed on the canvas (the smaller this value the faster)")]
     [SerializeField] float wordDelayTime = 0.1f;
+    [SerializeField] float readTime = 1f;
 
     public ActorEnum GetActor => actor;
     public string[] GetContentList => contentList;
     public float GetWordDelayTime => wordDelayTime;
+    public float GetReadTime => readTime;
 }

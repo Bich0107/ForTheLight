@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 510efc1bdf7dbd640a31e4df8a44247a, type: 3}
-  m_Name: Dialogue1_1
+  m_Name: Dialogue1_9
   m_EditorClassIdentifier: 
-  actor: 0
+  actor: 2
   contentList:
-  - abcasdfasfeiasidf
-  wordDelayTime: 0.1
+  - "Nh\u01B0ng ta bi\u1EBFt n\u1EBFu kh\xF4ng nh\u1EB7t ta l\xEAn v\xE0 b\u1EAFn
+    tr\u01B0\u1EDBc khi n\xF3 l\u1EA1i \u0111\xE2y th\xEC nh\xF3c s\u1EBD ch\u1EB3ng
+    c\xF2n c\u01A1 h\u1ED9i \u0111\u1EB7t t\xEAn \u0111\xE2u."
+  wordDelayTime: 0.03
+  readTime: 1

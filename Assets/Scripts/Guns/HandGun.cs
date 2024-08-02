@@ -5,9 +5,9 @@ public class HandGun : Gun
     public override void Shoot(Quaternion _rotation)
     {
         GameObject instance = SpawnBullet(_rotation);
-
         instance.SetActive(true);
         instance.GetComponent<Bullet>().Shoot(GetDirection(), gunScript.GetSpeedMultiplier(), gunScript.GetAttack());
+        
     }
 
     public override void ChargeShot(Quaternion _rotation, float _chargePercent)

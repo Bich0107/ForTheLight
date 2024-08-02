@@ -27,6 +27,10 @@ public class GameManager : MonoSingleton<GameManager>
 #endif
     }
 
+    public void TogglePlayerControl() {
+        playerControl = !playerControl;
+    }
+
     public void SetPlayerControlStatus(bool _value) {
         playerControl = _value;
     }

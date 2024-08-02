@@ -9,14 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfda56da833e2384a9677cd3c976a436, type: 3}
-  m_Name: Cutscene1Timeline
+  m_Script: {fileID: 11500000, guid: 510efc1bdf7dbd640a31e4df8a44247a, type: 3}
+  m_Name: Dialogue1_2
   m_EditorClassIdentifier: 
-  m_Version: 0
-  m_Tracks: []
-  m_FixedDuration: 0
-  m_EditorSettings:
-    m_Framerate: 60
-    m_ScenePreview: 1
-  m_DurationMode: 0
-  m_MarkerTrack: {fileID: 0}
+  actor: 1
+  contentList:
+  - "Ai \u0111\xF3?"
+  wordDelayTime: 0.03
+  readTime: 1

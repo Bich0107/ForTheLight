@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 510efc1bdf7dbd640a31e4df8a44247a, type: 3}
-  m_Name: Dialogue1_2
+  m_Name: Dialogue1_3
   m_EditorClassIdentifier: 
-  actor: 1
+  actor: 0
   contentList:
-  - 5558e2e1asdf6
-  wordDelayTime: 0.1
+  - "Nh\xECn \u0111i \u0111\xE2u th\u1EBF h\u1EA3? Ta \u1EDF ngay tr\u01B0\u1EDBc
+    m\u1EB7t nh\xF3c n\xE0y."
+  wordDelayTime: 0.03
+  readTime: 1

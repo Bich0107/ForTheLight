@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -15,20 +16,20 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         baseScale = transform.localScale;
-    }
-
-    private void OnEnable()
-    {
         trail = GetComponent<TrailRenderer>();
         movingObject = GetComponent<MovingObject>();
+    }
 
-        if (trail != null)  trail.enabled = true;
+    void OnEnable()
+    {
+        trail.Clear();
     }
 
     public void Shoot(Vector2 _direction, float _speedMultiplier, float _damage)
     {
         if (movingObject == null) return;
         ToggleChildren();
+
         hitCount = maxHitCount;
         damage = _damage;
         movingObject.Move(_direction, _speedMultiplier);
@@ -40,13 +41,12 @@ public class Bullet : MonoBehaviour
         ToggleChildren();
 
         hitCount = maxHitCountWhenCharge;
-
         transform.localScale = maxScale * _chargePercent;
         damage = _damage * maxDmgMultiplier * _chargePercent;
         movingObject.Move(_direction, _speedMultiplier);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         IHitByPlayer hit = other.GetComponent<IHitByPlayer>();
         if (hit != null)
@@ -73,7 +73,6 @@ public class Bullet : MonoBehaviour
 
     void Reset()
     {
-        trail.enabled = false;
         movingObject.Stop();
         transform.localScale = baseScale;
         ToggleChildren();

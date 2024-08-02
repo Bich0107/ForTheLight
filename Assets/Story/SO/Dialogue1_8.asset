@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 510efc1bdf7dbd640a31e4df8a44247a, type: 3}
-  m_Name: Dialogue1_4
+  m_Name: Dialogue1_8
   m_EditorClassIdentifier: 
-  actor: 1
+  actor: 2
   contentList:
-  - bang bang bang ssxss
-  wordDelayTime: 0.5
+  - "Ti\u1EBFc cho nh\xF3c, ta kh\xF4ng ph\u1EA3i m\u1ED9t nh\xE0 sinh v\u1EADt h\u1ECDc
+    chuy\xEAn \u0111\u1EB7t t\xEAn cho c\xE1c lo\xE0i sinh v\u1EADt n\xEAn kh\xF4ng
+    th\u1EC3 cho n\xF3 m\u1ED9t c\xE1i t\xEAn d\xE0i ngo\u1EB1ng kh\xF3 hi\u1EC3u."
+  wordDelayTime: 0.03
+  readTime: 1

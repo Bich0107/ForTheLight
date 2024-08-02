@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 510efc1bdf7dbd640a31e4df8a44247a, type: 3}
+  m_Name: Dialogue1_5
+  m_EditorClassIdentifier: 
+  actor: 2
+  contentList:
+  - "Ch\xEDnh x\xE1c! Ta l\xE0 m\u1ED9t kh\u1EA9u s\xFAng! \u0110\xFAng l\xE0 m\u1ED9t
+    c\xE2u tr\u1EA3 l\u1EDDi khi\u1EBFn ng\u01B0\u1EDDi c\xF3 t\u1EADt v\u1EC1 m\u1EAFt
+    ph\u1EA3i h\u1ED5 th\u1EB9n."
+  wordDelayTime: 0.03
+  readTime: 1

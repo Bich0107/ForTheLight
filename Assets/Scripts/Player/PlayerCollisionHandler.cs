@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerCollisionHandler : HitHanlder, IHitByEnemy
+public class PlayerCollisionHandler : HitHanlder, IHitByEnemy, IExplosionTrigger
 {
     protected new void Start() {
         base.Start();

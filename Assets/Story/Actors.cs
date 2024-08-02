@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 public enum ActorEnum {
+    XXX,
     Cube,
     Gun
 }
@@ -8,7 +9,8 @@ public enum ActorEnum {
 public class Actors
 {
     public static List<string> ActorList = new List<string> {
+        "???",
         "Cube",
-        "Gun"
+        "Gun",
     };
 }

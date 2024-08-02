@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 510efc1bdf7dbd640a31e4df8a44247a, type: 3}
-  m_Name: Dialogue1_3
+  m_Name: Dialogue1_10
   m_EditorClassIdentifier: 
-  actor: 0
+  actor: 1
   contentList:
-  - asdfa88cv353xz34z5e8eea
-  wordDelayTime: 0.1
+  - "Nh\u01B0ng...b\u1ED1 m\u1EB9 n\xF3i s\xFAng r\u1EA5t nguy hi\u1EC3m..."
+  wordDelayTime: 0.03
+  readTime: 1

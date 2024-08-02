@@ -25,18 +25,21 @@ public class DialogueSystem : MonoSingleton<DialogueSystem>
     [SerializeField] DialogueSO currentDialogue;
     [SerializeField] int dialogueIndex = 0;
 
+    bool autoPlay = true;
     bool isTyping = false;
 
-    void Start()
+    public void StartConversation()
     {
-        NextConversation();
+        NextDialogue();
+        StartCoroutine(CR_ShowDialogue());
     }
 
-    public void NextConversation()
+    public bool NextConversation()
     {
         if (conversationsIndex >= conversationsList.Count)
         {
             Debug.Log("all conversations end");
+            return false;
         }
         else
         {
@@ -46,46 +49,50 @@ public class DialogueSystem : MonoSingleton<DialogueSystem>
         }
 
         dialogueIndex = 0;
+
+        return true;
     }
 
-    public void NextDialogue()
+    public bool NextDialogue()
     {
-        if (isTyping) return;
+        if (isTyping) return false;
 
         if (dialogueIndex >= dialoguesList.Count)
         {
-            NextConversation();
+            return NextConversation();
         }
-        else
-        {
-            currentDialogue = dialoguesList[dialogueIndex];
-            dialogueIndex++;
 
-            StartCoroutine(CR_ShowDialogue(currentDialogue));
-        }
+        currentDialogue = dialoguesList[dialogueIndex];
+        dialogueIndex++;
+        return true;
     }
 
-    public void SetConversation(List<ConversationSO> _conversations)
+    public void SetConversations(List<ConversationSO> _conversations)
     {
         conversationsList = _conversations;
         conversationsIndex = 0;
     }
 
-    IEnumerator CR_ShowDialogue(DialogueSO dialogue)
+    IEnumerator CR_ShowDialogue()
     {
-        isTyping = true;
-
-        string text = "";
-        string content = dialogue.GetContentList[(int)language];
-        DisplayActorName(dialogue.GetActor);
-        for (int i = 0; i < content.Length; i++)
+        do
         {
-            text += content[i];
-            DisplayText(text);
-            yield return new WaitForSeconds(dialogue.GetWordDelayTime);
-        }
+            isTyping = true;
 
-        isTyping = false;
+            string text = "";
+            string content = currentDialogue.GetContentList[(int)language];
+            DisplayActorName(currentDialogue.GetActor);
+            for (int i = 0; i < content.Length; i++)
+            {
+                text += content[i];
+                DisplayText(text);
+                yield return new WaitForSeconds(currentDialogue.GetWordDelayTime);
+            }
+
+            isTyping = false;
+
+            yield return new WaitForSeconds(currentDialogue.GetReadTime);
+        } while (autoPlay && NextDialogue());
     }
 
     void DisplayText(string _text)

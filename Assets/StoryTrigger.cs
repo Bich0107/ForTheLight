@@ -7,6 +7,7 @@ public class StoryTrigger : MonoBehaviour
     [SerializeField] PlayableDirector cutscene;
     [SerializeField] List<ConversationSO> conversations;
     [SerializeField] DialogueSystem dialogueSystem;
+    bool triggered;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -18,14 +19,10 @@ public class StoryTrigger : MonoBehaviour
 
     void ShowStory()
     {
-        if (cutscene != null)
-        {
-            GameManager.Instance.SetPlayerControlStatus(false);
-            cutscene.Play();
-        }
-        else
-        {
-            dialogueSystem.SetConversation(conversations);
-        }
+        if (cutscene == null || triggered) return;
+        triggered = true;
+
+        dialogueSystem.SetConversations(conversations);
+        cutscene.Play();
     }
 }

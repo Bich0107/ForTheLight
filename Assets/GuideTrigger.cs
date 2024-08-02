@@ -15,7 +15,6 @@ public class GuideTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("triggered", other.gameObject);
         if (other.CompareTag(Tags.Player))
         {
             StartCoroutine(CR_Appear());
