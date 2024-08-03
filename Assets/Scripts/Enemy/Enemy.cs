@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
         healthController?.DecreaseHealth(_dmg);
     }
 
-    protected void Die() {
+    protected virtual void Die() {
         gameObject.SetActive(false);
     }
 

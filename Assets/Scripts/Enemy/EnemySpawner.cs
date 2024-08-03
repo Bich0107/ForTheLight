@@ -5,21 +5,29 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] Vector2 basePos;
     [SerializeField] List<EnemyWaveSO> waves;
     [SerializeField] Transform enemyParent;
-
+    [SerializeField] bool loop = false;
     int index;
     EnemyWaveSO currentWave;
     Coroutine spawnCoroutine;
 
     private void Start()
     {
-        basePos = transform.position;
         Reset();
     }
 
-    public void SpawnAll()
+    public void SetWaves(List<EnemyWaveSO> _waves, bool _isLoop = false)
+    {
+        waves = _waves;
+
+        index = 0;
+        currentWave = waves[index];
+
+        loop = _isLoop;
+    }
+
+    public void StartSpawning()
     {
         spawnCoroutine = StartCoroutine(CR_Spawn());
     }
@@ -33,12 +41,7 @@ public class EnemySpawner : MonoBehaviour
     public void Reset()
     {
         Stop();
-        if (waves != null)
-        {
-            index = 0;
-            currentWave = waves[0];
-            transform.position = basePos;
-        }
+        waves = null;
     }
 
     IEnumerator CR_Spawn()
@@ -52,6 +55,7 @@ public class EnemySpawner : MonoBehaviour
             // spawn each section of current wave
             for (int i = 0; i < sectionList.Count; i++)
             {
+                Debug.Log($"section {i} start");
                 WaveSectionSO currentSection = sectionList[i];
                 //GameObject currentEnemy = currentSection.GetEnemy;
                 string currentEnemyTag = currentSection.GetEnemy.tag;
@@ -75,6 +79,7 @@ public class EnemySpawner : MonoBehaviour
                 }
 
                 yield return new WaitForSeconds(currentSection.GetEndSectionDelay);
+                Debug.Log($"section {i} end");
             }
 
             // move to next wave
@@ -84,7 +89,7 @@ public class EnemySpawner : MonoBehaviour
                 yield return new WaitForSeconds(currentWave.GetDelay);
             }
             else yield break; // all waves clear
-        } while (true);
+        } while (loop);
     }
 
     EnemyWaveSO GetNextWave(ref int _index)

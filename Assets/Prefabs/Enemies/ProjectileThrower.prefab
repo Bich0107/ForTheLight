@@ -291,6 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d21ced372669e94788d8f2337caf54a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseSpeed: 4.2
   moveSpeed: 4.2
   onlyHorizontal: 0
   onlyVertical: 0
@@ -340,6 +341,7 @@ MonoBehaviour:
   lightObject: {fileID: 0}
   health: {fileID: 0}
   collideDamage: 0
+  selfDestructOnTrigger: 0
 --- !u!114 &7837249155097416316
 MonoBehaviour:
   m_ObjectHideFlags: 0

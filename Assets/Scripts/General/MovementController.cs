@@ -6,6 +6,7 @@ public class MovementController : MonoBehaviour
     Rigidbody2D rigid;
     Vector2 direction;
     Vector2 velocity = Vector2.zero;
+    [SerializeField] float baseSpeed;
     [SerializeField] float moveSpeed;
     public float MoveSpeed {
         get { return moveSpeed; }
@@ -15,9 +16,14 @@ public class MovementController : MonoBehaviour
     [SerializeField] bool onlyHorizontal = false;
     [SerializeField] bool onlyVertical = false;
 
-    void OnEnable()
+    void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
+    }
+
+    void OnEnable()
+    {
+        Reset();
     }
 
     private void FixedUpdate()
@@ -31,6 +37,10 @@ public class MovementController : MonoBehaviour
         rigid.velocity = velocity;
     }
 
+    public void ModifiyMoveSpeed(float _modifier) {
+        moveSpeed = baseSpeed * _modifier;
+    }
+
     public void Move(Vector2 _direction)
     {
         direction = _direction;
@@ -42,8 +52,12 @@ public class MovementController : MonoBehaviour
         rigid.velocity = Vector2.zero;
     }
 
-    public void Reset() => Stop();
-    
+    public void Reset()
+    {
+        Stop();
+        moveSpeed = baseSpeed;
+    }
+
     public void BlockHorizontal() => onlyVertical = true;
     public void BlockVertical() => onlyHorizontal = true;
 }

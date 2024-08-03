@@ -58,16 +58,20 @@ public class LightSnatcher : Enemy
 
         yield return new WaitForSeconds(chargeTime);
 
-        moveController.MoveSpeed = moveController.MoveSpeed * chargeSpeedFactor;
+        moveController.ModifiyMoveSpeed(chargeSpeedFactor);
         moveController.Move(GetDirectionToPlayer);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         IExplosionTrigger trigger = other.GetComponent<IExplosionTrigger>();
         if (trigger != null) {
             Explode();
         }
+    }
+
+    protected override void Die() {
+        Explode();
     }
 
     void Explode()
@@ -83,9 +87,10 @@ public class LightSnatcher : Enemy
         yield return new WaitForSeconds(explodeDelay);
 
         transform.localScale = explodeSize;
-        Instantiate(explodeVFX, transform.position, Quaternion.identity, transform);
+        explodeVFX.SetActive(true);
 
         yield return new WaitForSeconds(explodeDuration);
+        explodeVFX.SetActive(false);
         gameObject.SetActive(false);
     }
 
@@ -93,14 +98,14 @@ public class LightSnatcher : Enemy
     {
         base.OnDisable();
 
-        if (attackCoroutine != null) StopCoroutine(attackCoroutine);
-        attackCoroutine = null;
-        isAttacking = false;
+        Reset();
     }
 
     public new void Reset()
     {
         base.Reset();
+
+        moveController.Reset();
 
         if (attackCoroutine != null) StopCoroutine(attackCoroutine);
         attackCoroutine = null;

@@ -25,13 +25,15 @@ public class DialogueSystem : MonoSingleton<DialogueSystem>
     [SerializeField] DialogueSO currentDialogue;
     [SerializeField] int dialogueIndex = 0;
 
+    Coroutine conversationCoroutine;
     bool autoPlay = true;
     bool isTyping = false;
 
     public void StartConversation()
     {
+        Debug.Log("Start conversation");
         NextDialogue();
-        StartCoroutine(CR_ShowDialogue());
+        conversationCoroutine = StartCoroutine(CR_ShowDialogue());
     }
 
     public bool NextConversation()
@@ -71,6 +73,7 @@ public class DialogueSystem : MonoSingleton<DialogueSystem>
     {
         conversationsList = _conversations;
         conversationsIndex = 0;
+        dialoguesList = conversationsList[conversationsIndex].GetDialogues;
     }
 
     IEnumerator CR_ShowDialogue()
@@ -93,6 +96,12 @@ public class DialogueSystem : MonoSingleton<DialogueSystem>
 
             yield return new WaitForSeconds(currentDialogue.GetReadTime);
         } while (autoPlay && NextDialogue());
+    }
+
+    public void EndConversation() {
+        if (conversationCoroutine != null) {
+            StopCoroutine(conversationCoroutine);
+        }
     }
 
     void DisplayText(string _text)

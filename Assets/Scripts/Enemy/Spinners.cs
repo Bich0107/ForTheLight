@@ -31,7 +31,7 @@ public class Spinners : LightSnatcher
         yield return new WaitForSeconds(chargeTime);
 
         rotateObject.RotateSpeed *= chargeSpeedFactor;
-        moveController.MoveSpeed *= chargeSpeedFactor;
+        moveController.ModifiyMoveSpeed(chargeSpeedFactor);
         moveController.Move(GetDirectionToPlayer);
 
         yield return new WaitForSeconds(chargeAttackDuration);
@@ -42,9 +42,9 @@ public class Spinners : LightSnatcher
     {
         isAttacking = false;
 
-        moveController.Stop();
         rotateObject.RotateSpeed /= chargeSpeedFactor;
-        moveController.MoveSpeed /= chargeSpeedFactor;
+
+        moveController.Reset();
         moveController.Move(GetDirectionToPlayer);
     }
 }

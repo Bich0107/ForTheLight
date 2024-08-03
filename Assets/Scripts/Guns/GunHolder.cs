@@ -10,11 +10,11 @@ public class GunHolder : MonoBehaviour
     }
 
     public void Shoot() {
-        gunScript.Shoot(transform.rotation);
+        gunScript?.Shoot(transform.rotation);
     }
 
     public void ChargeShot(float _chargePercent) {
-        gunScript.ChargeShot(transform.rotation, _chargePercent);
+        gunScript?.ChargeShot(transform.rotation, _chargePercent);
     }
 
     public void ChangeGun(GameObject _gun) => gun = _gun;

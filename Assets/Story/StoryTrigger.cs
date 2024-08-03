@@ -21,7 +21,7 @@ public class StoryTrigger : MonoBehaviour
     {
         if (cutscene == null || triggered) return;
         triggered = true;
-
+        Debug.Log("Set conversation");
         dialogueSystem.SetConversations(conversations);
         cutscene.Play();
     }

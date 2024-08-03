@@ -421,6 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d21ced372669e94788d8f2337caf54a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseSpeed: 5
   moveSpeed: 5
   onlyHorizontal: 0
   onlyVertical: 0
@@ -511,6 +512,11 @@ MonoBehaviour:
   attackDistance: 4.5
   chargeTime: 0.75
   chargeSpeedFactor: 4
+  baseSize: {x: 0, y: 0, z: 0}
+  explodeSize: {x: 0, y: 0, z: 0}
+  explodeDelay: 0
+  explodeDuration: 0
+  explodeVFX: {fileID: 0}
   chargeRotateSpdFactor: 4
   chargeAttackDuration: 0.5
   rotateObject: {fileID: 0}

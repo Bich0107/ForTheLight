@@ -15,4 +15,6 @@ MonoBehaviour:
   sectionList:
   - {fileID: 11400000, guid: 391ce6dd1006774419b2b4cb0ae05005, type: 2}
   - {fileID: 11400000, guid: 66385844a2751094da82374dd6d22f5a, type: 2}
+  - {fileID: 11400000, guid: d1b414df74d8aff4e8e4a9121a1f6bad, type: 2}
+  - {fileID: 11400000, guid: d51bcb043d441894380287d3c6a6ad1e, type: 2}
   delayToNextWave: 1.5
