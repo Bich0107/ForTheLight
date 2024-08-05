@@ -12,13 +12,14 @@ public class EnemySpawner : MonoBehaviour
     EnemyWaveSO currentWave;
     Coroutine spawnCoroutine;
 
-    private void Start()
+    void Start()
     {
         Reset();
     }
 
     public void SetWaves(List<EnemyWaveSO> _waves, bool _isLoop = false)
     {
+        Stop();
         waves = _waves;
 
         index = 0;
@@ -55,7 +56,6 @@ public class EnemySpawner : MonoBehaviour
             // spawn each section of current wave
             for (int i = 0; i < sectionList.Count; i++)
             {
-                Debug.Log($"section {i} start");
                 WaveSectionSO currentSection = sectionList[i];
                 //GameObject currentEnemy = currentSection.GetEnemy;
                 string currentEnemyTag = currentSection.GetEnemy.tag;
@@ -79,7 +79,6 @@ public class EnemySpawner : MonoBehaviour
                 }
 
                 yield return new WaitForSeconds(currentSection.GetEndSectionDelay);
-                Debug.Log($"section {i} end");
             }
 
             // move to next wave
@@ -94,9 +93,9 @@ public class EnemySpawner : MonoBehaviour
 
     EnemyWaveSO GetNextWave(ref int _index)
     {
-        if (_index + 1 < waves.Count)
+        if (_index + 1 < waves.Count || loop)
         {
-            index++;
+            index = (index + 1) % waves.Count;
             return waves[index];
         }
         else return null;

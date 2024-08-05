@@ -8,9 +8,13 @@ public class EnemyWaveTrigger : MonoBehaviour
     [SerializeField] List<EnemyWaveSO> enemyWaves;
     [SerializeField] bool loop;
 
-    void OnTriggerEnter2D(Collider2D other) {
-        spawner.SetWaves(enemyWaves, loop);
-        spawner.StartSpawning();     
-        Destroy(gameObject);   
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag(Tags.Player))
+        {
+            spawner.SetWaves(enemyWaves, loop);
+            spawner.StartSpawning();
+            Destroy(gameObject);
+        }
     }
 }

@@ -10,6 +10,7 @@ public class GuideTrigger : MonoBehaviour
 
     void Start()
     {
+        guideText.gameObject.SetActive(false);
         guideText.alpha = 0f;
     }
 
@@ -17,6 +18,7 @@ public class GuideTrigger : MonoBehaviour
     {
         if (other.CompareTag(Tags.Player))
         {
+            guideText.gameObject.SetActive(true);
             StartCoroutine(CR_Appear());
         }
     }

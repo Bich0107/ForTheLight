@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Section2_2
   m_EditorClassIdentifier: 
   enemy: {fileID: 6014069781121641512, guid: b0aad7aac15e16649be2e8fe4e6f15eb, type: 3}
-  amount: 3
+  amount: 2
   offsetList:
-  - {x: -9.3, y: 4.3}
-  - {x: -6.8, y: 7.1}
-  - {x: -10.2, y: 0.4}
-  spawnDelay: 0.75
+  - {x: -17, y: 7}
+  - {x: -17, y: -6.3}
+  spawnDelay: 0
   endSectionDelay: 1
