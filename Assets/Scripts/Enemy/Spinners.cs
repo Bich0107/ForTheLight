@@ -38,6 +38,9 @@ public class Spinners : LightSnatcher
         Recharge();
     }
 
+    // to clear the ontrigger of parent class
+    protected override void OnTriggerEnter2D(Collider2D other) {}
+
     void Recharge()
     {
         isAttacking = false;

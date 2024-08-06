@@ -5,12 +5,18 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    
     [SerializeField] List<EnemyWaveSO> waves;
     [SerializeField] Transform enemyParent;
     [SerializeField] bool loop = false;
     int index;
+    AreaLinkerController areaLinker;
     EnemyWaveSO currentWave;
     Coroutine spawnCoroutine;
+
+    void Awake() {
+        areaLinker = FindObjectOfType<AreaLinkerController>();    
+    }
 
     void Start()
     {
@@ -30,6 +36,15 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartSpawning()
     {
+        // get the amount of enemy need to be defeat in this wave(s)
+        int counter = 0;
+        foreach(EnemyWaveSO wave in waves) {
+            foreach (WaveSectionSO section in wave.GetSectionList) {
+                counter += section.GetAmount;
+            }
+        }
+        areaLinker.EnemyCount += counter;
+
         spawnCoroutine = StartCoroutine(CR_Spawn());
     }
 
@@ -65,13 +80,13 @@ public class EnemySpawner : MonoBehaviour
                 {
                     Vector3 spawnPos = transform.position + (Vector3)currentSection.GetOffsetList[j];
 
-                    // should consider using object pool or not
                     GameObject g = ObjectPool.Instance.Spawn(currentEnemyTag);
                     if (g == null)
                     {
                         Debug.LogWarning("null game object tag: " + currentEnemyTag);
                         yield break;
                     }
+                    g.GetComponent<Enemy>().SpawnBySpawner();
                     g.transform.position = spawnPos;
                     g.SetActive(true);
 

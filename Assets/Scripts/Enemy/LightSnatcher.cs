@@ -62,7 +62,7 @@ public class LightSnatcher : Enemy
         moveController.Move(GetDirectionToPlayer);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         IExplosionTrigger trigger = other.GetComponent<IExplosionTrigger>();
         if (trigger != null) {

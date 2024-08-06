@@ -19,6 +19,7 @@ public class MovingPlatform : MonoBehaviour
     Vector3 targetPos;
     bool isMoving;
 
+
     void OnEnable()
     {
         if (playOnEnable) StartCoroutine(CR_Move());
@@ -26,9 +27,23 @@ public class MovingPlatform : MonoBehaviour
 
     void FixedUpdate()
     {
+        Moving();
+    }
+
+    void Moving()
+    {
         if (!isMoving) return;
-        timer += Time.fixedDeltaTime / moveTimeList[index];
-        transform.position = Vector2.Lerp(startPos, targetPos, Mathf.Min(timer, 1f));
+
+        if (moveTimeList[index] <= Mathf.Epsilon)
+        {
+            transform.position = targetPos;
+        }
+        else
+        {
+            if (moveTimeList[index] == 0) Debug.Log(moveTimeList[index], gameObject);
+            timer += Time.fixedDeltaTime / moveTimeList[index];
+            transform.position = Vector2.Lerp(startPos, targetPos, Mathf.Min(timer, 1f));
+        }
     }
 
     IEnumerator CR_Move()
@@ -36,7 +51,7 @@ public class MovingPlatform : MonoBehaviour
         do
         {
             startPos = transform.position;
-            targetPos = targetList[index] + transform.position;
+            targetPos = transform.position + targetList[index];
             isMoving = true;
             timer = 0;
 

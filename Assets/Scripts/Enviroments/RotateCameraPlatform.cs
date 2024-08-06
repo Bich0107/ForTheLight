@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class RotateCameraPlatform : MonoBehaviour
@@ -25,9 +22,7 @@ public class RotateCameraPlatform : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag(Tags.Player)) {
-         //   GameManager.Instance.SetPlayerControlStatus(false);
             rotating = true;
-            other.transform.parent = transform;
             RotateCamera();
         }
     }
