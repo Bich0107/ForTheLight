@@ -10,22 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c4cdf06b6e89244685bf581d0b7eee6, type: 3}
-  m_Name: Section7_2
+  m_Name: Section8_1
   m_EditorClassIdentifier: 
-  enemy: {fileID: 950314080141257451, guid: 54818adb4df5d8b4cb936dc798bc6be6, type: 3}
-  amount: 12
+  enemy: {fileID: 5965948809252946077, guid: 553d3c4ba052bb64b9ef71abcbf01fb8, type: 3}
+  amount: 2
   offsetList:
-  - {x: 0, y: 10}
-  - {x: 5, y: 8.7}
-  - {x: 8.6, y: 5}
-  - {x: 10, y: 0}
-  - {x: 8.7, y: -5}
-  - {x: 5, y: -8.7}
-  - {x: 0, y: -10}
-  - {x: -5, y: -8.7}
-  - {x: -8.7, y: -5}
-  - {x: -10, y: 0}
-  - {x: -8.7, y: 5}
-  - {x: -5, y: 8.7}
-  spawnDelay: 1
-  endSectionDelay: 0
+  - {x: 0, y: -15}
+  - {x: 0, y: 15}
+  spawnDelay: 0
+  endSectionDelay: 8

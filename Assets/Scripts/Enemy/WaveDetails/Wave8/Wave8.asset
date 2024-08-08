@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f45e8a54380113e4daab6197ab78816c, type: 3}
+  m_Name: Wave8
+  m_EditorClassIdentifier: 
+  sectionList:
+  - {fileID: 11400000, guid: 6840b0ef6d0a7574cb35831bd31a5631, type: 2}
+  - {fileID: 11400000, guid: 56c560f0488f9a744972cd9cfe511540, type: 2}
+  - {fileID: 11400000, guid: 8e155e6e8190b6943a9675ec6b1e80d7, type: 2}
+  - {fileID: 11400000, guid: b6b3749dc360e604c8d08cfecd5f691b, type: 2}
+  delayToNextWave: 0

@@ -36,7 +36,6 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
 
     protected void OnDisable()
     {
-        Debug.Log((areaLinker != null) + " " + spawnBySpawner);
         if (areaLinker != null && spawnBySpawner) areaLinker.EnemyCount--;
         Reset();
     }

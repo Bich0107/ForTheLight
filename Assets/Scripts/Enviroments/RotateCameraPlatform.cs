@@ -15,7 +15,7 @@ public class RotateCameraPlatform : MonoBehaviour
 
         timer += Time.deltaTime;
         if (timer >= duration) {
-            onFinishRotating.Invoke(null);
+            onFinishRotating?.Invoke(null);
             StopRotate();
         }
     }

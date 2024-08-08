@@ -13,31 +13,19 @@ MonoBehaviour:
   m_Name: Section7_3
   m_EditorClassIdentifier: 
   enemy: {fileID: 950314080141257451, guid: 54818adb4df5d8b4cb936dc798bc6be6, type: 3}
-  amount: 24
+  amount: 12
   offsetList:
   - {x: 0, y: 10}
-  - {x: 2.6, y: 9.7}
   - {x: 5, y: 8.7}
-  - {x: 7, y: 7}
   - {x: 8.6, y: 5}
-  - {x: 9.7, y: 2.6}
   - {x: 10, y: 0}
-  - {x: 9.7, y: -2.6}
   - {x: 8.7, y: -5}
-  - {x: 7, y: -7}
   - {x: 5, y: -8.7}
-  - {x: 2.6, y: -9.7}
   - {x: 0, y: -10}
-  - {x: -2.6, y: -9.7}
   - {x: -5, y: -8.7}
-  - {x: -7, y: -7}
   - {x: -8.7, y: -5}
-  - {x: -9.7, y: -2.6}
   - {x: -10, y: 0}
-  - {x: -9.7, y: 2.6}
   - {x: -8.7, y: 5}
-  - {x: -7, y: 7}
   - {x: -5, y: 8.7}
-  - {x: -2.6, y: 9.7}
-  spawnDelay: 0.5
+  spawnDelay: 1
   endSectionDelay: 1.5

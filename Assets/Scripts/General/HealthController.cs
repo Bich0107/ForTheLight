@@ -6,6 +6,7 @@ public class HealthController : MonoBehaviour
     [SerializeField] float maxHealth;
     [SerializeField] float health;
     public float GetHealth => health;
+    public float GetHealthPercent => Mathf.Round(health / maxHealth * 100f);
 
     Action<object> onHealthReachZero;
     Action<object> onHit;
@@ -22,9 +23,6 @@ public class HealthController : MonoBehaviour
         // check when hp = 0
         if (health <= Mathf.Epsilon) {
             onHealthReachZero?.Invoke(null);
-            
-            // keep it or not? dunno yet
-            //onHealthReachZero = null;
         }
     }
 

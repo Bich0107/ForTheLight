@@ -1,12 +1,15 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class Boss : Enemy
 {
+    [SerializeField] Animator animator;
     [SerializeField] EnemyAttackController projectileAttackController;
     [Tooltip("Wait time before starting to attack")]
     [SerializeField] float waitTime;
+
     [Header("Jump attack settings")]
     [SerializeField] float maxHeight;
     [SerializeField] float minHeight;
@@ -14,13 +17,24 @@ public class Boss : Enemy
     [SerializeField] float dropDelay;
     [SerializeField] float jumpDelay;
     [SerializeField] float jumpCount;
+
     [Header("Stab attack settings")]
-    [SerializeField] Animator animator;
     [SerializeField] float attackDistance;
     [SerializeField] float moveSpeed;
 
+    [Header("Final beam attack settings")]
+    [Tooltip("When boss's HP reach this percent, start charging beam attack and spawn minions")]
+    [SerializeField] float hitPointPercent;
+    [SerializeField] EnemySpawner spawner;
+    [SerializeField] List<EnemyWaveSO> minionWaves;
+    [SerializeField] ParticleSystem chargeVFX;
+    [SerializeField] ParticleSystem miniBeamVFX;
+    [SerializeField] ParticleSystem beamVFX;
+    [SerializeField] float chargeTime;
+
     bool projectileReady;
     bool bodyReady = true;
+    bool finalAttackStage = false;
     Coroutine attackCoroutine;
 
     protected new void OnEnable()
@@ -32,6 +46,44 @@ public class Boss : Enemy
 
     void Update()
     {
+        ProcessAttacks();
+        FinalAttack();
+    }
+
+    void FinalAttack()
+    {
+        if (healthController.GetHealthPercent > hitPointPercent) return;
+
+        EnterFinalStage();
+        StartSpawningMinions();
+        StartCoroutine(ChargeBeamAttack());
+        StartCoroutine(MiniBeamAttack());
+    }
+
+    void StartSpawningMinions()
+    {
+        spawner.SetWaves(minionWaves, true);
+        spawner.StartSpawning();
+    }
+
+    IEnumerator ChargeBeamAttack()
+    {
+        chargeVFX.Play();
+        yield return new WaitForSeconds(chargeTime);
+        beamVFX.Play();
+    }
+
+    IEnumerator MiniBeamAttack()
+    {
+        miniBeamVFX.Play();
+        yield return new WaitForSeconds(chargeTime);
+        miniBeamVFX.Stop();
+    }
+
+    void ProcessAttacks()
+    {
+        if (finalAttackStage) return;
+
         projectileReady = !projectileAttackController.IsAttacking;
 
         // choose random between attack with projectile or attack with body
@@ -116,6 +168,15 @@ public class Boss : Enemy
         Flip(player.transform.position.x > transform.position.x);
 
         animator.SetTrigger("slashAttack");
+    }
+
+    void EnterFinalStage()
+    {
+        if (finalAttackStage) return;
+
+        projectileAttackController.Stop();
+        if (attackCoroutine != null) StopCoroutine(attackCoroutine);
+        finalAttackStage = true;
     }
 
     void Flip(bool _left)
