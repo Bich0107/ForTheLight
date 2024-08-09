@@ -76,3 +76,6 @@ TagManager:
   - name: Guide
     uniqueID: 3170969613
     locked: 0
+  - name: VFX
+    uniqueID: 3314571143
+    locked: 0

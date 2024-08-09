@@ -24,12 +24,12 @@ public class Boss : Enemy
 
     [Header("Final beam attack settings")]
     [Tooltip("When boss's HP reach this percent, start charging beam attack and spawn minions")]
+    [SerializeField] Vector2 attackPos;
     [SerializeField] float hitPointPercent;
     [SerializeField] EnemySpawner spawner;
     [SerializeField] List<EnemyWaveSO> minionWaves;
-    [SerializeField] ParticleSystem chargeVFX;
-    [SerializeField] ParticleSystem miniBeamVFX;
-    [SerializeField] ParticleSystem beamVFX;
+    [SerializeField] GameObject chargeVFX;
+    [SerializeField] GameObject beamVFX;
     [SerializeField] float chargeTime;
 
     bool projectileReady;
@@ -55,9 +55,18 @@ public class Boss : Enemy
         if (healthController.GetHealthPercent > hitPointPercent) return;
 
         EnterFinalStage();
-        StartSpawningMinions();
-        StartCoroutine(ChargeBeamAttack());
-        StartCoroutine(MiniBeamAttack());
+    }
+
+    void EnterFinalStage()
+    {
+        if (finalAttackStage) return;
+
+        Flip(player.transform.position.x > transform.position.x);
+        projectileAttackController.Stop();
+        if (attackCoroutine != null) StopCoroutine(attackCoroutine);
+        finalAttackStage = true;
+
+        StartCoroutine(CR_MoveToAttackPos());
     }
 
     void StartSpawningMinions()
@@ -66,18 +75,34 @@ public class Boss : Enemy
         spawner.StartSpawning();
     }
 
-    IEnumerator ChargeBeamAttack()
+    IEnumerator CR_MoveToAttackPos()
     {
-        chargeVFX.Play();
-        yield return new WaitForSeconds(chargeTime);
-        beamVFX.Play();
+        moveController.MoveSpeed = jumpSpeed;
+        moveController.Move(Vector2.up);
+
+        // wait until reaching maximum height
+        while (transform.position.y <= maxHeight) yield return null;
+        moveController.Stop();
+
+        transform.position = new Vector3(attackPos.x, transform.position.y);
+
+        moveController.MoveSpeed = jumpSpeed;
+        moveController.Move(Vector2.down);
+
+        // wait until reaching minimum height
+        while (transform.position.y >= minHeight) yield return null;
+        moveController.Stop();
+
+        StartSpawningMinions();
+        StartCoroutine(CR_ChargeBeamAttack());
     }
 
-    IEnumerator MiniBeamAttack()
+    IEnumerator CR_ChargeBeamAttack()
     {
-        miniBeamVFX.Play();
+        chargeVFX.SetActive(true);
         yield return new WaitForSeconds(chargeTime);
-        miniBeamVFX.Stop();
+        chargeVFX.SetActive(false);
+        beamVFX.SetActive(true);
     }
 
     void ProcessAttacks()
@@ -168,15 +193,6 @@ public class Boss : Enemy
         Flip(player.transform.position.x > transform.position.x);
 
         animator.SetTrigger("slashAttack");
-    }
-
-    void EnterFinalStage()
-    {
-        if (finalAttackStage) return;
-
-        projectileAttackController.Stop();
-        if (attackCoroutine != null) StopCoroutine(attackCoroutine);
-        finalAttackStage = true;
     }
 
     void Flip(bool _left)
