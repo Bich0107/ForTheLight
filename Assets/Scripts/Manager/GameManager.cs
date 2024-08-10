@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    [SerializeField] SaveManager saveManager;
+    [SerializeField] MapManager mapManager;
+    [SerializeField] EnemySpawner enemySpawner;
+
     public bool gameStarted;
     bool playerControl = true;
 
@@ -11,7 +15,10 @@ public class GameManager : MonoSingleton<GameManager>
     {
         base.Awake();
 
-        DOTween.Init();
+        saveManager = FindObjectOfType<SaveManager>();
+        mapManager = FindObjectOfType<MapManager>();
+        enemySpawner = FindObjectOfType<EnemySpawner>();
+        //DOTween.Init();
     }
 
     void Update()
@@ -25,6 +32,12 @@ public class GameManager : MonoSingleton<GameManager>
             gameStarted = true;
         }
 #endif
+    }
+
+    public void PlayerRespawn() {
+        ObjectPool.Instance.Reset();
+        enemySpawner.Reset();
+        mapManager.ResetCurrentMap();
     }
 
     public void TogglePlayerControl() {

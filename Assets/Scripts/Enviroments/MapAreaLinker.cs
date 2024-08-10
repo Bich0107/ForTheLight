@@ -1,23 +1,36 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MapAreaLinker : MonoBehaviour
 {
-    [SerializeField] GameObject previousArea;
+    [SerializeField] SaveManager saveManager;
+    [SerializeField] MapManager mapManager;
+    [SerializeField] int areaIndex;
     [SerializeField] GameObject nextArea;
     [SerializeField] float deactiveDelay = 2f;
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag(Tags.Player)) {
-            StartCoroutine(CR_DeactiveArea());
+    public int AreaIndex => areaIndex;
+
+    void Start()
+    {
+        areaIndex = transform.GetSiblingIndex();
+        mapManager = FindObjectOfType<MapManager>();
+        saveManager = FindObjectOfType<SaveManager>();
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag(Tags.Player))
+        {
             nextArea.SetActive(true);
+            saveManager.CurrentSaveFile.AreaIndex = areaIndex + 1;
+            StartCoroutine(CR_DeactiveArea());
         }
     }
 
-    IEnumerator CR_DeactiveArea() {
+    IEnumerator CR_DeactiveArea()
+    {
         yield return new WaitForSeconds(deactiveDelay);
-        previousArea.SetActive(false);
-        Destroy(gameObject);
+        mapManager.ChangeArea(saveManager.CurrentSaveFile.AreaIndex);
     }
 }

@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
 {
     [SerializeField] protected GameObject player;
-    [SerializeField] bool spawnBySpawner = false; // to make sure ondisable method does not run when deactive by object pool
+    [Tooltip("A flag to make sure ondisable method only run after GO is spawn from spawner")]
+    [SerializeField] bool spawnBySpawner = false;
 
     protected MovementController moveController;
     protected HealthController healthController;

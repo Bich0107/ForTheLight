@@ -19,7 +19,6 @@ public class MovingPlatform : MonoBehaviour
     Vector3 targetPos;
     bool isMoving;
 
-
     void OnEnable()
     {
         if (playOnEnable) StartCoroutine(CR_Move());
@@ -73,5 +72,13 @@ public class MovingPlatform : MonoBehaviour
     bool IsMoveFinish()
     {
         return Vector3.Distance(targetPos, transform.position) <= minDistanceToPos;
+    }
+
+    void OnDisable()
+    {
+        isMoving = false;
+        index = 0;
+        timer = 0f;
+        StopAllCoroutines();
     }
 }

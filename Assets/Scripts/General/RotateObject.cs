@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class RotateObject : MonoBehaviour
 {
+    Quaternion baseRotation;
     [SerializeField] float rotateSpeed;
     public float RotateSpeed
     {
@@ -14,7 +15,12 @@ public class RotateObject : MonoBehaviour
     bool isRotating;
     float timer;
 
-    private void OnEnable() {
+    void Awake() {
+        baseRotation = transform.rotation;    
+    }
+
+    void OnEnable()
+    {
         if (rotateOnAwake) Rotate();
     }
 
@@ -44,5 +50,11 @@ public class RotateObject : MonoBehaviour
     {
         isRotating = false;
         timer = 0;
+    }
+
+    public void Reset()
+    {
+        Stop();
+        transform.rotation = baseRotation;
     }
 }

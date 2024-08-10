@@ -31,8 +31,10 @@ public class Boss : Enemy
     [SerializeField] GameObject chargeVFX;
     [SerializeField] GameObject beamVFX;
     [SerializeField] float chargeTime;
+    [SerializeField] float healthRestorePercent = 35f;
 
     bool projectileReady;
+    bool isAttacking = false;
     bool bodyReady = true;
     bool finalAttackStage = false;
     Coroutine attackCoroutine;
@@ -40,16 +42,64 @@ public class Boss : Enemy
     protected new void OnEnable()
     {
         base.OnEnable();
+        maxHeight += transform.position.y;
+        minHeight += transform.position.y;
+
+        spawner = FindObjectOfType<EnemySpawner>();
         projectileAttackController = GetComponent<EnemyAttackController>();
         animator = GetComponent<Animator>();
+
+        StartCoroutine(CR_Wait());
+    }
+
+    IEnumerator CR_Wait()
+    {
+        yield return new WaitForSeconds(waitTime);
+        isAttacking = true;
     }
 
     void Update()
     {
+        if (!isAttacking) return;
+
         ProcessAttacks();
         FinalAttack();
     }
 
+    void ProcessAttacks()
+    {
+        projectileReady = !projectileAttackController.IsAttacking;
+
+        // choose random between attack with projectile or attack with body
+        if (projectileReady && bodyReady && !finalAttackStage)
+        {
+            int num = Random.Range(0, 100);
+            if (num < 50)
+            {
+                projectileAttackController.Attack(false);
+            }
+            else
+            {
+                ChooseRandomAttack();
+            }
+        }
+    }
+
+    void ChooseRandomAttack()
+    {
+        int num = Random.Range(0, 2);
+        switch (num)
+        {
+            case 0:
+                JumpAttack();
+                break;
+            case 1:
+                SlashingAttack();
+                break;
+        }
+    }
+
+    #region Final atatck methods
     void FinalAttack()
     {
         if (healthController.GetHealthPercent > hitPointPercent) return;
@@ -61,12 +111,15 @@ public class Boss : Enemy
     {
         if (finalAttackStage) return;
 
+        // restore health
+        healthController.IncreaseHealth(healthRestorePercent / 100 * healthController.GetMaxHealth);
+
         Flip(player.transform.position.x > transform.position.x);
         projectileAttackController.Stop();
         if (attackCoroutine != null) StopCoroutine(attackCoroutine);
         finalAttackStage = true;
 
-        StartCoroutine(CR_MoveToAttackPos());
+        StartCoroutine(CR_FinalAttackSequence());
     }
 
     void StartSpawningMinions()
@@ -75,7 +128,7 @@ public class Boss : Enemy
         spawner.StartSpawning();
     }
 
-    IEnumerator CR_MoveToAttackPos()
+    IEnumerator CR_FinalAttackSequence()
     {
         moveController.MoveSpeed = jumpSpeed;
         moveController.Move(Vector2.up);
@@ -104,42 +157,9 @@ public class Boss : Enemy
         chargeVFX.SetActive(false);
         beamVFX.SetActive(true);
     }
+    #endregion
 
-    void ProcessAttacks()
-    {
-        if (finalAttackStage) return;
-
-        projectileReady = !projectileAttackController.IsAttacking;
-
-        // choose random between attack with projectile or attack with body
-        if (projectileReady && bodyReady)
-        {
-            int num = Random.Range(0, 100);
-            if (num < 50)
-            {
-                projectileAttackController.Attack(false);
-            }
-            else
-            {
-                ChooseRandomAttack();
-            }
-        }
-    }
-
-    void ChooseRandomAttack()
-    {
-        int num = Random.Range(0, 2);
-        switch (num)
-        {
-            case 0:
-                JumpAttack();
-                break;
-            case 1:
-                SlashingAttack();
-                break;
-        }
-    }
-
+    #region Jump attack methods
     void JumpAttack()
     {
         attackCoroutine = StartCoroutine(CR_JumpAttack());
@@ -172,7 +192,9 @@ public class Boss : Enemy
 
         bodyReady = true;
     }
+    #endregion
 
+    #region Slash attack methods
     void SlashingAttack()
     {
         attackCoroutine = StartCoroutine(CR_SlashingAttack());
@@ -205,4 +227,5 @@ public class Boss : Enemy
         bodyReady = true;
         attackCoroutine = null;
     }
+    #endregion
 }

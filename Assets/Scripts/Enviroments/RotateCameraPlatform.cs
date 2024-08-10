@@ -6,7 +6,6 @@ public class RotateCameraPlatform : MonoBehaviour
     [SerializeField] RotateObject camRotater;
     [SerializeField] float rotateSpeed;
     [SerializeField] float duration;
-    Action<object> onFinishRotating;
     float timer = 0;
     bool rotating = false;
 
@@ -15,7 +14,6 @@ public class RotateCameraPlatform : MonoBehaviour
 
         timer += Time.deltaTime;
         if (timer >= duration) {
-            onFinishRotating?.Invoke(null);
             StopRotate();
         }
     }
@@ -27,10 +25,6 @@ public class RotateCameraPlatform : MonoBehaviour
         }
     }
 
-    public void AddFinishRotateEvent(Action<object> _action) {
-        onFinishRotating += _action;
-    }
-
     void RotateCamera() {
         camRotater.SetRotateSpeed(rotateSpeed);
         camRotater.Rotate();
@@ -39,5 +33,9 @@ public class RotateCameraPlatform : MonoBehaviour
     void StopRotate() {
         rotating = false;
         camRotater.Stop();
+    }
+
+    void OnDisable() {
+        camRotater.Reset();
     }
 }

@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c4cdf06b6e89244685bf581d0b7eee6, type: 3}
-  m_Name: Section9_1
+  m_Name: SectionM_1
   m_EditorClassIdentifier: 
-  enemy: {fileID: 588068066420051468, guid: 7b53929e2c4e67741a0c9ccf929680d8, type: 3}
-  amount: 1
+  enemy: {fileID: 950314080141257451, guid: 54818adb4df5d8b4cb936dc798bc6be6, type: 3}
+  amount: 3
   offsetList:
-  - {x: 40, y: 4}
+  - {x: 15, y: 5}
+  - {x: 15, y: 0}
+  - {x: 15, y: -5}
   spawnDelay: 0
-  endSectionDelay: 0
+  endSectionDelay: 5

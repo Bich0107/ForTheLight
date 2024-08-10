@@ -304,13 +304,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  spawnBySpawner: 0
   attackDistance: 4.5
   chargeTime: 0.75
   chargeSpeedFactor: 2.5
   baseSize: {x: 0, y: 0, z: 0}
   explodeSize: {x: 2.5, y: 2.5, z: 2.5}
-  explodeDelay: 0.5
-  explodeDuration: 0.5
+  explodeDelay: 0.25
+  explodeDuration: 0.4
   explodeVFX: {fileID: 3981077113027691874}
 --- !u!114 &4093120133542515547
 MonoBehaviour:

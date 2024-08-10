@@ -54,7 +54,7 @@ public class PlayerActionController : MonoBehaviour
         }
     }
 
-    void ResetFireStatus() {
+    public void ResetFireStatus() {
         isCharging = false;
         chargeTime = 0;
     }

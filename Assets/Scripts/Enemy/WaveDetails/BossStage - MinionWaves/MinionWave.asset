@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45e8a54380113e4daab6197ab78816c, type: 3}
   m_Name: MinionWave
   m_EditorClassIdentifier: 
-  sectionList: []
+  sectionList:
+  - {fileID: 11400000, guid: 64f286640586b82479ad6dbc01d54786, type: 2}
+  - {fileID: 11400000, guid: 6ec3ad80c2099094394676f86749061d, type: 2}
+  - {fileID: 11400000, guid: 7cb6da593b794eb43b0ba4895b0a9828, type: 2}
   delayToNextWave: 0

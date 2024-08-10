@@ -6,6 +6,7 @@ public class HealthController : MonoBehaviour
     [SerializeField] float maxHealth;
     [SerializeField] float health;
     public float GetHealth => health;
+    public float GetMaxHealth => maxHealth;
     public float GetHealthPercent => Mathf.Round(health / maxHealth * 100f);
 
     Action<object> onHealthReachZero;

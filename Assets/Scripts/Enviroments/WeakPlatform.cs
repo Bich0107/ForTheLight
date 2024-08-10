@@ -54,4 +54,10 @@ public class WeakPlatform : MonoBehaviour
         collider.enabled = _status;
         renderer.enabled = _status;
     }
+
+    void OnDisable() {
+        StopAllCoroutines();
+        SetExistanceStatus(true);
+        circleStarted = false;
+    }
 }

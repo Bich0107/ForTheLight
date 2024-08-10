@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class FollowPlayer : MonoBehaviour
 {
-    [Tooltip("Move to player position when distance between this GO and player reachs this value")]
+    [Tooltip("Move to player position whenever distance between this GO and player exceed this value")]
     [SerializeField] float moveDistance;
     GameObject player;
 

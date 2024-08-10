@@ -21,4 +21,9 @@ public class PlayerMovementController : MonoBehaviour
 
         moveController.Move(_value.Get<Vector2>());
     }
+
+    public void Reset() {
+        jumpController.Reset();
+        moveController.Reset();
+    }
 }

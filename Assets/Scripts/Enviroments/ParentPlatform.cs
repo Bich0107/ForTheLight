@@ -22,9 +22,11 @@ public class ParentPlatform : MonoBehaviour
         }
     }
 
-
+#if UNITY_EDITOR
+    // to make oncollistionexit stop when exit play mode in editor
     void OnApplicationQuit()
     {
         isQuiting = true;
     }
+#endif
 }

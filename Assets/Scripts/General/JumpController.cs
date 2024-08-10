@@ -46,4 +46,10 @@ public class JumpController : MonoBehaviour
             Jump();
         }
     }
+
+    public void Reset() {
+        counter = 0;
+        velocity = Vector2.zero;
+        rigid.velocity = velocity;
+    }
 }

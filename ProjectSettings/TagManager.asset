@@ -15,6 +15,7 @@ TagManager:
   - Shielder
   - ThornProjectile
   - CircleLaser
+  - Boss
   layers:
   - Default
   - TransparentFX

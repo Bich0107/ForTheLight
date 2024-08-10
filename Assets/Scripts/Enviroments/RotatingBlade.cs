@@ -19,7 +19,7 @@ public class RotatingBlade : MonoBehaviour
     float targetSpeed;
     bool isChangingSpeed;
 
-    void Start()
+    void OnEnable()
     {
         rotateObject = GetComponent<RotateObject>();
 
@@ -61,5 +61,12 @@ public class RotatingBlade : MonoBehaviour
     bool IsFinishAccelerate()
     {
         return Mathf.Abs(rotateObject.RotateSpeed - targetSpeed) <= minError;
+    }
+
+    void OnDisable() {
+        StopAllCoroutines();
+        index = 0;
+        isChangingSpeed = false;
+        timer = 0f;
     }
 }

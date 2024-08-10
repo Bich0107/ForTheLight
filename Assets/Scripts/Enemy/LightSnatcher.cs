@@ -107,7 +107,7 @@ public class LightSnatcher : Enemy
 
         moveController.Reset();
 
-        if (attackCoroutine != null) StopCoroutine(attackCoroutine);
+        StopAllCoroutines();
         attackCoroutine = null;
         isAttacking = false;
     }
