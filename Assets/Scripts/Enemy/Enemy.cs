@@ -5,17 +5,11 @@ using UnityEngine.InputSystem;
 public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
 {
     [SerializeField] protected GameObject player;
-    [Tooltip("A flag to make sure ondisable method only run after GO is spawn from spawner")]
-    [SerializeField] bool spawnBySpawner = false;
-
     protected MovementController moveController;
     protected HealthController healthController;
 
-    AreaLinkerController areaLinker;
-
     protected void OnEnable()
     {
-        areaLinker = FindObjectOfType<AreaLinkerController>();
         player = FindObjectOfType<PlayerInput>().gameObject;
         moveController = GetComponent<MovementController>();
         healthController = GetComponent<HealthController>();
@@ -33,11 +27,8 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
         gameObject.SetActive(false);
     }
 
-    public void SpawnBySpawner() => spawnBySpawner = true;
-
     protected void OnDisable()
     {
-        if (areaLinker != null && spawnBySpawner) areaLinker.EnemyCount--;
         Reset();
     }
 

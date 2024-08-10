@@ -8,4 +8,5 @@ public class Tags {
     public static string Spinners = "Spinners";
     public static string Shielder = "Shielder";
     public static string Ground = "Ground";
+    public static string BulletHitVFX = "BulletHitVFX";
 }

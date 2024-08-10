@@ -53,7 +53,13 @@ public class Bullet : MonoBehaviour
         {
             hit.Hit(damage);
             hitCount--;
-            if (hitCount <= 0) gameObject.SetActive(false);
+            if (hitCount <= 0) { 
+                GameObject hitEffect = ObjectPool.Instance.Spawn(Tags.BulletHitVFX);
+                hitEffect.transform.position = transform.position;
+                hitEffect.SetActive(true);
+                
+                gameObject.SetActive(false);
+            }
         }
     }
 

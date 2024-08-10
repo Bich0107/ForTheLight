@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdaa2c8e103bd074bba49e979a122ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  moveSpeed: 30
 --- !u!114 &3292339588937288693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +308,6 @@ MonoBehaviour:
   maxScale: {x: 1, y: 0.4, z: 0}
   maxHitCountWhenCharge: 2
   maxHitCount: 1
-  trailEnableDelay: 0.2
 --- !u!114 &2103525143374832668
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,9 +10,9 @@ public class LightSnatcher : Enemy
     [Header("Explode settings")]
     [SerializeField] Vector3 baseSize;
     [SerializeField] Vector3 explodeSize;
-    [SerializeField] float explodeDelay;
-    [SerializeField] float explodeDuration;
-    [SerializeField] GameObject explodeVFX;
+    [SerializeField] float explodeDelay = 0.25f;
+    [SerializeField] float explodeDuration = 0.35f;
+    [SerializeField] GameObject deathVFX;
     
     protected bool isAttacking = false;
     protected Coroutine attackCoroutine;
@@ -87,10 +87,11 @@ public class LightSnatcher : Enemy
         yield return new WaitForSeconds(explodeDelay);
 
         transform.localScale = explodeSize;
-        explodeVFX.SetActive(true);
+        deathVFX.SetActive(true);
 
         yield return new WaitForSeconds(explodeDuration);
-        explodeVFX.SetActive(false);
+
+        deathVFX.SetActive(false);
         gameObject.SetActive(false);
     }
 
@@ -104,9 +105,7 @@ public class LightSnatcher : Enemy
     public new void Reset()
     {
         base.Reset();
-
         moveController.Reset();
-
         StopAllCoroutines();
         attackCoroutine = null;
         isAttacking = false;

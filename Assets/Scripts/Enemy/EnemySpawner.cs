@@ -10,13 +10,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Transform enemyParent;
     [SerializeField] bool loop = false;
     int index;
-    AreaLinkerController areaLinker;
     EnemyWaveSO currentWave;
     Coroutine spawnCoroutine;
-
-    void Awake() {
-        areaLinker = FindObjectOfType<AreaLinkerController>();    
-    }
 
     void Start()
     {
@@ -43,7 +38,6 @@ public class EnemySpawner : MonoBehaviour
                 counter += section.GetAmount;
             }
         }
-        areaLinker.EnemyCount += counter;
 
         spawnCoroutine = StartCoroutine(CR_Spawn());
     }
@@ -86,7 +80,6 @@ public class EnemySpawner : MonoBehaviour
                         Debug.LogWarning("null game object tag: " + currentEnemyTag);
                         yield break;
                     }
-                    g.GetComponent<Enemy>().SpawnBySpawner();
                     g.transform.position = spawnPos;
                     g.SetActive(true);
 

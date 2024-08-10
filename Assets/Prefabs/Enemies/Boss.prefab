@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 467473756760002363}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -5.1, y: -0.6, z: 0}
+  m_LocalPosition: {x: -7.36, y: -0.6, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1310,19 +1310,19 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 0, g: 0, b: 0, a: 1}
-        key1: {r: 1, g: 0, b: 0.9298029, a: 0.80784315}
-        key2: {r: 1, g: 1, b: 1, a: 0.6313726}
-        key3: {r: 0, g: 0, b: 0, a: 0}
+        key1: {r: 0, g: 0, b: 0, a: 0.80784315}
+        key2: {r: 1, g: 0, b: 0.9298029, a: 0.6313726}
+        key3: {r: 1, g: 1, b: 1, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 8558
-        ctime2: 13955
-        ctime3: 65535
-        ctime4: 0
-        ctime5: 0
+        ctime1: 1619
+        ctime2: 5166
+        ctime3: 8096
+        ctime4: 65535
+        ctime5: 65535
         ctime6: 0
         ctime7: 0
         atime0: 0
@@ -1335,7 +1335,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_ColorSpace: 0
-        m_NumColorKeys: 4
+        m_NumColorKeys: 5
         m_NumAlphaKeys: 4
       minGradient:
         serializedVersion: 2
@@ -3809,7 +3809,8 @@ ParticleSystem:
     exit: 0
     colliderQueryMode: 1
     radiusScale: 1
-    primitives: []
+    primitives:
+    - {fileID: 0}
   SubModule:
     serializedVersion: 2
     enabled: 0
@@ -4778,7 +4779,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e823cd5b5d27c0f4b8256e7c12ee3e6d, type: 2}
+  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4843,7 +4844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b559d2a210de4264085f8bcff1994c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 0}
+  ps: {fileID: 1764149180980926198}
   player: {fileID: 0}
   damage: 999999
 --- !u!1 &588068066420051468
@@ -5048,7 +5049,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  spawnBySpawner: 1
   animator: {fileID: 2019477216657439705}
   projectileAttackController: {fileID: 0}
   waitTime: 5
@@ -5068,6 +5068,7 @@ MonoBehaviour:
   chargeVFX: {fileID: 5406768032747555443}
   beamVFX: {fileID: 467473756760002363}
   chargeTime: 60
+  healthRestorePercent: 35
 --- !u!1 &1092683533407174731
 GameObject:
   m_ObjectHideFlags: 0
@@ -6254,7 +6255,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.15
+      scalar: 0.75
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10744,7 +10745,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

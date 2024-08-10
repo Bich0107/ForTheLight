@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class ProjectileThrower : Enemy
@@ -7,17 +8,18 @@ public class ProjectileThrower : Enemy
     [SerializeField] Vector3 offset;
     [SerializeField] float minDistanceToTarget = 5f;
     [SerializeField] float minDistanceToOffset = 1.5f;
+    [Header("Death VFX settings")]
+    [SerializeField] float effectDuration = 3f;
+    [SerializeField] GameObject deathVFX;
 
-    protected new void OnEnable() {
+    protected new void OnEnable()
+    {
         base.OnEnable();
         attackController = GetComponent<EnemyAttackController>();
     }
 
     void FixedUpdate()
     {
-        // not use yet
-        //if (!GameManager.Instance.gameStarted) return;
-
         MoveTowardPlayer();
     }
 
@@ -46,8 +48,32 @@ public class ProjectileThrower : Enemy
         }
     }
 
-    public new void Reset() {
+    protected override void Die()
+    {
+        StartCoroutine(PlayDeathEffect());
+    }
+
+    IEnumerator PlayDeathEffect()
+    {
+        deathVFX?.SetActive(true);
+
+        float tick = 0f;
+        Vector3 baseScale = transform.localScale;
+        while (tick <= effectDuration) {
+            tick += Time.deltaTime;
+            transform.localScale = Vector3.Lerp(baseScale, Vector3.zero, tick / effectDuration);
+            yield return null;
+        }
+
+        deathVFX?.SetActive(false);
+        transform.localScale = baseScale;
+        gameObject.SetActive(false);
+    }
+
+    public new void Reset()
+    {
         base.Reset();
+        StopAllCoroutines();
         attackController?.Reset();
     }
 }
