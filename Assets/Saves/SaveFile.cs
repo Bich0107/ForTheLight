@@ -10,4 +10,11 @@ public class SaveFile : ScriptableObject
         get { return areaIndex; }
         set { areaIndex = value; }
     }
+
+    [SerializeField] Difficulty difficulty;
+    public Difficulty Difficulty
+    {
+        get { return difficulty; }
+        set { difficulty = value; }
+    }
 }

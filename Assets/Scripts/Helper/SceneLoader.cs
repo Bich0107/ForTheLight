@@ -17,11 +17,11 @@ public class SceneLoader : MonoBehaviour
         saveManager = FindObjectOfType<SaveManager>();
     }
 
-    public void StartNewGame()
+    public void StartNewGame(Difficulty difficulty)
     {
         if (saveManager.CurrentSaveFile == null)
         {
-            saveManager.CreateNewSavefile();
+            saveManager.CreateNewSavefile(difficulty);
         }
 
         SceneManager.LoadScene((int)Scenes.PlayScene);
