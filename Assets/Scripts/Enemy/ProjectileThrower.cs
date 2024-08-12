@@ -8,9 +8,6 @@ public class ProjectileThrower : Enemy
     [SerializeField] Vector3 offset;
     [SerializeField] float minDistanceToTarget = 5f;
     [SerializeField] float minDistanceToOffset = 1.5f;
-    [Header("Death VFX settings")]
-    [SerializeField] float effectDuration = 3f;
-    [SerializeField] GameObject deathVFX;
 
     protected new void OnEnable()
     {
@@ -48,27 +45,27 @@ public class ProjectileThrower : Enemy
         }
     }
 
-    protected override void Die()
-    {
-        StartCoroutine(PlayDeathEffect());
-    }
+    // protected override void Die()
+    // {
+    //     StartCoroutine(PlayDeathEffect());
+    // }
 
-    IEnumerator PlayDeathEffect()
-    {
-        deathVFX?.SetActive(true);
+    // IEnumerator PlayDeathEffect()
+    // {
+    //     deathVFX?.SetActive(true);
 
-        float tick = 0f;
-        Vector3 baseScale = transform.localScale;
-        while (tick <= effectDuration) {
-            tick += Time.deltaTime;
-            transform.localScale = Vector3.Lerp(baseScale, Vector3.zero, tick / effectDuration);
-            yield return null;
-        }
+    //     float tick = 0f;
+    //     Vector3 baseScale = transform.localScale;
+    //     while (tick <= effectDuration) {
+    //         tick += Time.deltaTime;
+    //         transform.localScale = Vector3.Lerp(baseScale, Vector3.zero, tick / effectDuration);
+    //         yield return null;
+    //     }
 
-        deathVFX?.SetActive(false);
-        transform.localScale = baseScale;
-        gameObject.SetActive(false);
-    }
+    //     deathVFX?.SetActive(false);
+    //     transform.localScale = baseScale;
+    //     gameObject.SetActive(false);
+    // }
 
     public new void Reset()
     {

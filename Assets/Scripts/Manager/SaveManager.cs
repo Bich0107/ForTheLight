@@ -10,8 +10,15 @@ public class SaveManager : MonoBehaviour
 
     int index = 0;
 
+    public void CreateNewSavefile() {
+        SaveFile newSaveFile = new SaveFile();
+        currentSaveFile = newSaveFile;
+        saveFiles.Add(newSaveFile);
+        index = 0;
+    }
+
     public void ChangeSaveFile(int _index) {
-        if (_index >= saveFiles.Count) return;
+        if (_index >= saveFiles.Count || _index == index) return;
 
         currentSaveFile = saveFiles[_index];
         index = _index;

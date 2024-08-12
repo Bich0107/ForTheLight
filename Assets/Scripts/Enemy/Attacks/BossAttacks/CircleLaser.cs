@@ -45,6 +45,10 @@ public class CircleLaser : Projectile
         Die();
     }
 
+    protected override void Die() {
+        gameObject.SetActive(false);
+    }
+
     protected override void Reset()
     {
         base.Reset();

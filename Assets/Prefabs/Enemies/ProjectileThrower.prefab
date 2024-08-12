@@ -10075,12 +10075,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  deathVFX: {fileID: 5799810596627411073}
+  duration: 2
   attackController: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
   minDistanceToTarget: 8
   minDistanceToOffset: 1
-  effectDuration: 1.7
-  deathVFX: {fileID: 5799810596627411073}
 --- !u!114 &1280485473219245439
 MonoBehaviour:
   m_ObjectHideFlags: 0

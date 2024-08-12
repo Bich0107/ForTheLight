@@ -10,9 +10,6 @@ public class LightSnatcher : Enemy
     [Header("Explode settings")]
     [SerializeField] Vector3 baseSize;
     [SerializeField] Vector3 explodeSize;
-    [SerializeField] float explodeDelay = 0.25f;
-    [SerializeField] float explodeDuration = 0.35f;
-    [SerializeField] GameObject deathVFX;
     
     protected bool isAttacking = false;
     protected Coroutine attackCoroutine;
@@ -66,34 +63,32 @@ public class LightSnatcher : Enemy
     {
         IExplosionTrigger trigger = other.GetComponent<IExplosionTrigger>();
         if (trigger != null) {
-            Explode();
+            Die();
         }
     }
 
-    protected override void Die() {
-        Explode();
-    }
+    // protected override void Die() {
+    //     Explode();
+    // }
 
-    void Explode()
-    {
-        if (attackCoroutine != null) StopCoroutine(attackCoroutine);
-        moveController.Stop();
+    // void Explode()
+    // {
+    //     if (attackCoroutine != null) StopCoroutine(attackCoroutine);
+    //     moveController.Stop();
 
-        StartCoroutine(CR_Explode());
-    }
+    //     StartCoroutine(CR_Explode());
+    // }
 
-    IEnumerator CR_Explode()
-    {
-        yield return new WaitForSeconds(explodeDelay);
+    // IEnumerator CR_Explode()
+    // {
+    //     transform.localScale = explodeSize;
+    //     deathVFX.SetActive(true);
 
-        transform.localScale = explodeSize;
-        deathVFX.SetActive(true);
+    //     yield return new WaitForSeconds(duration);
 
-        yield return new WaitForSeconds(explodeDuration);
-
-        deathVFX.SetActive(false);
-        gameObject.SetActive(false);
-    }
+    //     deathVFX.SetActive(false);
+    //     gameObject.SetActive(false);
+    // }
 
     protected new void OnDisable()
     {

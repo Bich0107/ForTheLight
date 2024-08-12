@@ -1,8 +1,10 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spinners : LightSnatcher
 {
+    [SerializeField] List<ParticleSystem> chargeVFXs;
     [SerializeField] float chargeRotateSpdFactor;
     [SerializeField] float chargeAttackDuration;
     [SerializeField] RotateObject rotateObject;
@@ -20,14 +22,18 @@ public class Spinners : LightSnatcher
         base.Update();
     }
 
-    protected override void Attack() {
+    protected override void Attack()
+    {
         attackCoroutine = StartCoroutine(CR_Attack());
     }
 
     protected override IEnumerator CR_Attack()
     {
         moveController.Stop();
-
+        foreach (ParticleSystem particleSystem in chargeVFXs)
+        {
+            particleSystem.Play();
+        }
         yield return new WaitForSeconds(chargeTime);
 
         rotateObject.RotateSpeed *= chargeSpeedFactor;
@@ -35,11 +41,15 @@ public class Spinners : LightSnatcher
         moveController.Move(GetDirectionToPlayer);
 
         yield return new WaitForSeconds(chargeAttackDuration);
+        foreach (ParticleSystem particleSystem in chargeVFXs)
+        {
+            particleSystem.Stop();
+        }
         Recharge();
     }
 
     // to clear the ontrigger of parent class
-    protected override void OnTriggerEnter2D(Collider2D other) {}
+    protected override void OnTriggerEnter2D(Collider2D other) { }
 
     void Recharge()
     {

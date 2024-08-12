@@ -18,7 +18,6 @@ public class GameManager : MonoSingleton<GameManager>
         saveManager = FindObjectOfType<SaveManager>();
         mapManager = FindObjectOfType<MapManager>();
         enemySpawner = FindObjectOfType<EnemySpawner>();
-        //DOTween.Init();
     }
 
     void Update()

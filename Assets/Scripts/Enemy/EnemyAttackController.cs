@@ -33,10 +33,11 @@ public class EnemyAttackController : MonoBehaviour
                     Debug.LogWarning("Projectile null");
                     yield break;
                 }
-                g.transform.position = projectileSpawnPos.position;
+
+                g.transform.position = GetSpawnPos(projectileSpawnPos.position, attack.GetDistance());
                 g.SetActive(true);
 
-                g.GetComponent<Projectile>().Fire(GetTargetDirection());
+                g.GetComponent<Projectile>().Fire(GetTargetDirection(g.transform.position));
 
                 yield return new WaitForSeconds(attack.GetAttackDelay());
             }
@@ -77,8 +78,14 @@ public class EnemyAttackController : MonoBehaviour
         return attackList[index];
     }
 
-    Vector2 GetTargetDirection()
+    Vector2 GetSpawnPos(Vector2 spawnPos, float range)
     {
-        return (enemy.GetPlayer.transform.position - projectileSpawnPos.position).normalized;
+        Vector2 result = spawnPos + Random.insideUnitCircle.normalized * range;
+        return result;
+    }
+
+    Vector2 GetTargetDirection(Vector3 startPos)
+    {
+        return (enemy.GetPlayer.transform.position - startPos).normalized;
     }
 }

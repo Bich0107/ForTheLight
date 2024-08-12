@@ -17,6 +17,7 @@ public class Boss : Enemy
     [SerializeField] float dropDelay;
     [SerializeField] float jumpDelay;
     [SerializeField] float jumpCount;
+    [SerializeField] GameObject groundHitVFX;
 
     [Header("Stab attack settings")]
     [SerializeField] float attackDistance;
@@ -32,7 +33,7 @@ public class Boss : Enemy
     [SerializeField] GameObject beamVFX;
     [SerializeField] float chargeTime;
     [SerializeField] float healthRestorePercent = 35f;
-
+    
     bool projectileReady;
     bool isAttacking = false;
     bool bodyReady = true;
@@ -171,6 +172,7 @@ public class Boss : Enemy
 
         for (int i = 0; i < jumpCount; i++)
         {
+            groundHitVFX.SetActive(false);
             moveController.MoveSpeed = jumpSpeed;
             moveController.Move(Vector2.up);
 
@@ -185,6 +187,7 @@ public class Boss : Enemy
 
             // wait until reaching minimum height
             while (transform.position.y >= minHeight) yield return null;
+            groundHitVFX.SetActive(true);
             moveController.Stop();
 
             yield return new WaitForSeconds(jumpDelay);

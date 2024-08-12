@@ -9,8 +9,11 @@ public class EnemyAttackSO : ScriptableObject {
     [SerializeField] float cd;
     [Tooltip("The number of shot")]
     [SerializeField] int amount;
+    [Tooltip("Distance from real spawn pos to the spawn pos, direction is random")]
+    [SerializeField] float distance;
 
     public GameObject GetProjectile => projectile;
+    public float GetDistance() => distance;
     public float GetAttackDelay() => attackDelay;
     public float GetCooldown() => cd;
     public int GetAmount() => amount;

@@ -24,10 +24,10 @@ public class Shield : MonoBehaviour, IHitByPlayer
     public void Hit(float _dmg) {
         if (_dmg > defense) {
             // if player hit the shield with a strong enough bullet, disable the shield and make shielder vulnerable
-            animator.SetTrigger(ShielderAnimationParams.TriggerBreak);
             ready = false;
             shieldCollider.enabled = false;
             shielder.DefenseBreak();
+            animator.SetTrigger(ShielderAnimationParams.TriggerBreak);
             coroutine = StartCoroutine(CR_Restore());
         }
     }
