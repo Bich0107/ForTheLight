@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df8a0cc9b57640418342e0cc40d1472, type: 3}
   m_Name: SaveFile1
   m_EditorClassIdentifier: 
-  areaIndex: 0
+  areaIndex: 1
   difficulty: 0
-  maxLife: 1
-  currentLife: 1
+  maxLife: 5
+  currentLife: 3
   timer: 0

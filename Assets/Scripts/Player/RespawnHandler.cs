@@ -58,9 +58,8 @@ public class RespawnHandler : MonoBehaviour
 
     IEnumerator CR_Respawn()
     {
-        // disable player control;
+        // disable player control and remove platform parent (if any)
         GameManager.Instance.SetPlayerControlStatus(false);
-
         transform.parent = null;
 
         // slowly return to respawn point in delay time
@@ -84,6 +83,7 @@ public class RespawnHandler : MonoBehaviour
         // wait until all particles die
         yield return new WaitForSeconds(delay);
         deathVFX?.SetActive(false);
+        FindObjectOfType<LifeDisplayer>().UpdateLife();
     }
 
     public void SetRespawnPoint(Vector3 _pos)

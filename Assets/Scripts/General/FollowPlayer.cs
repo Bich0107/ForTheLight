@@ -13,7 +13,7 @@ public class FollowPlayer : MonoBehaviour
         player = FindObjectOfType<PlayerInput>().gameObject;
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (GetDistanceToPlayer > moveDistance) {
             transform.position = player.transform.position + offset;
