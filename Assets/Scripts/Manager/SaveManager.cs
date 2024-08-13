@@ -6,6 +6,7 @@ using UnityEngine;
 public class SaveManager : MonoBehaviour
 {
     const string path = "Assets/Saves";
+    public static bool Win = false;
 
     [SerializeField] List<SaveFile> saveFiles;
     [SerializeField] SaveFile currentSaveFile;
@@ -15,6 +16,8 @@ public class SaveManager : MonoBehaviour
 
     public void CreateNewSavefile(Difficulty difficulty)
     {
+        Win = false;
+        
         saveIndex++;
         SaveFile newSaveFile = SaveFile.CreateInstance<SaveFile>();
         newSaveFile.AreaIndex = 0;

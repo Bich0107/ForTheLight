@@ -35,8 +35,8 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
     {
         if (isDead) return;
 
-        moveController.Stop();
         StopAllCoroutines();
+        moveController.Stop();
         StartCoroutine(CR_DeathAnimation());
     }
 

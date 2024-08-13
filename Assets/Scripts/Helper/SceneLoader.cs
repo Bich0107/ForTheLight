@@ -24,16 +24,22 @@ public class SceneLoader : MonoBehaviour
             saveManager.CreateNewSavefile(difficulty);
         }
 
-        SceneManager.LoadScene((int)Scenes.PlayScene);
+        LoadPlayScene();
     }
 
     public void Continue()
     {
-
+        LoadPlayScene();
     }
+
+    public void LoadStartMenuScene() => SceneManager.LoadScene((int)Scenes.StartScene);
+
+    public void LoadPlayScene() => SceneManager.LoadScene((int)Scenes.PlayScene);
+
+    public void LoadGameOverScene() => SceneManager.LoadScene((int)Scenes.GameOverScene);
 
     public void Quit()
     {
-
+        Application.Quit();
     }
 }

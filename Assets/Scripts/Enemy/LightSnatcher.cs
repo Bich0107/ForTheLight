@@ -67,29 +67,6 @@ public class LightSnatcher : Enemy
         }
     }
 
-    // protected override void Die() {
-    //     Explode();
-    // }
-
-    // void Explode()
-    // {
-    //     if (attackCoroutine != null) StopCoroutine(attackCoroutine);
-    //     moveController.Stop();
-
-    //     StartCoroutine(CR_Explode());
-    // }
-
-    // IEnumerator CR_Explode()
-    // {
-    //     transform.localScale = explodeSize;
-    //     deathVFX.SetActive(true);
-
-    //     yield return new WaitForSeconds(duration);
-
-    //     deathVFX.SetActive(false);
-    //     gameObject.SetActive(false);
-    // }
-
     protected new void OnDisable()
     {
         base.OnDisable();

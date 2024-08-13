@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
+    [SerializeField] SaveManager saveManager;
     [SerializeField] List<GameObject> areaList;
-    [SerializeField] List<GameObject> areaLinkers;
+    [SerializeField] List<GameObject> linkdersList;
+    [SerializeField] List<GameObject> respawnPosList;
     [SerializeField] WaveTriggersManager triggersManager;
     int currentArea = 0;
+
+    void Awake() {
+        saveManager = FindObjectOfType<SaveManager>();
+
+        currentArea = saveManager.CurrentSaveFile.AreaIndex;    
+    }
 
     void OnEnable()
     {
@@ -18,19 +26,21 @@ public class MapManager : MonoBehaviour
 
     public void SetUpMap()
     {
-        if (areaLinkers == null || areaList == null) return;
+        if (linkdersList == null || areaList == null) return;
 
         for (int i = 0; i < areaList.Count; i++)
         {
             if (i == currentArea)
             {
-                if (i < areaLinkers.Count) { areaLinkers[i].SetActive(true); }
+                if (i < linkdersList.Count) { linkdersList[i].SetActive(true); }
                 areaList[i].SetActive(true);
+                respawnPosList[i].SetActive(true);
             }
             else
             {
-                if (i < areaLinkers.Count) { areaLinkers[i].SetActive(false); }
+                if (i < linkdersList.Count) { linkdersList[i].SetActive(false); }
                 areaList[i].SetActive(false);
+                respawnPosList[i].SetActive(false);
             }
         }
         triggersManager.SetUpTriggers();
@@ -42,8 +52,14 @@ public class MapManager : MonoBehaviour
         SetUpMap();
     }
 
+    public Vector3 GetRespawnPos(int areaIndex) {
+        return respawnPosList[areaIndex].GetComponent<RespawnPoint>().SpawnPoint;
+    }
+
     public void ResetCurrentMap() {
         triggersManager.SetUpTriggers();
+
+        // deactive and active to reset platform animation
         areaList[currentArea].SetActive(false);
         areaList[currentArea].SetActive(true);
     }

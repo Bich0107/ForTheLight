@@ -5,22 +5,21 @@ using UnityEngine.UI;
 
 public class SimpleAnimation : MonoBehaviour
 {
-
     RectTransform rectTransform;
     [SerializeField] Vector3 basePos;
     [SerializeField] Vector3 destination;
     [SerializeField] float moveTime;
 
-    void Start()
+    void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         basePos = rectTransform.anchoredPosition;
-
-        
     }
 
     public void Play()
     {
+        if (rectTransform == null) return;
+
         Tween tween = rectTransform.DOAnchorPos(destination, moveTime);
 
         // check if this animation is on a button,
@@ -38,7 +37,9 @@ public class SimpleAnimation : MonoBehaviour
 
     public void Rewind()
     {
-       Tween tween = rectTransform.DOAnchorPos(basePos, moveTime);
+        if (rectTransform == null) return;
+
+        Tween tween = rectTransform.DOAnchorPos(basePos, moveTime);
 
         // check if this animation is on a button,
         // if it is disable until finish animation

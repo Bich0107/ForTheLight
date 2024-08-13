@@ -5,6 +5,7 @@ using UnityEngine;
 public class RespawnPoint : MonoBehaviour
 {
     [SerializeField] Vector3 spawnPoint;
+    public Vector3 SpawnPoint => spawnPoint;
 
     void OnTriggerEnter2D(Collider2D other)
     {

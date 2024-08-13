@@ -5,6 +5,7 @@ public class FollowPlayer : MonoBehaviour
 {
     [Tooltip("Move to player position whenever distance between this GO and player exceed this value")]
     [SerializeField] float moveDistance;
+    [SerializeField] Vector3 offset = new Vector3();
     GameObject player;
 
     void Start()
@@ -15,7 +16,7 @@ public class FollowPlayer : MonoBehaviour
     void Update()
     {
         if (GetDistanceToPlayer > moveDistance) {
-            transform.position = player.transform.position;
+            transform.position = player.transform.position + offset;
         }
     }
 

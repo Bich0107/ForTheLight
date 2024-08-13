@@ -33,7 +33,7 @@ public class Boss : Enemy
     [SerializeField] GameObject beamVFX;
     [SerializeField] float chargeTime;
     [SerializeField] float healthRestorePercent = 35f;
-    
+
     bool projectileReady;
     bool isAttacking = false;
     bool bodyReady = true;
@@ -49,6 +49,11 @@ public class Boss : Enemy
         spawner = FindObjectOfType<EnemySpawner>();
         projectileAttackController = GetComponent<EnemyAttackController>();
         animator = GetComponent<Animator>();
+        healthController.AddEventOnHealthReachZero(_ =>
+        {
+            SaveManager.Win = true;
+            GameManager.Instance.GameOver();
+        });
 
         StartCoroutine(CR_Wait());
     }
