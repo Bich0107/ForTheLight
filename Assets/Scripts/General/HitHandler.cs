@@ -6,7 +6,7 @@ public class HitHanlder : MonoBehaviour
     [SerializeField] protected LightObject lightObject;
     [SerializeField] protected HealthController health;
 
-    protected void Start() {
+    protected virtual void Start() {
         lightObject = GetComponent<LightObject>();
         health = GetComponent<HealthController>();
         

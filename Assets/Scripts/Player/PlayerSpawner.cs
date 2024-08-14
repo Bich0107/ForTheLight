@@ -6,7 +6,7 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField] SaveManager saveManager;
     [SerializeField] MapManager mapManager;
     [SerializeField] GameObject player;
-    [SerializeField] Vector3 offset;
+    [SerializeField] GameObject gun;
 
     void Awake()
     {
@@ -20,7 +20,12 @@ public class PlayerSpawner : MonoBehaviour
             return;
         }
 
+        // take info from save file
         int areaIndex = saveManager.CurrentSaveFile.AreaIndex;
+        
+        // activate gun if player has clear guide area
+        gun.SetActive(areaIndex > 0);
+
         player.transform.position = mapManager.GetRespawnPos(areaIndex);
     }
 

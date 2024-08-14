@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
     [SerializeField] protected GameObject deathVFX;
     [SerializeField] protected float duration;
     bool isDead = false;
+    public bool IsDead => isDead;
 
     protected void OnEnable()
     {
@@ -40,8 +41,8 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
     {
         if (isDead) return;
 
-        StopAllCoroutines();
         moveController.Stop();
+        StopAllCoroutines();
         StartCoroutine(CR_DeathAnimation());
     }
 
@@ -74,6 +75,7 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
         StopAllCoroutines();
         moveController?.Reset();
         healthController?.Reset();
+        isDead = false;
     }
 
     public GameObject GetPlayer => player;

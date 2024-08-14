@@ -5,7 +5,13 @@ using UnityEngine;
 public class RespawnPoint : MonoBehaviour
 {
     [SerializeField] Vector3 spawnPoint;
+    [SerializeField] Animator animator;
     public Vector3 SpawnPoint => spawnPoint;
+
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,8 +20,8 @@ public class RespawnPoint : MonoBehaviour
             RespawnHandler handler = other.GetComponent<RespawnHandler>();
             if (handler != null)
             {
-                Debug.Log("set respawn point: " + spawnPoint, gameObject);
                 handler.SetRespawnPoint(spawnPoint);
+                animator?.SetTrigger("activate");
             }
         }
     }

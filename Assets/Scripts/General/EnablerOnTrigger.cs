@@ -8,10 +8,13 @@ public class EnablerOnTrigger : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        foreach (var g in activeTargets)
+        if (other.CompareTag(Tags.Player))
         {
-            g.SetActive(true);
+            foreach (var g in activeTargets)
+            {
+                g.SetActive(true);
+            }
+            if (destroyOnTrigger) Destroy(gameObject);
         }
-        if (destroyOnTrigger) Destroy(gameObject);
     }
 }

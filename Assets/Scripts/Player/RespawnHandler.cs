@@ -3,19 +3,17 @@ using UnityEngine;
 
 public class RespawnHandler : MonoBehaviour
 {
+    [Header("Components")]
     [SerializeField] SaveManager saveManager;
     [SerializeField] HealthController healthController;
+    [SerializeField] TrailRenderer trail;
     [SerializeField] Player player;
-    [SerializeField] Vector3 spawnOffset;
+    [Header("Spawn settings")]
     [SerializeField] Vector3 respawnPoint;
+    [Header("VFXs")]
     [SerializeField] GameObject deathVFX;
     [SerializeField] GameObject respawnVFX;
-    [SerializeField] float delay = 3f;
-    [Header("Return to spawn on hit animation settings")]
-    [SerializeField] float normalSpeedDuration;
-    [SerializeField] float normalSpeed;
-    [SerializeField] float fastSpeedDuration;
-    [SerializeField] float fastSpeed;
+    [SerializeField] float delay = 2f;
     bool isRespawning = false;
 
     void Awake()
@@ -85,31 +83,11 @@ public class RespawnHandler : MonoBehaviour
         GameManager.Instance.SetPlayerControlStatus(false);
         transform.parent = null;
 
-        // return to respawn point in delay time
-        Vector3 targetPos = respawnPoint + spawnOffset;
-        Vector3 startPos = transform.position;
+        yield return new WaitForSeconds(delay);
 
-        // return with normal speed
-        float tick = 0;
-        while (tick <= normalSpeedDuration)
-        {
-            tick += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos, targetPos, tick * normalSpeed);
-            yield return null;
-        }
-
-        // return with fast speed
-        startPos = transform.position;
-        tick = 0f;
-        while (tick <= fastSpeedDuration)
-        {
-            tick += Time.deltaTime;
-            transform.position = Vector3.Lerp(startPos, targetPos, tick * fastSpeed);
-            yield return null;
-        }
-
-        // ensure player is at the spawn position
-        transform.position = targetPos;
+        // change player position to spawn pos and clear the trail
+        transform.position = respawnPoint;
+        trail.Clear();
 
         // update lives ui
         FindObjectOfType<LifeDisplayer>().DecreaseLife(1);

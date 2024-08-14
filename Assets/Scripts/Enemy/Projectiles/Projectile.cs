@@ -18,13 +18,13 @@ public class Projectile : MonoBehaviour, IHitByPlayer
         healthController = GetComponent<HealthController>();
 
         movingObject?.SetMoveSpeed(projectileScript.GetMoveSpeed);
-        healthController?.AddEventOnHealthReachZero((object _obj) => Die());
     }
 
     void OnEnable()
     {
         isDead = false;
         collideVFX?.SetActive(false);
+        healthController?.AddEventOnHealthReachZero(_ => Die());
     }
 
     public virtual void Fire(GameObject _target) { }
@@ -51,6 +51,8 @@ public class Projectile : MonoBehaviour, IHitByPlayer
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
+        if (isDead) return;
+
         IHitByEnemy hit = other.GetComponent<IHitByEnemy>();
         if (hit != null)
         {
@@ -62,11 +64,14 @@ public class Projectile : MonoBehaviour, IHitByPlayer
     public virtual void Hit(float _damage)
     {
         healthController?.DecreaseHealth(_damage);
+        Debug.Log("projectile is hit, health : " + healthController.GetHealth, gameObject);
     }
 
     protected virtual void Die()
     {
         if (isDead) return;
+        StopAllCoroutines();
+        movingObject.Stop();
         StartCoroutine(CR_CollideEffect());
     }
 

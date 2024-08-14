@@ -20,6 +20,8 @@ public class JumpController : MonoBehaviour
 
     void Jump()
     {
+        if (!GameManager.Instance.PlayerControlStatus()) return;
+
         if (!affectedByGravity.CheckGround())
         {
             if (counter < airJumpCount)

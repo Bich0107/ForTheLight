@@ -8,6 +8,7 @@ public class MapAreaLinker : MonoBehaviour
     [SerializeField] int areaIndex;
     [SerializeField] GameObject nextArea;
     [SerializeField] float deactiveDelay = 2f;
+    bool triggered = false;
 
     public int AreaIndex => areaIndex;
 
@@ -20,17 +21,26 @@ public class MapAreaLinker : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (triggered) return;
+
         if (other.CompareTag(Tags.Player))
         {
-            nextArea.SetActive(true);
-            saveManager.CurrentSaveFile.AreaIndex = areaIndex + 1;
-            StartCoroutine(CR_DeactiveArea());
+            triggered = true;
+            StartCoroutine(CR_UpdateMap());
         }
     }
 
-    IEnumerator CR_DeactiveArea()
+    IEnumerator CR_UpdateMap()
     {
+        // update save file and activate next area;
+        saveManager.CurrentSaveFile.AreaIndex = areaIndex + 1;
+        mapManager.ActivateArea(areaIndex + 1);
+        mapManager.SetUpTriggers();
+
         yield return new WaitForSeconds(deactiveDelay);
-        mapManager.ChangeArea(saveManager.CurrentSaveFile.AreaIndex);
+        
+        // deactive this area and turn off flag
+        mapManager.DeactiveArea(areaIndex);
+        triggered = false;
     }
 }

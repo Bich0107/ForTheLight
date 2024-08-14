@@ -11,10 +11,11 @@ public class MapManager : MonoBehaviour
     [SerializeField] WaveTriggersManager triggersManager;
     int currentArea = 0;
 
-    void Awake() {
+    void Awake()
+    {
         saveManager = FindObjectOfType<SaveManager>();
 
-        currentArea = saveManager.CurrentSaveFile.AreaIndex;    
+        currentArea = saveManager.CurrentSaveFile.AreaIndex;
     }
 
     void OnEnable()
@@ -30,33 +31,44 @@ public class MapManager : MonoBehaviour
 
         for (int i = 0; i < areaList.Count; i++)
         {
-            if (i == currentArea)
-            {
-                if (i < linkdersList.Count) { linkdersList[i].SetActive(true); }
-                areaList[i].SetActive(true);
-                respawnPosList[i].SetActive(true);
-            }
-            else
-            {
-                if (i < linkdersList.Count) { linkdersList[i].SetActive(false); }
-                areaList[i].SetActive(false);
-                respawnPosList[i].SetActive(false);
-            }
+            SetAreaState(i, i == currentArea);
         }
+
         triggersManager.SetUpTriggers();
     }
 
-    public void ChangeArea(int index)
+    public void SetAreaState(int index, bool isActive)
     {
-        currentArea = index;
-        SetUpMap();
+        if (index < linkdersList.Count) { linkdersList[index].SetActive(isActive); }
+        areaList[index].SetActive(isActive);
+        respawnPosList[index].SetActive(isActive);
     }
 
-    public Vector3 GetRespawnPos(int areaIndex) {
+    public void SetUpTriggers() {
+        triggersManager.SetUpTriggers();
+    }
+
+    public void ActivateArea(int index) 
+    {
+        currentArea = index;
+        SetAreaState(index, true);
+    }
+
+    public void DeactiveArea(int index) => SetAreaState(index, false);
+
+    public void ChangeArea(int previousArea, int nextArea)
+    {
+        ActivateArea(nextArea);
+        DeactiveArea(previousArea);
+    }
+
+    public Vector3 GetRespawnPos(int areaIndex)
+    {
         return respawnPosList[areaIndex].GetComponent<RespawnPoint>().SpawnPoint;
     }
 
-    public void ResetCurrentMap() {
+    public void ResetCurrentMap()
+    {
         triggersManager.SetUpTriggers();
 
         // deactive and active to reset platform animation
@@ -66,6 +78,7 @@ public class MapManager : MonoBehaviour
 
     public void Reset()
     {
-        ChangeArea(0);
+        currentArea = 0;
+        SetUpMap();
     }
 }
