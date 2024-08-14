@@ -7,6 +7,7 @@ public class PlayerActionController : MonoBehaviour
     [SerializeField] float minChargeTime;
     [SerializeField] float maxChargeTime;
     [SerializeField] float minChargePercent;
+    [SerializeField] GameObject chargeVFX;
     bool isCharging = false;
     float chargeTime;
 
@@ -29,6 +30,7 @@ public class PlayerActionController : MonoBehaviour
         if (_value.isPressed)
         {
             isCharging = true;
+            chargeVFX.SetActive(true);
             gunHolder.Shoot();
         }
         else
@@ -43,6 +45,7 @@ public class PlayerActionController : MonoBehaviour
                 gunHolder.ChargeShot(chargePercent);
             }
             chargeTime = 0;
+            chargeVFX.SetActive(false);
         }
     }
 
