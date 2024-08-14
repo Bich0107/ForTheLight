@@ -14,6 +14,7 @@ public class RespawnPoint : MonoBehaviour
             RespawnHandler handler = other.GetComponent<RespawnHandler>();
             if (handler != null)
             {
+                Debug.Log("set respawn point: " + spawnPoint, gameObject);
                 handler.SetRespawnPoint(spawnPoint);
             }
         }

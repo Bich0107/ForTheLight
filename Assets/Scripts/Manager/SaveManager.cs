@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
     const string path = "Assets/Saves";
     public static bool Win = false;
+    static int saveIndex = 0;
+
     static SaveManager Instance;
 
     [SerializeField] List<SaveFile> saveFiles;
     [SerializeField] SaveFile currentSaveFile;
     public SaveFile CurrentSaveFile => currentSaveFile;
 
-    int saveIndex = -1;
 
     void Awake()
     {
@@ -33,8 +35,7 @@ public class SaveManager : MonoBehaviour
 
         saveIndex++;
         SaveFile newSaveFile = SaveFile.CreateInstance<SaveFile>();
-        newSaveFile.AreaIndex = 0;
-        newSaveFile.Difficulty = difficulty;
+        newSaveFile.Initialize(difficulty);
 
         // Make sure the directory exists
         if (!AssetDatabase.IsValidFolder(path))

@@ -37,4 +37,26 @@ public class SaveFile : ScriptableObject
         get { return timer; }
         set { timer = value; }
     }
+
+    public void Initialize(Difficulty _difficulty = Difficulty.Normal)
+    {
+        difficulty = _difficulty;
+
+        switch (difficulty)
+        {
+            case Difficulty.Normal:
+                maxLife = 5;
+                break;
+            case Difficulty.Hard:
+                maxLife = 1;
+                break;
+            default:
+                maxLife = 5;
+                break;
+        }
+
+        areaIndex = 0;
+        currentLife = maxLife;
+        timer = 0;
+    }
 }

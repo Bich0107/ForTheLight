@@ -58,7 +58,6 @@ public class GameManager : MonoSingleton<GameManager>
     public void GameOver()
     {
         timeKeeper.StopTimer();
-        saveManager.CurrentSaveFile.Timer = timeKeeper.Timer;
         
         FindObjectOfType<SceneLoader>().LoadGameOverScene();
     }

@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeKeeper : MonoBehaviour
 {
+    [SerializeField] SaveManager saveManager;
     [SerializeField] float timer;
     public float Timer => timer;
     bool isCounting = false;
 
+    void Awake()
+    {
+        saveManager = FindObjectOfType<SaveManager>();
+    }
+
     void Update()
     {
-        if (isCounting)
+        if (isCounting && saveManager != null)
         {
             timer += Time.deltaTime;
+            saveManager.CurrentSaveFile.Timer = timer;
         }
     }
 

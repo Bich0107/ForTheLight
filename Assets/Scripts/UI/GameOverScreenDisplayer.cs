@@ -21,25 +21,16 @@ public class GameOverScreenDisplayer : MonoBehaviour
     {
         // take info from save file
         endGameText.text = SaveManager.Win ? "YOU WIN!" : "GAME OVER";
-        timeText.text = "Your time: " + GetTime();
+
+        // display final score
+        timeText.text = "Your time: " + StringHelper.SecondToString(saveManager.CurrentSaveFile.Timer);
+
         difficultyText.text = "Difficulty: " + GetDifficultyText(saveManager.CurrentSaveFile.Difficulty);
+
         UIAnimation.PlayAnimations();
-    }
-
-    string GetTime()
-    {
-        float seconds = saveManager.CurrentSaveFile.Timer;
-        // minutes
-        int minutes = (int)seconds / 60;
-
-        // seconds
-        int secs = (int)seconds % 60;
-
-        // milliseconds
-        int milliseconds = (int)((seconds - (int)seconds) * 1000);
-
-        // format string mm:ss:msms
-        return String.Format("{0:D2}:{1:D2}:{2:D3}", minutes, secs, milliseconds / 10);
+        
+        // reset win state
+        SaveManager.Win = false;
     }
 
     string GetDifficultyText(Difficulty difficulty)
