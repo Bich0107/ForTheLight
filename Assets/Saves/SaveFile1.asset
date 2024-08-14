@@ -15,5 +15,5 @@ MonoBehaviour:
   areaIndex: 1
   difficulty: 0
   maxLife: 5
-  currentLife: 3
-  timer: 0
+  currentLife: 5
+  timer: 7.543977

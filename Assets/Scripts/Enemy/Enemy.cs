@@ -26,6 +26,11 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
         healthController?.AddEventOnHealthReachZero((object _obj) => Die());
     }
 
+    public void StopAllAction() {
+        moveController.Stop();
+        StopAllCoroutines();
+    }
+
     public void Hit(float _dmg)
     {
         healthController?.DecreaseHealth(_dmg);
@@ -66,6 +71,7 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
 
     public void Reset()
     {
+        StopAllCoroutines();
         moveController?.Reset();
         healthController?.Reset();
     }

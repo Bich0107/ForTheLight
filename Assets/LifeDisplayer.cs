@@ -9,7 +9,7 @@ public class LifeDisplayer : MonoBehaviour
     int maxLive;
     int currentLive;
 
-    void Awake()
+    void Start()
     {
         saveManager = FindObjectOfType<SaveManager>();
 
@@ -26,11 +26,9 @@ public class LifeDisplayer : MonoBehaviour
     {
         maxLive = saveManager.CurrentSaveFile.MaxLife;
 
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < lives.Count; i++)
         {
-            Transform child = transform.GetChild(i);
-
-            child.gameObject.SetActive(i < maxLive);
+            lives[i].gameObject.SetActive(i < maxLive);
         }
     }
 
@@ -38,16 +36,22 @@ public class LifeDisplayer : MonoBehaviour
     {
         currentLive = saveManager.CurrentSaveFile.CurrentLife;
 
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < lives.Count; i++)
         {
-            Transform child = transform.GetChild(i);
-
-            LifeIcon icon = child.GetComponent<LifeIcon>();
             if (i < currentLive)
-                icon.TurnOn();
-            else
-                icon.TurnOff();
+            {
+                lives[i].TurnOn();
+            }
+            else {
+                lives[i].TurnOff();
+            }
         }
+    }
+
+    public void DecreaseLife(int _value)
+    {
+        saveManager.CurrentSaveFile.CurrentLife -= _value;
+        UpdateLife();
     }
 
     public void UpdateLife()

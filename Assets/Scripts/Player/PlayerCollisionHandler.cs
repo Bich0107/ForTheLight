@@ -2,11 +2,22 @@ using UnityEngine;
 
 public class PlayerCollisionHandler : HitHanlder, IHitByEnemy, IExplosionTrigger
 {
-    protected new void Start() {
+    bool isActive = true;
+
+    protected new void Start()
+    {
         base.Start();
     }
 
-    public void Hit(float _dmg) {
+    public void ToggleActive()
+    {
+        isActive = !isActive;
+    }
+
+    public void Hit(float _dmg)
+    {
+        if (!isActive) return;
+
         health?.DecreaseHealth(_dmg);
     }
 }

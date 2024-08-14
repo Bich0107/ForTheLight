@@ -7,6 +7,7 @@ public class SaveManager : MonoBehaviour
 {
     const string path = "Assets/Saves";
     public static bool Win = false;
+    static SaveManager Instance;
 
     [SerializeField] List<SaveFile> saveFiles;
     [SerializeField] SaveFile currentSaveFile;
@@ -14,10 +15,22 @@ public class SaveManager : MonoBehaviour
 
     int saveIndex = -1;
 
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     public void CreateNewSavefile(Difficulty difficulty)
     {
         Win = false;
-        
+
         saveIndex++;
         SaveFile newSaveFile = SaveFile.CreateInstance<SaveFile>();
         newSaveFile.AreaIndex = 0;

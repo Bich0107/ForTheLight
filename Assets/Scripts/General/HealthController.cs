@@ -12,34 +12,51 @@ public class HealthController : MonoBehaviour
     Action<object> onHealthReachZero;
     Action<object> onHit;
 
-    private void Start() {
+    private void Start()
+    {
         health = maxHealth;
     }
 
-    public void DecreaseHealth(float _value) {
+    public void DecreaseHealth(float _value)
+    {
         health -= _value;
 
         onHit?.Invoke(null);
 
         // check when hp = 0
-        if (health <= Mathf.Epsilon) {
+        if (health <= Mathf.Epsilon)
+        {
             onHealthReachZero?.Invoke(null);
         }
     }
 
-    public void IncreaseHealth(float _value) {
+    public void IncreaseHealth(float _value)
+    {
         health = Mathf.Min(health + _value, maxHealth);
     }
 
-    public void Reset() {
+    public void Reset()
+    {
         health = maxHealth;
+        ResetOnHealthReachZeroEvent();
     }
 
-    public void AddEventOnHit(Action<object> _action) {
+    void OnDisable() {
+        Reset();
+    }
+
+    public void AddEventOnHit(Action<object> _action)
+    {
         onHit += _action;
     }
 
-    public void AddEventOnHealthReachZero(Action<object> _action) {
+    public void AddEventOnHealthReachZero(Action<object> _action)
+    {
         onHealthReachZero += _action;
+    }
+
+    public void ResetOnHealthReachZeroEvent()
+    {
+        onHealthReachZero = null;
     }
 }
