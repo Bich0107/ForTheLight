@@ -44,33 +44,4 @@ public class ProjectileThrower : Enemy
             }
         }
     }
-
-    // protected override void Die()
-    // {
-    //     StartCoroutine(PlayDeathEffect());
-    // }
-
-    // IEnumerator PlayDeathEffect()
-    // {
-    //     deathVFX?.SetActive(true);
-
-    //     float tick = 0f;
-    //     Vector3 baseScale = transform.localScale;
-    //     while (tick <= effectDuration) {
-    //         tick += Time.deltaTime;
-    //         transform.localScale = Vector3.Lerp(baseScale, Vector3.zero, tick / effectDuration);
-    //         yield return null;
-    //     }
-
-    //     deathVFX?.SetActive(false);
-    //     transform.localScale = baseScale;
-    //     gameObject.SetActive(false);
-    // }
-
-    public new void Reset()
-    {
-        base.Reset();
-        StopAllCoroutines();
-        attackController?.Reset();
-    }
 }

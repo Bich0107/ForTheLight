@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
         Reset();
     }
 
-    public void Reset()
+    public virtual void Reset()
     {
         StopAllCoroutines();
         moveController?.Reset();

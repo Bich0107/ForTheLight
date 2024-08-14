@@ -23,7 +23,6 @@ public class EnemyAttackController : MonoBehaviour
     {
         do
         {
-            attacking = true;
             EnemyAttackSO attack = GetRandomAttack();
             for (int i = 0; i < attack.GetAmount(); i++)
             {
@@ -43,8 +42,10 @@ public class EnemyAttackController : MonoBehaviour
             }
 
             yield return new WaitForSeconds(attack.GetCooldown());
-            attacking = false;
+
         } while (continuous);
+
+        attacking = false;
     }
 
     public void Attack(bool _continuous = true)
@@ -70,6 +71,10 @@ public class EnemyAttackController : MonoBehaviour
         continuous = false;
         if (attackCoroutine != null) StopCoroutine(attackCoroutine);
         attackCoroutine = null;
+    }
+
+    void OnDisable() {
+        Reset();    
     }
 
     EnemyAttackSO GetRandomAttack()

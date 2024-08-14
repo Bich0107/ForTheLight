@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 public class LifeDisplayer : MonoBehaviour
 {
+    [SerializeField] GameObject lifeIcon;
     [SerializeField] List<LifeIcon> lives;
     [SerializeField] SaveManager saveManager;
     int maxLive;
@@ -26,9 +27,11 @@ public class LifeDisplayer : MonoBehaviour
     {
         maxLive = saveManager.CurrentSaveFile.MaxLife;
 
-        for (int i = 0; i < lives.Count; i++)
+        for (int i = 0; i < maxLive; i++)
         {
-            lives[i].gameObject.SetActive(i < maxLive);
+            GameObject live = Instantiate(lifeIcon);
+            live.transform.SetParent(transform, false);
+            lives.Add(live.GetComponent<LifeIcon>());
         }
     }
 
@@ -42,7 +45,8 @@ public class LifeDisplayer : MonoBehaviour
             {
                 lives[i].TurnOn();
             }
-            else {
+            else
+            {
                 lives[i].TurnOff();
             }
         }

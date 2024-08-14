@@ -64,7 +64,6 @@ public class Projectile : MonoBehaviour, IHitByPlayer
     public virtual void Hit(float _damage)
     {
         healthController?.DecreaseHealth(_damage);
-        Debug.Log("projectile is hit, health : " + healthController.GetHealth, gameObject);
     }
 
     protected virtual void Die()

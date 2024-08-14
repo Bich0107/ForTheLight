@@ -45,13 +45,13 @@ public class SaveFile : ScriptableObject
         switch (difficulty)
         {
             case Difficulty.Normal:
-                maxLife = 5;
+                maxLife = 20;
                 break;
             case Difficulty.Hard:
                 maxLife = 1;
                 break;
             default:
-                maxLife = 5;
+                maxLife = 20;
                 break;
         }
 

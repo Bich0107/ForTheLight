@@ -62,8 +62,9 @@ public class Shielder : Enemy
         bodyCollider.enabled = false;
     }
 
-    public new void Reset() {
+    public override void Reset() {
         base.Reset();
+        StopAllCoroutines();
         Restore();
     }
 }
