@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
+    bool isCheated;
     [SerializeField] float maxHealth;
     [SerializeField] float health;
     public float GetHealth => health;
@@ -19,6 +20,8 @@ public class HealthController : MonoBehaviour
 
     public void DecreaseHealth(float _value)
     {
+        if (isCheated) return;
+        
         health -= _value;
 
         onHit?.Invoke(null);
@@ -43,6 +46,11 @@ public class HealthController : MonoBehaviour
 
     void OnDisable() {
         Reset();
+    }
+
+    public void ToggleCheat() {
+        isCheated = !isCheated;
+        Debug.Log("invincible " + (isCheated ? "on" : "off"));
     }
 
     public void AddEventOnHit(Action<object> _action)

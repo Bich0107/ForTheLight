@@ -16,7 +16,6 @@ public class SaveManager : MonoBehaviour
     [SerializeField] SaveFile currentSaveFile;
     public SaveFile CurrentSaveFile => currentSaveFile;
 
-
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,17 +30,25 @@ public class SaveManager : MonoBehaviour
 
     public void CreateNewSavefile(Difficulty difficulty)
     {
+        // reset game state
         Win = false;
 
+        // update save file index
         saveIndex++;
-        SaveFile newSaveFile = SaveFile.CreateInstance<SaveFile>();
-        newSaveFile.Initialize(difficulty);
 
-        // Make sure the directory exists
+         // Make sure the directory exists
         if (!AssetDatabase.IsValidFolder(path))
         {
             AssetDatabase.CreateFolder("Assets", "Saves");
         }
+
+        // create new save file
+        SaveFile newSaveFile = SaveFile.CreateInstance<SaveFile>();
+        newSaveFile.Initialize(difficulty);
+        string fileName = "SaveFile_" + saveIndex + ".asset";
+
+        // check if already exist a save file. if any, delete it
+        AssetDatabase.DeleteAsset(path + "/" + fileName);
 
         // Save the ScriptableObject to the specified path
         string assetPath = AssetDatabase.GenerateUniqueAssetPath(path + "/SaveFile_" + saveIndex + ".asset");

@@ -22,21 +22,16 @@ public class GameManager : MonoSingleton<GameManager>
         mapManager = FindObjectOfType<MapManager>();
         enemySpawner = FindObjectOfType<EnemySpawner>();
     }
-
+    
+#if UNITY_EDITOR
     void Update()
     {
-#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log("scene reloaded");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        else if (Input.GetKeyDown(KeyCode.Z))
-        {
-            gameStarted = true;
-        }
-#endif
     }
+#endif
 
     public void PlayerRespawn()
     {
@@ -58,7 +53,7 @@ public class GameManager : MonoSingleton<GameManager>
     public void GameOver()
     {
         timeKeeper.StopTimer();
-        
+
         FindObjectOfType<SceneLoader>().LoadGameOverScene();
     }
 }

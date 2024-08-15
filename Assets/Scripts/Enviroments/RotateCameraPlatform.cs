@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class RotateCameraPlatform : MonoBehaviour
 {
+    [SerializeField] RotateObject worldSpaceCanvasRotater;
     [SerializeField] RotateObject camRotater;
     [SerializeField] float rotateSpeed;
     [SerializeField] float duration;
@@ -22,7 +23,13 @@ public class RotateCameraPlatform : MonoBehaviour
         if (other.gameObject.CompareTag(Tags.Player)) {
             rotating = true;
             RotateCamera();
+            RotateWorldSpaceCanvas();
         }
+    }
+
+    void RotateWorldSpaceCanvas() {
+        worldSpaceCanvasRotater.SetRotateSpeed(rotateSpeed);
+        worldSpaceCanvasRotater.Rotate();
     }
 
     void RotateCamera() {
@@ -33,9 +40,13 @@ public class RotateCameraPlatform : MonoBehaviour
     void StopRotate() {
         rotating = false;
         camRotater.Stop();
+        worldSpaceCanvasRotater.Stop();
     }
 
     void OnDisable() {
-        camRotater.Reset();
+        timer = 0;
+        rotating = false;
+        camRotater?.Reset();
+        worldSpaceCanvasRotater?.Reset();
     }
 }

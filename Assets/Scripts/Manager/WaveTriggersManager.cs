@@ -22,6 +22,7 @@ public class WaveTriggersManager : MonoBehaviour
     public void SetUpTriggers()
     {
         int index = saveManager.CurrentSaveFile.AreaIndex;
+
         foreach (var trigger in triggersList)
         {
             if (trigger.AreaIndex == index)

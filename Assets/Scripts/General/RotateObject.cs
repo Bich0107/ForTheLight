@@ -14,13 +14,16 @@ public class RotateObject : MonoBehaviour
     [SerializeField] bool rotateOnAwake = false;
     bool isRotating;
     float timer;
+    bool isQuiting;
 
-    void Awake() {
-        baseRotation = transform.rotation;    
+    void Awake()
+    {
+        baseRotation = transform.rotation;
     }
 
     void OnEnable()
     {
+        isQuiting = false;
         if (rotateOnAwake) Rotate();
     }
 
@@ -35,6 +38,11 @@ public class RotateObject : MonoBehaviour
             }
             transform.Rotate(Vector3.forward * rotateSpeed * Time.fixedDeltaTime);
         }
+    }
+
+    void OnApplicationQuit()
+    {
+        isQuiting = true;
     }
 
     public void SetRotateSpeed(float _value) => rotateSpeed = _value;
@@ -54,6 +62,8 @@ public class RotateObject : MonoBehaviour
 
     public void Reset()
     {
+        if (isQuiting) return;
+
         Stop();
         transform.rotation = baseRotation;
     }

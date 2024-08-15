@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void SetWaves(List<EnemyWaveSO> _waves, bool _isLoop = false)
     {
+        // stop current waves
         Stop();
         waves = _waves;
 
@@ -31,14 +32,6 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartSpawning()
     {
-        // get the amount of enemy need to be defeat in this wave(s)
-        int counter = 0;
-        foreach(EnemyWaveSO wave in waves) {
-            foreach (WaveSectionSO section in wave.GetSectionList) {
-                counter += section.GetAmount;
-            }
-        }
-
         spawnCoroutine = StartCoroutine(CR_Spawn());
     }
 

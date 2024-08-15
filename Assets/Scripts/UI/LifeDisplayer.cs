@@ -9,6 +9,7 @@ public class LifeDisplayer : MonoBehaviour
     [SerializeField] SaveManager saveManager;
     int maxLive;
     int currentLive;
+    bool isCheated = false;
 
     void Start()
     {
@@ -41,7 +42,7 @@ public class LifeDisplayer : MonoBehaviour
 
         for (int i = 0; i < lives.Count; i++)
         {
-            if (i < currentLive)
+            if (lives[i].Index < currentLive)
             {
                 lives[i].TurnOn();
             }
@@ -54,8 +55,16 @@ public class LifeDisplayer : MonoBehaviour
 
     public void DecreaseLife(int _value)
     {
+        if (isCheated) return;
+
         saveManager.CurrentSaveFile.CurrentLife -= _value;
         UpdateLife();
+    }
+
+    public void ToggleCheat()
+    {
+        isCheated = !isCheated;
+        Debug.Log("infinite life " + (isCheated ? "on" : "off"));
     }
 
     public void UpdateLife()

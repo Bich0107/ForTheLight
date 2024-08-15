@@ -15,6 +15,7 @@ public class MapAreaLinker : MonoBehaviour
     void Start()
     {
         areaIndex = transform.GetSiblingIndex();
+
         mapManager = FindObjectOfType<MapManager>();
         saveManager = FindObjectOfType<SaveManager>();
     }

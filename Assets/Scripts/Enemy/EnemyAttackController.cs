@@ -23,6 +23,8 @@ public class EnemyAttackController : MonoBehaviour
     {
         do
         {
+            if (enemy.IsDead) yield break;
+            
             EnemyAttackSO attack = GetRandomAttack();
             for (int i = 0; i < attack.GetAmount(); i++)
             {
@@ -69,7 +71,7 @@ public class EnemyAttackController : MonoBehaviour
     {
         attacking = false;
         continuous = false;
-        if (attackCoroutine != null) StopCoroutine(attackCoroutine);
+        StopAllCoroutines();
         attackCoroutine = null;
     }
 

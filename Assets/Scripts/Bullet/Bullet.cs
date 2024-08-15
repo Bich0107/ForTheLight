@@ -48,9 +48,12 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        Enemy enemy = other.GetComponent<Enemy>();
         IHitByPlayer hit = other.GetComponent<IHitByPlayer>();
         if (hit != null)
         {
+            if (enemy != null && enemy.IsDead) return;
+            
             hit.Hit(damage);
             hitCount--;
             if (hitCount <= 0) { 

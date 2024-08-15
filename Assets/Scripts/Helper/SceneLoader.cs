@@ -19,12 +19,6 @@ public class SceneLoader : MonoBehaviour
 
     public void StartNewGame(Difficulty difficulty)
     {
-        // check if player have a save file, if yes, show a confirm window -- ongoing
-        // if (saveManager.CurrentSaveFile == null)
-        // {
-        //     saveManager.CreateNewSavefile(difficulty);
-        // }
-
         saveManager.CreateNewSavefile(difficulty);
 
         LoadPlayScene();

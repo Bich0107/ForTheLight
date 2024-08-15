@@ -16,21 +16,35 @@ public class PlayerSpawner : MonoBehaviour
 
         if (saveManager == null)
         {
-            Debug.LogWarning(name + " can't find object of type SaveManager");
+            Debug.LogWarning(name + " can't find object of type " + saveManager.GetType().ToString());
             return;
         }
 
-        // take info from save file
-        int areaIndex = saveManager.CurrentSaveFile.AreaIndex;
-        
-        // activate gun if player has clear guide area
-        gun.SetActive(areaIndex > 0);
-
-        player.transform.position = mapManager.GetRespawnPos(areaIndex);
+        Spawn();
     }
 
     void Start()
     {
         timeKeeper?.StartTimer();
+    }
+
+    public void Spawn(int _index = -1)
+    {
+        int areaIndex;
+
+        // get area index, default is from save file
+        if (_index == -1)
+        {
+            areaIndex = saveManager.CurrentSaveFile.AreaIndex;
+        }
+        else
+        {
+            areaIndex = _index;
+        }
+
+        // activate gun if player has clear guide area
+        gun.SetActive(areaIndex > 0);
+
+        player.transform.position = mapManager.GetRespawnPos(areaIndex);
     }
 }

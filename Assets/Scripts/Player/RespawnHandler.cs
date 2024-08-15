@@ -4,6 +4,7 @@ using UnityEngine;
 public class RespawnHandler : MonoBehaviour
 {
     [Header("Components")]
+    [SerializeField] Rigidbody2D rb;
     [SerializeField] SaveManager saveManager;
     [SerializeField] HealthController healthController;
     [SerializeField] TrailRenderer trail;
@@ -19,6 +20,8 @@ public class RespawnHandler : MonoBehaviour
     void Awake()
     {
         saveManager = FindObjectOfType<SaveManager>();
+
+        rb = GetComponent<Rigidbody2D>();
         healthController = GetComponent<HealthController>();
         player = GetComponent<Player>();
     }
@@ -64,6 +67,7 @@ public class RespawnHandler : MonoBehaviour
     void Respawn()
     {
         if (isRespawning) return;
+
         isRespawning = true;
 
         // play effect
@@ -72,8 +76,7 @@ public class RespawnHandler : MonoBehaviour
         // turn off player collision
         player.ToggleCollision();
 
-        // respawn while deathVFX is playing
-        // deathVFX?.SetActive(true);
+        // respawn
         StartCoroutine(CR_Respawn());
     }
 
@@ -102,8 +105,9 @@ public class RespawnHandler : MonoBehaviour
         // turn off flag
         isRespawning = false;
 
-        // turn off effect
+        // turn off effect, reset velocity
         respawnVFX?.SetActive(false);
+        rb.velocity = Vector2.zero;
 
         // turn on collision and update on hit event
         player.ToggleCollision();

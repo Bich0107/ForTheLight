@@ -27,6 +27,8 @@ public class MapManager : MonoBehaviour
 
     public void SetUpMap()
     {
+        currentArea = saveManager.CurrentSaveFile.AreaIndex;
+
         if (linkdersList == null || areaList == null) return;
 
         for (int i = 0; i < areaList.Count; i++)
@@ -34,7 +36,7 @@ public class MapManager : MonoBehaviour
             SetAreaState(i, i == currentArea);
         }
 
-        triggersManager.SetUpTriggers();
+        SetUpTriggers();
     }
 
     public void SetAreaState(int index, bool isActive)
@@ -51,15 +53,16 @@ public class MapManager : MonoBehaviour
     public void ActivateArea(int index) 
     {
         currentArea = index;
-        SetAreaState(index, true);
+        Debug.Log("map: " + index);
+        SetUpMap();
     }
 
     public void DeactiveArea(int index) => SetAreaState(index, false);
 
-    public void ChangeArea(int previousArea, int nextArea)
+    public void ChangeArea(int nextArea)
     {
+        DeactiveArea(saveManager.CurrentSaveFile.AreaIndex);
         ActivateArea(nextArea);
-        DeactiveArea(previousArea);
     }
 
     public Vector3 GetRespawnPos(int areaIndex)

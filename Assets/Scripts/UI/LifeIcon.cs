@@ -9,6 +9,7 @@ public class LifeIcon : MonoBehaviour
     }
 
     [SerializeField] Animator animator;
+    public int Index => transform.GetSiblingIndex();
     bool isOn;
 
     public void TurnOn()
