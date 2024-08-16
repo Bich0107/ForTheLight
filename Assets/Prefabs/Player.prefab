@@ -119,9 +119,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -786885933
+  m_SortingLayer: 4
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -273,7 +273,7 @@ TrailRenderer:
   m_SortingLayerID: -786885933
   m_SortingLayer: 4
   m_SortingOrder: -1
-  m_Time: 0.15
+  m_Time: 0.25
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -358,6 +358,7 @@ GameObject:
   - component: {fileID: 7190729206559755444}
   - component: {fileID: 5211655689450300050}
   - component: {fileID: 1943689544426770512}
+  - component: {fileID: 9054617344681533826}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -685,6 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c55ed2e2affcd5e4e881f53853693cb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   saveManager: {fileID: 0}
   healthController: {fileID: 0}
   trail: {fileID: 4657540234352655738}
@@ -709,6 +711,18 @@ MonoBehaviour:
   actionController: {fileID: 0}
   movementController: {fileID: 0}
   collisionHandler: {fileID: 0}
+--- !u!114 &9054617344681533826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5677911037720275494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4c20cb8146f3a642a61d211435b3a9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5759999321607576322
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,10 +1090,10 @@ MonoBehaviour:
   m_Intensity: 1.1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000005b510c858192c61dd31219d17baeb4980989c5931579c8cadb13e781875790c5
+  m_ApplyToSortingLayers: 0989c5935b510c85
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
-  m_LightOrder: 0
+  m_LightOrder: 5
   m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 1
   m_NormalMapDistance: 3
@@ -1180,9 +1194,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -786885933
+  m_SortingLayer: 4
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

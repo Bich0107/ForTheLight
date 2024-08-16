@@ -10,7 +10,7 @@ public class WeakPlatform : MonoBehaviour
 
     new SpriteRenderer renderer;
     new Collider2D collider;
-    bool circleStarted = false;
+    bool cycleStarted = false;
 
     void Awake()
     {
@@ -20,25 +20,26 @@ public class WeakPlatform : MonoBehaviour
 
     void Update()
     {
-        if (autoStarted) StartLifeCircle();
+        if (autoStarted) StartLifeCycle();
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == Tags.Player)
         {
-            StartLifeCircle();
+            StartLifeCycle();
         }
     }
 
-    void StartLifeCircle()
+    void StartLifeCycle()
     {
-        if (circleStarted) return;
-        circleStarted = true;
-        StartCoroutine(CR_LifeCircle());
+        if (cycleStarted) return;
+
+        cycleStarted = true;
+        StartCoroutine(CR_LifeCycle());
     }
 
-    IEnumerator CR_LifeCircle()
+    IEnumerator CR_LifeCycle()
     {
         do
         {
@@ -58,6 +59,6 @@ public class WeakPlatform : MonoBehaviour
     void OnDisable() {
         StopAllCoroutines();
         SetExistanceStatus(true);
-        circleStarted = false;
+        cycleStarted = false;
     }
 }
