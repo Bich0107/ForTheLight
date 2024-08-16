@@ -15,7 +15,7 @@ MonoBehaviour:
   enemy: {fileID: 6014069781121641512, guid: b0aad7aac15e16649be2e8fe4e6f15eb, type: 3}
   amount: 2
   offsetList:
-  - {x: 20, y: 10}
-  - {x: 20, y: -10}
+  - {x: 17, y: 10}
+  - {x: 17, y: -10}
   spawnDelay: 0
   endSectionDelay: 0

@@ -17,4 +17,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9867007b598f5ed4cb9eb5f160a337ba, type: 2}
   - {fileID: 11400000, guid: d1aa1fb64dfe3e5498b8b445a2533b8d, type: 2}
   - {fileID: 11400000, guid: 23c7822210c7f1441b4522b0366d0a07, type: 2}
-  delayToNextWave: 0
+  delayToNextWave: 2

@@ -21,9 +21,9 @@ public class PlayerActionController : MonoBehaviour
 
     void OnFire(InputValue _value)
     {
-        if (!GameManager.Instance.PlayerControlStatus()) 
+        if (!GameManager.Instance.PlayerControlStatus())
         {
-            ResetFireStatus();
+            ResetChargeStatus();
             return;
         }
 
@@ -36,7 +36,6 @@ public class PlayerActionController : MonoBehaviour
         else
         {
             // calculate charge time to increase gun power
-            isCharging = false;
             if (chargeTime > minChargeTime)
             {
                 chargeTime = Mathf.Min(chargeTime, maxChargeTime);
@@ -44,8 +43,7 @@ public class PlayerActionController : MonoBehaviour
                 chargePercent = chargePercent > minChargePercent ? chargePercent : minChargePercent;
                 gunHolder.ChargeShot(chargePercent);
             }
-            chargeTime = 0;
-            chargeVFX.SetActive(false);
+            ResetChargeStatus();
         }
     }
 
@@ -57,8 +55,15 @@ public class PlayerActionController : MonoBehaviour
         }
     }
 
-    public void ResetFireStatus() {
+    void OnDisable()
+    {
+        ResetChargeStatus();
+    }
+
+    public void ResetChargeStatus()
+    {
         isCharging = false;
         chargeTime = 0;
+        chargeVFX.SetActive(false);
     }
 }

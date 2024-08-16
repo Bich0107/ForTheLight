@@ -1,9 +1,10 @@
 using System.Collections;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(HealthController), typeof(MovementController))]
-public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
+public class Enemy : MonoBehaviour, IHitByPlayer
 {
     [SerializeField] protected GameObject player;
     protected MovementController moveController;
@@ -14,7 +15,7 @@ public class Enemy : MonoBehaviour, IHitByPlayer, IProtectedByShielder
     bool isDead = false;
     public bool IsDead => isDead;
 
-    protected void OnEnable()
+    protected virtual void OnEnable()
     {
         isDead = false;
 

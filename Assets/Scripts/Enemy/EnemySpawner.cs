@@ -7,10 +7,9 @@ public class EnemySpawner : MonoBehaviour
 {
     
     [SerializeField] List<EnemyWaveSO> waves;
-    [SerializeField] Transform enemyParent;
     [SerializeField] bool loop = false;
-    int index;
-    EnemyWaveSO currentWave;
+    [SerializeField] int index;
+    [SerializeField] EnemyWaveSO currentWave;
     Coroutine spawnCoroutine;
 
     void Start()
@@ -89,7 +88,7 @@ public class EnemySpawner : MonoBehaviour
                 yield return new WaitForSeconds(currentWave.GetDelay);
             }
             else yield break; // all waves clear
-        } while (loop);
+        } while (currentWave != null || loop);
     }
 
     EnemyWaveSO GetNextWave(ref int _index)

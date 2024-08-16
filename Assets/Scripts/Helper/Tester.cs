@@ -52,6 +52,7 @@ public class Tester : MonoBehaviour
         enemySpawner.Reset();
         objectPool.Reset();
         map.ActivateArea(areaIndex);
+        map.SetUpMap();
         spawner.Spawn(areaIndex);
     }
 }

@@ -15,14 +15,21 @@ public class Player : MonoBehaviour
         collisionHandler = GetComponent<PlayerCollisionHandler>();
     }
 
-    public void ToggleCollision() {
+    public void ToggleCollision()
+    {
         collisionHandler.ToggleActive();
     }
 
     public void Reset()
     {
-        actionController?.ResetFireStatus();
+        actionController?.ResetChargeStatus();
         movementController?.Reset();
         health?.Reset();
+        transform.parent = null;
+    }
+
+    void OnApplicationQuit()
+    {
+        transform.parent = null;
     }
 }

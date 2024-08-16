@@ -2,17 +2,19 @@ using System.Collections;
 using UnityEditor.Rendering;
 using UnityEngine;
 
-public class ProjectileThrower : Enemy
+public class ProjectileThrower : Enemy, IProtectedByShielder
 {
     [SerializeField] EnemyAttackController attackController;
     [SerializeField] Vector3 offset;
     [SerializeField] float minDistanceToTarget = 5f;
     [SerializeField] float minDistanceToOffset = 1.5f;
+    bool isProtected = false;
 
     protected new void OnEnable()
     {
         base.OnEnable();
         attackController = GetComponent<EnemyAttackController>();
+        isProtected = false;
     }
 
     void FixedUpdate()
@@ -43,5 +45,12 @@ public class ProjectileThrower : Enemy
                 moveController.Stop();
             }
         }
+    }
+
+    public bool Protect()
+    {
+        if (isProtected) return false;
+        isProtected = true;
+        return true;
     }
 }

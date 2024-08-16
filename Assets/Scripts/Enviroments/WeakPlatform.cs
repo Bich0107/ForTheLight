@@ -12,7 +12,7 @@ public class WeakPlatform : MonoBehaviour
     new Collider2D collider;
     bool circleStarted = false;
 
-    void Start()
+    void Awake()
     {
         collider = GetComponent<Collider2D>();
         renderer = GetComponent<SpriteRenderer>();

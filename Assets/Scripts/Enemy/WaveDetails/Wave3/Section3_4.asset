@@ -17,4 +17,4 @@ MonoBehaviour:
   offsetList:
   - {x: 11, y: 0}
   spawnDelay: 0
-  endSectionDelay: 5
+  endSectionDelay: 0

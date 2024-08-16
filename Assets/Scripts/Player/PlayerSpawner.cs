@@ -45,6 +45,8 @@ public class PlayerSpawner : MonoBehaviour
         // activate gun if player has clear guide area
         gun.SetActive(areaIndex > 0);
 
+        // reset velocity and spawn player
+        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.transform.position = mapManager.GetRespawnPos(areaIndex);
     }
 }

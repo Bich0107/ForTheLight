@@ -1,23 +1,17 @@
 using System.Collections;
 using UnityEngine;
 
-public class ShielderAnimationParams {
-    public static string TriggerBreak = "triggerBreak";
-    public static string TriggerRestore = "triggerRestore";
-    public static string TriggerDefend = "triggerDefend";
-}
-
 public class Shield : MonoBehaviour, IHitByPlayer
 {
+    [SerializeField] LightAnimation lightAnimation;
     [SerializeField] Collider2D shieldCollider;
-    [SerializeField] Animator animator;
     [SerializeField] Shielder shielder;
     [SerializeField] float defense;
     [SerializeField] float restoreDelay;
     bool ready = true;
     Coroutine coroutine;
 
-    private void OnEnable() {
+    void OnEnable() {
         shieldCollider = GetComponent<Collider2D>();
     }
 
@@ -27,7 +21,7 @@ public class Shield : MonoBehaviour, IHitByPlayer
             ready = false;
             shieldCollider.enabled = false;
             shielder.DefenseBreak();
-            animator.SetTrigger(ShielderAnimationParams.TriggerBreak);
+            lightAnimation.Rewind();
             coroutine = StartCoroutine(CR_Restore());
         }
     }
@@ -35,15 +29,15 @@ public class Shield : MonoBehaviour, IHitByPlayer
     public void Defend() {
         if (!ready) return;
         if (coroutine != null) StopCoroutine(coroutine);
-        animator.SetTrigger(ShielderAnimationParams.TriggerDefend);
+        lightAnimation.Play();
     }
 
     IEnumerator CR_Restore() {
         // restore shield after a certain time
         yield return new WaitForSeconds(restoreDelay);
-        animator.SetTrigger(ShielderAnimationParams.TriggerRestore);
         ready = true;
         shielder.Restore();
+        lightAnimation.Play();
         shieldCollider.enabled = true;
     }
 

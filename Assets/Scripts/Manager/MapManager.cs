@@ -6,7 +6,7 @@ public class MapManager : MonoBehaviour
 {
     [SerializeField] SaveManager saveManager;
     [SerializeField] List<GameObject> areaList;
-    [SerializeField] List<GameObject> linkdersList;
+    [SerializeField] List<GameObject> linkersList;
     [SerializeField] List<GameObject> respawnPosList;
     [SerializeField] WaveTriggersManager triggersManager;
     int currentArea = 0;
@@ -29,7 +29,7 @@ public class MapManager : MonoBehaviour
     {
         currentArea = saveManager.CurrentSaveFile.AreaIndex;
 
-        if (linkdersList == null || areaList == null) return;
+        if (linkersList == null || areaList == null) return;
 
         for (int i = 0; i < areaList.Count; i++)
         {
@@ -41,7 +41,7 @@ public class MapManager : MonoBehaviour
 
     public void SetAreaState(int index, bool isActive)
     {
-        if (index < linkdersList.Count) { linkdersList[index].SetActive(isActive); }
+        if (index < linkersList.Count) { linkersList[index].SetActive(isActive); }
         areaList[index].SetActive(isActive);
         respawnPosList[index].SetActive(isActive);
     }
@@ -50,12 +50,7 @@ public class MapManager : MonoBehaviour
         triggersManager.SetUpTriggers();
     }
 
-    public void ActivateArea(int index) 
-    {
-        currentArea = index;
-        Debug.Log("map: " + index);
-        SetUpMap();
-    }
+    public void ActivateArea(int index) => SetAreaState(index, true);
 
     public void DeactiveArea(int index) => SetAreaState(index, false);
 
