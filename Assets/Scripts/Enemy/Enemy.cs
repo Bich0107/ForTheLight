@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(HealthController), typeof(MovementController))]
 public class Enemy : MonoBehaviour, IHitByPlayer
 {
+    [Header("General")]
     [SerializeField] protected GameObject player;
     protected MovementController moveController;
     protected HealthController healthController;
@@ -14,6 +15,8 @@ public class Enemy : MonoBehaviour, IHitByPlayer
     [SerializeField] protected float duration;
     bool isDead = false;
     public bool IsDead => isDead;
+    [Header("Sfxs")]
+    [SerializeField] AudioClip deathSFX;
 
     protected virtual void OnEnable()
     {
@@ -28,7 +31,8 @@ public class Enemy : MonoBehaviour, IHitByPlayer
         healthController?.AddEventOnHealthReachZero((object _obj) => Die());
     }
 
-    public void StopAllAction() {
+    public void StopAllAction()
+    {
         moveController.Stop();
         StopAllCoroutines();
     }
@@ -38,11 +42,22 @@ public class Enemy : MonoBehaviour, IHitByPlayer
         healthController?.DecreaseHealth(_dmg);
     }
 
+    public void PlayDeathSFX()
+    {
+        if (deathSFX == null)
+        {
+            Debug.Log("deathsfx null", gameObject);
+            return;
+        }
+        AudioManager.Instance.PlaySound(deathSFX);
+    }
+
     protected virtual void Die()
     {
         if (isDead) return;
 
         moveController.Stop();
+        PlayDeathSFX();
         StopAllCoroutines();
         StartCoroutine(CR_DeathAnimation());
     }

@@ -7,6 +7,7 @@ public class LightSnatcher : Enemy
     [SerializeField] protected float attackDistance;
     [SerializeField] protected float chargeTime;
     [SerializeField] protected float chargeSpeedFactor;
+    [SerializeField] protected AudioClip attackSFX;
     [Header("Explode settings")]
     [SerializeField] Vector3 baseSize;
     [SerializeField] Vector3 explodeSize;

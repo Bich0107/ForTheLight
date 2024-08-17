@@ -19,4 +19,4 @@ MonoBehaviour:
   - {x: -11, y: 0}
   - {x: 0, y: -11}
   spawnDelay: 0
-  endSectionDelay: 0
+  endSectionDelay: 2

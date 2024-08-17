@@ -4798,7 +4798,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -980396153
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_RenderMode: 1
   m_MeshDistribution: 0
@@ -4948,7 +4948,7 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 3.95}
   serializedVersion: 2
   m_Radius: 2.01
 --- !u!95 &2019477216657439705
@@ -4984,7 +4984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9f7cc9a18d6ea44b76a8ae478b8072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2000
+  maxHealth: 1000
   health: 0
 --- !u!114 &2506376681961392341
 MonoBehaviour:
@@ -5019,6 +5019,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c7ebd46f593c2a745a1a201a0f5c2ed3, type: 2}
   - {fileID: 11400000, guid: e54bfa8044524e0438f06c63205e0e44, type: 2}
   projectileSpawnPos: {fileID: 2266929420438738051}
+  attackSFXList:
+  - {fileID: 8300000, guid: eedaa2fb60f1b8e47a27b5187905671f, type: 3}
+  - {fileID: 8300000, guid: f00512bd980eaed42b161ae8df2481cb, type: 3}
+  currentAttackSFX: {fileID: 0}
   attacking: 0
 --- !u!114 &8942508287306818462
 MonoBehaviour:
@@ -5034,6 +5038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightObject: {fileID: 0}
   health: {fileID: 0}
+  enemyScript: {fileID: 0}
   collideDamage: 20
   selfDestructOnTrigger: 0
 --- !u!114 &2331008552731060074
@@ -5051,27 +5056,32 @@ MonoBehaviour:
   player: {fileID: 0}
   deathVFX: {fileID: 907208787450451710}
   duration: 6
+  deathSFX: {fileID: 8300000, guid: 5750c99900d5cf14baac2ccd54eb59c9, type: 3}
   animator: {fileID: 2019477216657439705}
   projectileAttackController: {fileID: 0}
-  waitTime: 5
-  maxHeight: 20
-  minHeight: 0
+  waitTime: 60
+  jumpHeight: 30
   jumpSpeed: 50
   dropDelay: 0.3
   jumpDelay: 1
   jumpCount: 3
   groundHitVFX: {fileID: 8241567449895497350}
+  groundHitSFX: {fileID: 8300000, guid: f858f81386de8de47af662b5fe28295a, type: 3}
   attackDistance: 6
   moveSpeed: 8
-  attackPos: {x: 290, y: 52.8}
+  slashSFX: {fileID: 8300000, guid: 2ec52c5afa19f854f92544610f4d4b77, type: 3}
+  attackPos: {x: 240.9, y: 48.8}
   hitPointPercent: 15
   spawner: {fileID: 0}
   minionWaves:
   - {fileID: 11400000, guid: efc3ce17aadd8494cb972690d51a4868, type: 2}
   chargeVFX: {fileID: 5406768032747555443}
   beamVFX: {fileID: 467473756760002363}
-  chargeTime: 60
+  chargeTime: 6
   healthRestorePercent: 35
+  chargeSFX: {fileID: 8300000, guid: 5e0c3df39da03b84ea0da09d462687f6, type: 3}
+  chargeSFXInterval: 1.5
+  beamFireSFX: {fileID: 8300000, guid: 3d16e33e2b3bd2a468fca1f026d8a4a1, type: 3}
 --- !u!1 &907208787450451710
 GameObject:
   m_ObjectHideFlags: 0
@@ -9941,7 +9951,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -980396153
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -10047,7 +10057,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1732989317
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -10180,7 +10190,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1732989317
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -10310,7 +10320,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1732989317
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -10443,7 +10453,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1732989317
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -10516,7 +10526,7 @@ Transform:
   m_GameObject: {fileID: 4212733341184618910}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3.8100014, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10598,7 +10608,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1732989317
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -10813,7 +10823,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1732989317
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -15672,7 +15682,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -980396153
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 1
   m_RenderMode: 1
   m_MeshDistribution: 0
@@ -15813,7 +15823,7 @@ Transform:
   m_GameObject: {fileID: 6471976544704150983}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 3.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15850,7 +15860,7 @@ Transform:
   m_GameObject: {fileID: 6581978831959666224}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.42, z: 0}
+  m_LocalPosition: {x: 0, y: 7.2300014, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20761,7 +20771,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -980396153
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

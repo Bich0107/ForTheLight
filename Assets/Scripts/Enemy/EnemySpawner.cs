@@ -21,6 +21,8 @@ public class EnemySpawner : MonoBehaviour
     {
         // stop current waves
         Stop();
+
+        // set new wave
         waves = _waves;
 
         index = 0;

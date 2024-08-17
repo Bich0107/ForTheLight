@@ -15,6 +15,8 @@ public class RespawnHandler : MonoBehaviour
     [SerializeField] GameObject deathVFX;
     [SerializeField] GameObject respawnVFX;
     [SerializeField] float delay = 2f;
+    [Header("SFX")]
+    [SerializeField] AudioClip deathSFX;
     bool isRespawning = false;
 
     void Awake()
@@ -72,6 +74,7 @@ public class RespawnHandler : MonoBehaviour
 
         // play effect
         respawnVFX?.SetActive(true);
+        AudioManager.Instance.PlaySound(deathSFX);
 
         // turn off player collision
         player.ToggleCollision();
@@ -85,6 +88,8 @@ public class RespawnHandler : MonoBehaviour
         // disable player control and remove platform parent (if any)
         GameManager.Instance.SetPlayerControlStatus(false);
         transform.parent = null;
+
+        AudioManager.Instance.PlaySound(deathSFX);
 
         yield return new WaitForSeconds(delay);
 

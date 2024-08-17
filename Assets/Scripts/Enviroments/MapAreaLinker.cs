@@ -37,6 +37,7 @@ public class MapAreaLinker : MonoBehaviour
         saveManager.CurrentSaveFile.AreaIndex = areaIndex + 1;
         mapManager.ActivateArea(areaIndex + 1);
         mapManager.SetUpTriggers();
+        FindObjectOfType<Player>().transform.parent = null;
 
         yield return new WaitForSeconds(deactiveDelay);
         

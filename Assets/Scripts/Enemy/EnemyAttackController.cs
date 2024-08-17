@@ -8,11 +8,12 @@ public class EnemyAttackController : MonoBehaviour
     [Space]
     [SerializeField] List<EnemyAttackSO> attackList;
     [SerializeField] Transform projectileSpawnPos;
+    [SerializeField] List<AudioClip> attackSFXList;
+    [SerializeField] AudioClip currentAttackSFX;
     [SerializeField] bool attacking;
     public bool IsAttacking => attacking;
     // if true, enemy will continue to attack until it dies.
     bool continuous;
-    Coroutine attackCoroutine;
 
     private void Start()
     {
@@ -37,8 +38,8 @@ public class EnemyAttackController : MonoBehaviour
 
                 g.transform.position = GetSpawnPos(projectileSpawnPos.position, attack.GetDistance());
                 g.SetActive(true);
-
                 g.GetComponent<Projectile>().Fire(GetTargetDirection(g.transform.position));
+                AudioManager.Instance.PlaySound(currentAttackSFX);
 
                 yield return new WaitForSeconds(attack.GetAttackDelay());
             }
@@ -57,7 +58,7 @@ public class EnemyAttackController : MonoBehaviour
         continuous = _continuous;
 
         attacking = true;
-        attackCoroutine = StartCoroutine(CR_Attack());
+        StartCoroutine(CR_Attack());
     }
 
     public void Stop()
@@ -72,7 +73,6 @@ public class EnemyAttackController : MonoBehaviour
         attacking = false;
         continuous = false;
         StopAllCoroutines();
-        attackCoroutine = null;
     }
 
     void OnDisable() {
@@ -82,6 +82,7 @@ public class EnemyAttackController : MonoBehaviour
     EnemyAttackSO GetRandomAttack()
     {
         int index = Random.Range(0, attackList.Count);
+        currentAttackSFX = attackSFXList[index];
         return attackList[index];
     }
 

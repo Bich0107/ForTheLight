@@ -3,6 +3,7 @@ using UnityEngine;
 public class GunHolder : MonoBehaviour
 {
     [SerializeField] GameObject gun;
+    [SerializeField] AudioClip shotSFX;
     Gun gunScript;
 
     private void Start() {
@@ -10,11 +11,17 @@ public class GunHolder : MonoBehaviour
     }
 
     public void Shoot() {
-        gunScript?.Shoot(transform.rotation);
+        if (gunScript == null) return;
+
+        gunScript.Shoot(transform.rotation);
+        AudioManager.Instance.PlaySound(shotSFX);
     }
 
     public void ChargeShot(float _chargePercent) {
-        gunScript?.ChargeShot(transform.rotation, _chargePercent);
+        if (gunScript == null) return;
+        
+        gunScript.ChargeShot(transform.rotation, _chargePercent);
+        AudioManager.Instance.PlaySound(shotSFX);
     }
 
     public void ChangeGun(GameObject _gun) => gun = _gun;

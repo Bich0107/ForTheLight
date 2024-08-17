@@ -13,7 +13,7 @@ public class HealthController : MonoBehaviour
     Action<object> onHealthReachZero;
     Action<object> onHit;
 
-    private void Start()
+    void OnEnable()
     {
         health = maxHealth;
     }

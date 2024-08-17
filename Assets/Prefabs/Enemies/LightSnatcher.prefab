@@ -163,7 +163,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1732989317
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
   m_Color: {r: 1, g: 0.23137257, b: 0.23137257, a: 1}
@@ -289,6 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightObject: {fileID: 0}
   health: {fileID: 4387697480948167092}
+  enemyScript: {fileID: 0}
   collideDamage: 10
   selfDestructOnTrigger: 0
 --- !u!114 &8451060941310618410
@@ -306,6 +307,9 @@ MonoBehaviour:
   player: {fileID: 0}
   deathVFX: {fileID: 3981077113027691874}
   duration: 1
+  appearSFX: {fileID: 8300000, guid: db92a6cfc80c83a4baaba5c2d42859df, type: 3}
+  deathSFX: {fileID: 8300000, guid: 4273ee34bb260cd4193efb4b76cf6271, type: 3}
+  attackSFX: {fileID: 0}
   attackDistance: 4.5
   chargeTime: 0.75
   chargeSpeedFactor: 2.5
@@ -462,7 +466,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1732989317
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_RenderMode: 1
   m_MeshDistribution: 0

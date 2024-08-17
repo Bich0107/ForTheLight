@@ -442,6 +442,7 @@ MonoBehaviour:
   lightAnimation: {fileID: 2638922222245432268}
   shieldCollider: {fileID: 0}
   shielder: {fileID: 5015302549293195214}
+  shieldHitSFX: {fileID: 8300000, guid: eecddaa385482f449919e24432fa83d0, type: 3}
   defense: 5
   restoreDelay: 2
 --- !u!114 &2638922222245432268
@@ -640,10 +641,10 @@ MonoBehaviour:
   player: {fileID: 0}
   deathVFX: {fileID: 7435515558117039318}
   duration: 0.75
+  deathSFX: {fileID: 8300000, guid: 4273ee34bb260cd4193efb4b76cf6271, type: 3}
   shield: {fileID: 7249092161295435281}
   detectCollider: {fileID: 1565150993606956974}
   bodyCollider: {fileID: 4433493247866502161}
-  delay: 1.5
   distanceFromTarget: 2
   minDistanceToPos: 0.5
   protectTarget: {fileID: 0}

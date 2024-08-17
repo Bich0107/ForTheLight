@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 1971478325781924758}
   - component: {fileID: 7837249155097416316}
   - component: {fileID: 1280485473219245439}
+  - component: {fileID: 969909604487989560}
   m_Layer: 10
   m_Name: ProjectileThrower
   m_TagString: ProjectileThrower
@@ -313,6 +314,9 @@ MonoBehaviour:
   attackList:
   - {fileID: 11400000, guid: 61cbc133eb98b924cbf35aec94b886e7, type: 2}
   projectileSpawnPos: {fileID: 478157443535976266}
+  attackSFXList:
+  - {fileID: 8300000, guid: 9ede72b3ea118444e90c01465a8f5acb, type: 3}
+  currentAttackSFX: {fileID: 8300000, guid: 9ede72b3ea118444e90c01465a8f5acb, type: 3}
   attacking: 0
 --- !u!114 &6600055416679660970
 MonoBehaviour:
@@ -360,6 +364,7 @@ MonoBehaviour:
   player: {fileID: 0}
   deathVFX: {fileID: 5799810596627411073}
   duration: 2
+  deathSFX: {fileID: 8300000, guid: 4273ee34bb260cd4193efb4b76cf6271, type: 3}
   attackController: {fileID: 0}
   offset: {x: 0, y: 0, z: 0}
   minDistanceToTarget: 8
@@ -387,6 +392,18 @@ MonoBehaviour:
   blinkDuration: 0.75
   blinkDelay: 0.001
   loop: 0
+--- !u!114 &969909604487989560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6014069781121641512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784b8b6f0975d4746b3d742fb0d0ff78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3112728141730924699
 PrefabInstance:
   m_ObjectHideFlags: 0

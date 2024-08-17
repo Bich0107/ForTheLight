@@ -7,6 +7,7 @@ public class JumpController : MonoBehaviour
     Vector2 velocity = Vector2.zero;
     [SerializeField] AffectedByGravity affectedByGravity;
     [SerializeField] int airJumpCount = 1;
+    [SerializeField] AudioClip jumpSFX;
     int counter;
     [Space]
     [SerializeField] float jumpForce;
@@ -28,17 +29,21 @@ public class JumpController : MonoBehaviour
             {
                 counter++;
 
-                velocity.x = rigid.velocity.x;
-                velocity.y = jumpForce;
-                rigid.velocity = velocity;
+                AddForce();
             }
             return;
         }
 
         counter = 0;
+        AddForce();
+    }
+
+    void AddForce()
+    {
         velocity.x = rigid.velocity.x;
         velocity.y = jumpForce;
         rigid.velocity = velocity;
+        AudioManager.Instance.PlaySound(jumpSFX);
     }
 
     void OnJump(InputValue _value)
@@ -49,7 +54,8 @@ public class JumpController : MonoBehaviour
         }
     }
 
-    public void Reset() {
+    public void Reset()
+    {
         counter = 0;
         velocity = Vector2.zero;
         rigid.velocity = velocity;

@@ -3907,38 +3907,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2586765175307187222, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2586765175307187222, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985850043035051636, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: bgmChangeTime
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985850043035051636, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: loopingPercent
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985850043035051636, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: bgmDecreaseTime
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985850043035051636, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: bgmIncreaseTime
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985850043035051636, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: bgmList.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2985850043035051636, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: bgmList.Array.data[2]
-      value: 
-      objectReference: {fileID: 8300000, guid: 1bf2fc10ae80b724c93863eb5c46c767, type: 3}
     - target: {fileID: 6983643553639893656, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
       propertyPath: m_Name
       value: AudioManager

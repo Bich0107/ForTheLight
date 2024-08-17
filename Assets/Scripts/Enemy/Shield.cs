@@ -6,6 +6,7 @@ public class Shield : MonoBehaviour, IHitByPlayer
     [SerializeField] LightAnimation lightAnimation;
     [SerializeField] Collider2D shieldCollider;
     [SerializeField] Shielder shielder;
+    [SerializeField] AudioClip shieldHitSFX;
     [SerializeField] float defense;
     [SerializeField] float restoreDelay;
     bool ready = true;
@@ -16,6 +17,8 @@ public class Shield : MonoBehaviour, IHitByPlayer
     }
 
     public void Hit(float _dmg) {
+        AudioManager.Instance.PlaySound(shieldHitSFX);
+
         if (_dmg > defense) {
             // if player hit the shield with a strong enough bullet, disable the shield and make shielder vulnerable
             ready = false;

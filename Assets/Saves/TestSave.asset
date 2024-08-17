@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df8a0cc9b57640418342e0cc40d1472, type: 3}
   m_Name: TestSave
   m_EditorClassIdentifier: 
-  areaIndex: 4
+  areaIndex: 6
   difficulty: 0
   maxLife: 20
-  currentLife: 5
-  timer: 81.11417
+  currentLife: 10
+  timer: 31.130508

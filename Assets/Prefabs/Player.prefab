@@ -572,6 +572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   affectedByGravity: {fileID: 0}
   airJumpCount: 1
+  jumpSFX: {fileID: 8300000, guid: 109bcefab0a6c124597fd28046abff11, type: 3}
   jumpForce: 10
 --- !u!114 &8846952823971581057
 MonoBehaviour:
@@ -695,6 +696,7 @@ MonoBehaviour:
   deathVFX: {fileID: 1137713669079734082}
   respawnVFX: {fileID: 8017751028543325228}
   delay: 2
+  deathSFX: {fileID: 8300000, guid: 100f3d3109e56fa4a8374f08b341d1e5, type: 3}
 --- !u!114 &1943689544426770512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,6 +1270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 204105419017075273}
+  shotSFX: {fileID: 8300000, guid: 0bc8062cab646744d88ba4777457e1fe, type: 3}
 --- !u!1001 &289222779030858036
 PrefabInstance:
   m_ObjectHideFlags: 0

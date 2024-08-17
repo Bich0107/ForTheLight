@@ -39,6 +39,7 @@ public class Spinners : LightSnatcher
         rotateObject.RotateSpeed *= chargeSpeedFactor;
         moveController.ModifiyMoveSpeed(chargeSpeedFactor);
         moveController.Move(GetDirectionToPlayer);
+        AudioManager.Instance.PlaySound(attackSFX);
 
         yield return new WaitForSeconds(chargeAttackDuration);
         foreach (ParticleSystem particleSystem in chargeVFXs)

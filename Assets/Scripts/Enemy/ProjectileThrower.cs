@@ -13,6 +13,7 @@ public class ProjectileThrower : Enemy, IProtectedByShielder
     protected new void OnEnable()
     {
         base.OnEnable();
+        offset = Vector3.zero;
         attackController = GetComponent<EnemyAttackController>();
         isProtected = false;
     }

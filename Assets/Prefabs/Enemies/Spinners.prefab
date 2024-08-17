@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1732989317
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -496,6 +496,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightObject: {fileID: 7721149803403589566}
   health: {fileID: 3706974433001522214}
+  enemyScript: {fileID: 0}
   collideDamage: 15
   selfDestructOnTrigger: 0
 --- !u!114 &4382982613734271807
@@ -513,9 +514,11 @@ MonoBehaviour:
   player: {fileID: 0}
   deathVFX: {fileID: 8497649219061098356}
   duration: 0.75
+  deathSFX: {fileID: 8300000, guid: 4273ee34bb260cd4193efb4b76cf6271, type: 3}
   attackDistance: 6
   chargeTime: 2
   chargeSpeedFactor: 4
+  attackSFX: {fileID: 8300000, guid: f451927d2d3f47e438a73f1f4327345c, type: 3}
   baseSize: {x: 1, y: 1, z: 1}
   explodeSize: {x: 3, y: 3, z: 3}
   chargeVFXs:
@@ -5357,7 +5360,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -980396153
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_RenderMode: 1
   m_MeshDistribution: 0
@@ -10223,7 +10226,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -980396153
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_RenderMode: 1
   m_MeshDistribution: 0
@@ -10330,7 +10333,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1732989317
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -10526,7 +10529,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1732989317
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}

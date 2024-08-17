@@ -141,6 +141,12 @@ public class AudioManager : MonoSingleton<AudioManager>
             return;
         }
 
+        if (clip == null)
+        {
+            Debug.Log("sound clip is null");
+            return;
+        }
+
         sfxSource.PlayOneShot(clip);
     }
     #endregion
