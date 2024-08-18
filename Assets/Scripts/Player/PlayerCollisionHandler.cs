@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerCollisionHandler : HitHanlder, IHitByEnemy, IExplosionTrigger
 {
+    [SerializeField] HealthDisplayer healthDisplayer;
     bool isActive = true;
 
     protected new void Start()
@@ -19,5 +20,6 @@ public class PlayerCollisionHandler : HitHanlder, IHitByEnemy, IExplosionTrigger
         if (!isActive) return;
 
         health?.DecreaseHealth(_dmg);
+        healthDisplayer.UpdateHealth(health.GetHealth);
     }
 }

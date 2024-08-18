@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 public class LightAnimation : MonoBehaviour
 {
-    [SerializeField] new Light2D light;
+    [SerializeField] Light2D light;
     [Header("Intensity")]
     [SerializeField] float startValue;
     [SerializeField] float endValue;

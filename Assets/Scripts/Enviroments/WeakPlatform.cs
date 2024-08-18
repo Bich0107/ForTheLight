@@ -8,8 +8,8 @@ public class WeakPlatform : MonoBehaviour
     [SerializeField] float restoreDelay;
     [SerializeField] bool autoStarted;
 
-    new SpriteRenderer renderer;
-    new Collider2D collider;
+    SpriteRenderer renderer;
+    Collider2D collider;
     bool cycleStarted = false;
 
     void Awake()

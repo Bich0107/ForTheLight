@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackDelay: 1.25
   moveSpeed: 0
-  damage: 20
+  damage: 5

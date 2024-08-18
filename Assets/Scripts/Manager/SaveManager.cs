@@ -70,5 +70,4 @@ public class SaveManager : MonoBehaviour
         currentSaveFile = saveFiles[_index];
         saveIndex = _index;
     }
-
 }

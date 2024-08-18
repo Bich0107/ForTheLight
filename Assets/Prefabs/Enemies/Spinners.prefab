@@ -497,7 +497,7 @@ MonoBehaviour:
   lightObject: {fileID: 7721149803403589566}
   health: {fileID: 3706974433001522214}
   enemyScript: {fileID: 0}
-  collideDamage: 15
+  collideDamage: 5
   selfDestructOnTrigger: 0
 --- !u!114 &4382982613734271807
 MonoBehaviour:

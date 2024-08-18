@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class HealthController : MonoBehaviour
@@ -6,6 +7,7 @@ public class HealthController : MonoBehaviour
     bool isCheated;
     [SerializeField] float maxHealth;
     [SerializeField] float health;
+    [SerializeField] float invincibleTime = 0f;
     public float GetHealth => health;
     public float GetMaxHealth => maxHealth;
     public float GetHealthPercent => Mathf.Round(health / maxHealth * 100f);
@@ -13,15 +15,27 @@ public class HealthController : MonoBehaviour
     Action<object> onHealthReachZero;
     Action<object> onHit;
 
+    bool isInvincible = false;
+
     void OnEnable()
     {
         health = maxHealth;
+        isInvincible = false;
+    }
+
+    IEnumerator CR_TurnInvincible()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibleTime);
+        isInvincible = false;
     }
 
     public void DecreaseHealth(float _value)
     {
-        if (isCheated) return;
-        
+        if (isCheated || isInvincible) return;
+
+        StartCoroutine(CR_TurnInvincible());
+
         health -= _value;
 
         onHit?.Invoke(null);
@@ -44,11 +58,13 @@ public class HealthController : MonoBehaviour
         ResetOnHealthReachZeroEvent();
     }
 
-    void OnDisable() {
+    void OnDisable()
+    {
         Reset();
     }
 
-    public void ToggleCheat() {
+    public void ToggleCheat()
+    {
         isCheated = !isCheated;
         Debug.Log("invincible " + (isCheated ? "on" : "off"));
     }

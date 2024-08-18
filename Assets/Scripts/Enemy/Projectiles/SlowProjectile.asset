@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc824b1a2f56c644a90635c7fcf7fd34, type: 3}
   m_Name: SlowProjectile
   m_EditorClassIdentifier: 
-  name: Slow projectile
   attackDelay: 0
   moveSpeed: 5
-  damage: 3
+  damage: 5

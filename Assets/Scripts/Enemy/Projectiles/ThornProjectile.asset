@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc824b1a2f56c644a90635c7fcf7fd34, type: 3}
   m_Name: ThornProjectile
   m_EditorClassIdentifier: 
-  name: Thorn
   attackDelay: 0.75
   moveSpeed: 50
-  damage: 10
+  damage: 5

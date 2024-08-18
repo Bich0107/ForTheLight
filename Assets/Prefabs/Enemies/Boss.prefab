@@ -5039,7 +5039,7 @@ MonoBehaviour:
   lightObject: {fileID: 0}
   health: {fileID: 0}
   enemyScript: {fileID: 0}
-  collideDamage: 20
+  collideDamage: 10
   selfDestructOnTrigger: 0
 --- !u!114 &2331008552731060074
 MonoBehaviour:

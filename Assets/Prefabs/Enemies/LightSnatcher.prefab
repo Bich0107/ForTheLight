@@ -290,7 +290,7 @@ MonoBehaviour:
   lightObject: {fileID: 0}
   health: {fileID: 4387697480948167092}
   enemyScript: {fileID: 0}
-  collideDamage: 10
+  collideDamage: 5
   selfDestructOnTrigger: 0
 --- !u!114 &8451060941310618410
 MonoBehaviour:
@@ -307,12 +307,11 @@ MonoBehaviour:
   player: {fileID: 0}
   deathVFX: {fileID: 3981077113027691874}
   duration: 1
-  appearSFX: {fileID: 8300000, guid: db92a6cfc80c83a4baaba5c2d42859df, type: 3}
   deathSFX: {fileID: 8300000, guid: 4273ee34bb260cd4193efb4b76cf6271, type: 3}
-  attackSFX: {fileID: 0}
   attackDistance: 4.5
   chargeTime: 0.75
   chargeSpeedFactor: 2.5
+  attackSFX: {fileID: 0}
   baseSize: {x: 0, y: 0, z: 0}
   explodeSize: {x: 2.5, y: 2.5, z: 2.5}
 --- !u!114 &4093120133542515547
