@@ -9,11 +9,13 @@ public class SimpleAnimation : MonoBehaviour
     [SerializeField] Vector3 basePos;
     [SerializeField] Vector3 destination;
     [SerializeField] float moveTime;
+    bool interactable;
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         basePos = rectTransform.anchoredPosition;
+        
     }
 
     public void Play()
@@ -27,10 +29,13 @@ public class SimpleAnimation : MonoBehaviour
         Button button = GetComponent<Button>();
         if (button != null)
         {
+            // get base status
+            interactable = button.interactable;
+
             button.interactable = false;
             tween.OnComplete(() =>
             {
-                button.interactable = true;
+                button.interactable = interactable;
             });
         }
     }

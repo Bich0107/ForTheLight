@@ -35,6 +35,8 @@ public class AudioManager : MonoSingleton<AudioManager>
     new void Awake()
     {
         base.Awake();
+
+        if (gameObject != null) DontDestroyOnLoad(gameObject);
         SetupVolume();
     }
 
@@ -72,6 +74,8 @@ public class AudioManager : MonoSingleton<AudioManager>
 
     public void SetBGM(BGM bgm)
     {
+        StopAllCoroutines();
+
         int index = (int)bgm;
 
         if (index >= bgmList.Count)
