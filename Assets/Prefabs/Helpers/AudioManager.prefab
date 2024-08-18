@@ -45,7 +45,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1bf2fc10ae80b724c93863eb5c46c767, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -253,11 +253,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: be778f7350ba3fb4380cead26fd005b7, type: 3}
   - {fileID: 8300000, guid: 1bf2fc10ae80b724c93863eb5c46c767, type: 3}
   bgmSource: {fileID: 2586765175307187222}
-  baseBGMVolume: 1
+  baseBGMVolume: 0.5
   currentBGMVolume: 0
   bgmDecreaseTime: 6
   bgmIncreaseTime: 2.5
   loopingPercent: 80
   sfxSource: {fileID: 5003033580328431456}
-  baseSfxVolume: 1
+  baseSfxVolume: 0.5
   currentSfxVolume: 0

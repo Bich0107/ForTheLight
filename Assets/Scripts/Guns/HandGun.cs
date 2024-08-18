@@ -25,9 +25,4 @@ public class HandGun : Gun
         instance.transform.rotation = _rotation;
         return instance;
     }
-
-    public override void Reload()
-    {
-
-    }
 }

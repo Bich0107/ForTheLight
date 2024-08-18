@@ -18,6 +18,7 @@ public class AudioManager : MonoSingleton<AudioManager>
     [SerializeField] AudioSource bgmSource;
     [SerializeField] float baseBGMVolume;
     [SerializeField] float currentBGMVolume;
+    public float CurrentBGMVolume => currentBGMVolume;
     [SerializeField] float bgmDecreaseTime;
     [SerializeField] float bgmIncreaseTime;
     [Tooltip("When the current bgm play past this duration percent, loop it back")]
@@ -30,9 +31,11 @@ public class AudioManager : MonoSingleton<AudioManager>
     [SerializeField] AudioSource sfxSource;
     [SerializeField] float baseSfxVolume;
     [SerializeField] float currentSfxVolume;
+    public float CurrentSfxVolume => currentSfxVolume;
 
-    void Start()
+    new void Awake()
     {
+        base.Awake();
         SetupVolume();
     }
 
@@ -51,6 +54,12 @@ public class AudioManager : MonoSingleton<AudioManager>
     }
 
     #region BGM methods
+    public void ChangeBGMVolume(float _value)
+    {
+        bgmSource.volume = _value;
+        currentBGMVolume = _value;
+    }
+
     public void LoopBGM()
     {
         float playPercent = bgmSource.time / bgmSource.clip.length * 100f;
@@ -104,7 +113,7 @@ public class AudioManager : MonoSingleton<AudioManager>
 
         // wait until finish changing volume
         while (isChangingVolume) yield return null;
-        
+
         // turn off reseting flag 
         isResetingBGM = false;
     }
@@ -120,11 +129,11 @@ public class AudioManager : MonoSingleton<AudioManager>
         float startValue = bgmSource.volume;
         while (!Mathf.Approximately(bgmSource.volume, targetValue))
         {
-            tick += Time.deltaTime;
+            tick += Time.unscaledDeltaTime;
             bgmSource.volume = Mathf.Lerp(startValue, targetValue, tick / changeTime);
             yield return null;
         }
-        
+
         // ensure the volume is equal to the target value
         bgmSource.volume = targetValue;
 
@@ -133,6 +142,12 @@ public class AudioManager : MonoSingleton<AudioManager>
     #endregion
 
     #region Sfx methods
+    public void ChangeSFXVolume(float _value)
+    {
+        sfxSource.volume = _value;
+        currentSfxVolume = _value;
+    }
+
     public void PlaySound(AudioClip clip)
     {
         if (sfxSource == null)

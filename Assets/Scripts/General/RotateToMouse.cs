@@ -19,6 +19,8 @@ public class RotateToMouse : MonoBehaviour
 
     void Rotate()
     {
+        if (Mathf.Approximately(Time.timeScale, 0f)) return;
+
         Vector3 mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector3 mouseDirection = (mousePosition - transform.position).normalized;
 

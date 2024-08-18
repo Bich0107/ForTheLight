@@ -50,7 +50,11 @@ public class MapManager : MonoBehaviour
         triggersManager.SetUpTriggers();
     }
 
-    public void ActivateArea(int index) => SetAreaState(index, true);
+    public void ActivateArea(int index) {
+        currentArea = index;
+        SetAreaState(index, false); // ensure that the area is deactive before active
+        SetAreaState(index, true);
+    } 
 
     public void DeactiveArea(int index) => SetAreaState(index, false);
 
@@ -68,10 +72,7 @@ public class MapManager : MonoBehaviour
     public void ResetCurrentMap()
     {
         triggersManager.SetUpTriggers();
-
-        // deactive and active to reset platform animation
-        areaList[currentArea].SetActive(false);
-        areaList[currentArea].SetActive(true);
+        ActivateArea(currentArea);
     }
 
     public void Reset()

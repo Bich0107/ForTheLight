@@ -2,10 +2,11 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIAnimationManager : MonoBehaviour
+public class UIAnimationManager : MonoSingleton<UIAnimationManager>
 {
-    void Awake()
+    new void Awake()
     {
+        base.Awake();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 

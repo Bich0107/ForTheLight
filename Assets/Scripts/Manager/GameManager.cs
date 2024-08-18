@@ -17,6 +17,9 @@ public class GameManager : MonoSingleton<GameManager>
     {
         base.Awake();
 
+        DOTween.Init();
+        DOTween.defaultTimeScaleIndependent = true;
+        
         timeKeeper = FindObjectOfType<TimeKeeper>();
         saveManager = FindObjectOfType<SaveManager>();
         mapManager = FindObjectOfType<MapManager>();
@@ -32,6 +35,16 @@ public class GameManager : MonoSingleton<GameManager>
         }
     }
 #endif
+
+    public void Pause() {
+        SetPlayerControlStatus(false);
+        Time.timeScale = 0f;
+    }
+
+     public void Resume() {
+        SetPlayerControlStatus(true);
+        Time.timeScale = 1f;
+    }
 
     public void PlayerRespawn()
     {
