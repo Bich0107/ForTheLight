@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
+    [Header("General")]
     [SerializeField] Animator animator;
     [SerializeField] EnemyAttackController projectileAttackController;
     [Tooltip("Wait time before starting to attack")]
@@ -48,6 +49,12 @@ public class Boss : Enemy
     bool finalAttackStage = false;
     Coroutine attackCoroutine;
 
+    void Awake() {
+        spawner = FindObjectOfType<EnemySpawner>();
+        projectileAttackController = GetComponent<EnemyAttackController>();
+        animator = GetComponent<Animator>();
+    }
+
     protected new void OnEnable()
     {
         base.OnEnable();
@@ -60,9 +67,6 @@ public class Boss : Enemy
         minHeight = transform.position.y;
         maxHeight = minHeight + jumpHeight;
 
-        spawner = FindObjectOfType<EnemySpawner>();
-        projectileAttackController = GetComponent<EnemyAttackController>();
-        animator = GetComponent<Animator>();
         healthController.AddEventOnHealthReachZero(_ =>
         {
             SaveManager.Win = true;
@@ -77,7 +81,7 @@ public class Boss : Enemy
         yield return new WaitForSeconds(waitTime);
         isAttacking = true;
 
-        attackCoroutine = StartCoroutine(CR_JumpAttack());
+        JumpAttack();
     }
 
     void Update()
@@ -275,6 +279,7 @@ public class Boss : Enemy
     {
         base.Reset();
         StopAllCoroutines();
+
         isAttacking = false;
         bodyReady = true;
         finalAttackStage = false;

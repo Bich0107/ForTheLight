@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f89c3ab4a84c83b42bfa5f98d0a0d8bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 5218540046850160065}
+  myLight: {fileID: 5218540046850160065}
   startValue: 0.01
   endValue: 4
   changeTime: 0.5
@@ -662,6 +662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   health: 0
+  invincibleTime: 0
 --- !u!114 &418893870895086816
 MonoBehaviour:
   m_ObjectHideFlags: 0

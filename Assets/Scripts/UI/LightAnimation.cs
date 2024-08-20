@@ -4,7 +4,7 @@ using UnityEngine.Rendering.Universal;
 
 public class LightAnimation : MonoBehaviour
 {
-    [SerializeField] Light2D light;
+    [SerializeField] Light2D myLight;
     [Header("Intensity")]
     [SerializeField] float startValue;
     [SerializeField] float endValue;
@@ -12,7 +12,7 @@ public class LightAnimation : MonoBehaviour
 
     void OnEnable()
     {
-        light.intensity = startValue;
+        myLight.intensity = startValue;
     }
 
     public void Play()
@@ -41,13 +41,13 @@ public class LightAnimation : MonoBehaviour
     {
         float tick = 0f;
 
-        while (!Mathf.Approximately(light.intensity, _endValue))
+        while (!Mathf.Approximately(myLight.intensity, _endValue))
         {
             tick += Time.deltaTime;
-            light.intensity = Mathf.Lerp(_startValue, _endValue, tick / changeTime);
+            myLight.intensity = Mathf.Lerp(_startValue, _endValue, tick / changeTime);
             yield return null;
         }
 
-        light.intensity = _endValue;
+        myLight.intensity = _endValue;
     }
 }

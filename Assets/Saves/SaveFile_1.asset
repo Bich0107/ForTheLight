@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0df8a0cc9b57640418342e0cc40d1472, type: 3}
-  m_Name: TestSave
+  m_Name: SaveFile_1
   m_EditorClassIdentifier: 
-  areaIndex: 6
+  areaIndex: 0
   difficulty: 0
   maxLife: 20
-  currentLife: 11
-  timer: 33.97277
+  currentLife: 20
+  timer: 0

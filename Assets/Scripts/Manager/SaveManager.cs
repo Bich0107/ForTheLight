@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,6 +29,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     public void CreateNewSavefile(Difficulty difficulty)
     {
         // reset game state
@@ -36,7 +38,7 @@ public class SaveManager : MonoBehaviour
         // update save file index
         saveIndex++;
 
-         // Make sure the directory exists
+        // Make sure the directory exists
         if (!AssetDatabase.IsValidFolder(path))
         {
             AssetDatabase.CreateFolder("Assets", "Saves");
@@ -62,6 +64,32 @@ public class SaveManager : MonoBehaviour
         currentSaveFile = newSaveFile;
         saveFiles.Add(newSaveFile);
     }
+#else
+    public void CreateNewSavefile(Difficulty difficulty)
+    {
+        // reset game state
+        Win = false;
+
+        // update save file index
+        saveIndex++;
+
+        // create new save file
+        SaveFile newSaveFile = SaveFile.CreateInstance<SaveFile>();
+        newSaveFile.Initialize(difficulty);
+        string fileName = "SaveFile_" + saveIndex + ".json";
+
+        // Serialize the ScriptableObject to a JSON string
+        string json = JsonUtility.ToJson(newSaveFile);
+
+        // Save the JSON string to a file
+        string path = Application.persistentDataPath + "/" + fileName;
+        File.WriteAllText(path, json);
+
+        // set current save file
+        currentSaveFile = newSaveFile;
+        saveFiles.Add(newSaveFile);
+    }
+#endif
 
     public void ChangeSaveFile(int _index)
     {

@@ -6,26 +6,20 @@ public class WeakPlatform : MonoBehaviour
 {
     [SerializeField] float existTime;
     [SerializeField] float restoreDelay;
-    [SerializeField] bool autoStarted;
 
-    SpriteRenderer renderer;
-    Collider2D collider;
+    SpriteRenderer spriteRenderer;
+    Collider2D bodyCollider;
     bool cycleStarted = false;
 
     void Awake()
     {
-        collider = GetComponent<Collider2D>();
-        renderer = GetComponent<SpriteRenderer>();
-    }
-
-    void Update()
-    {
-        if (autoStarted) StartLifeCycle();
+        bodyCollider = GetComponent<Collider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == Tags.Player)
+        if (other.gameObject.CompareTag(Tags.Player))
         {
             StartLifeCycle();
         }
@@ -52,8 +46,8 @@ public class WeakPlatform : MonoBehaviour
 
     void SetExistanceStatus(bool _status)
     {
-        collider.enabled = _status;
-        renderer.enabled = _status;
+        bodyCollider.enabled = _status;
+        spriteRenderer.enabled = _status;
     }
 
     void OnDisable() {

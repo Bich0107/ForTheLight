@@ -20,7 +20,6 @@ public class RespawnPoint : MonoBehaviour
             RespawnHandler handler = other.GetComponent<RespawnHandler>();
             if (handler != null)
             {
-                other.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 handler.SetRespawnPoint(spawnPoint);
                 animator?.SetTrigger("activate");
             }

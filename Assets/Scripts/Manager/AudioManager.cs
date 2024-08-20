@@ -36,7 +36,6 @@ public class AudioManager : MonoSingleton<AudioManager>
     {
         base.Awake();
 
-        if (gameObject != null) DontDestroyOnLoad(gameObject);
         SetupVolume();
     }
 

@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4cdf06b6e89244685bf581d0b7eee6, type: 3}
   m_Name: Section8_4
   m_EditorClassIdentifier: 
-  enemy: {fileID: 5391812947736523296, guid: cfccf95e9d08b9845ba956166ee22053, type: 3}
-  amount: 2
+  enemy: {fileID: 950314080141257451, guid: 54818adb4df5d8b4cb936dc798bc6be6, type: 3}
+  amount: 4
   offsetList:
-  - {x: 15, y: 10}
-  - {x: 15, y: -10}
+  - {x: -10, y: -15}
+  - {x: -10, y: 15}
+  - {x: 0, y: -15}
+  - {x: 0, y: 15}
   spawnDelay: 0
   endSectionDelay: 0
