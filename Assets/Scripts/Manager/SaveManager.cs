@@ -1,13 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
-    const string path = "Assets/Saves";
     public static bool Win = false;
     static int saveIndex = 0;
 
@@ -27,44 +23,28 @@ public class SaveManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        currentSaveFile = LoadSaveFile();
     }
 
-#if UNITY_EDITOR
-    public void CreateNewSavefile(Difficulty difficulty)
+    SaveFile LoadSaveFile()
     {
-        // reset game state
-        Win = false;
-
-        // update save file index
-        saveIndex++;
-
-        // Make sure the directory exists
-        if (!AssetDatabase.IsValidFolder(path))
+        string filePath = Application.persistentDataPath + "/SaveFile_1.json";
+        if (File.Exists(filePath))
         {
-            AssetDatabase.CreateFolder("Assets", "Saves");
+            string json = File.ReadAllText(filePath);
+            SaveFile scriptableObject = ScriptableObject.CreateInstance<SaveFile>();
+            JsonUtility.FromJsonOverwrite(json, scriptableObject);
+            Debug.Log("ScriptableObject loaded from " + filePath);
+            return scriptableObject;
         }
-
-        // create new save file
-        SaveFile newSaveFile = SaveFile.CreateInstance<SaveFile>();
-        newSaveFile.Initialize(difficulty);
-        string fileName = "SaveFile_" + saveIndex + ".asset";
-
-        // check if already exist a save file. if any, delete it
-        AssetDatabase.DeleteAsset(path + "/" + fileName);
-
-        // Save the ScriptableObject to the specified path
-        string assetPath = AssetDatabase.GenerateUniqueAssetPath(path + "/SaveFile_" + saveIndex + ".asset");
-        AssetDatabase.CreateAsset(newSaveFile, assetPath);
-
-        // Save changes and refresh the AssetDatabase
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-
-        // set current save file
-        currentSaveFile = newSaveFile;
-        saveFiles.Add(newSaveFile);
+        else
+        {
+            Debug.LogError("File not found at " + filePath);
+            return null;
+        }
     }
-#else
+
     public void CreateNewSavefile(Difficulty difficulty)
     {
         // reset game state
@@ -89,7 +69,6 @@ public class SaveManager : MonoBehaviour
         currentSaveFile = newSaveFile;
         saveFiles.Add(newSaveFile);
     }
-#endif
 
     public void ChangeSaveFile(int _index)
     {

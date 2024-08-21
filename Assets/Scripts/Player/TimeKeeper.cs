@@ -10,6 +10,8 @@ public class TimeKeeper : MonoBehaviour
     void Awake()
     {
         saveManager = FindObjectOfType<SaveManager>();
+
+        timer = saveManager.CurrentSaveFile.Timer;
     }
 
     void Update()
