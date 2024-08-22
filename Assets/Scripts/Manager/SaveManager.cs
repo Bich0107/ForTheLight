@@ -24,7 +24,7 @@ public class SaveManager : MonoBehaviour
             Instance = this;
         }
 
-        currentSaveFile = LoadSaveFile();
+        if (currentSaveFile == null) currentSaveFile = LoadSaveFile();
     }
 
     SaveFile LoadSaveFile()

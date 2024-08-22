@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class ResetTransformOnDisable : MonoBehaviour
 {
-    [SerializeField] Vector3 position;
-    [SerializeField] Quaternion rotation;
-    [SerializeField] Vector3 scale;
     [SerializeField] bool isLocalTransform = false;
+    Vector3 position;
+    Quaternion rotation;
+    Vector3 scale;
 
     void Awake()
     {
