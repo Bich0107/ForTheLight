@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
     public void Reset()
     {
-        actionController?.ResetChargeStatus();
+        actionController?.Reset();
         movementController?.Reset();
         health?.Reset();
         healthDisplayer?.Reset();

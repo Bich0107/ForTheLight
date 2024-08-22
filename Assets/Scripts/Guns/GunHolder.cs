@@ -1,28 +1,37 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GunHolder : MonoBehaviour
 {
+    [SerializeField] List<GameObject> gunList;
     [SerializeField] GameObject gun;
-    [SerializeField] AudioClip shotSFX;
     Gun gunScript;
+    bool isHold;
 
-    private void Start() {
+    private void Start()
+    {
         gunScript = gun.GetComponent<Gun>();
     }
 
-    public void Shoot() {
-        if (gunScript == null) return;
+    public void HoldTrigger()
+    {
+        if (isHold) return;
+        isHold = true;
 
-        gunScript.Shoot(transform.rotation);
-        AudioManager.Instance.PlaySound(shotSFX);
+        gunScript.HoldTrigger(transform.rotation);
     }
 
-    public void ChargeShot(float _chargePercent) {
-        if (gunScript == null) return;
+    public void ReleaseTrigger()
+    {
+        if (!isHold) return;
+        isHold = false;
         
-        gunScript.ChargeShot(transform.rotation, _chargePercent);
-        AudioManager.Instance.PlaySound(shotSFX);
+        gunScript.ReleaseTrigger(transform.rotation);
     }
 
     public void ChangeGun(GameObject _gun) => gun = _gun;
+
+    public void Reset() {
+        gunScript.Reset();
+    }
 }

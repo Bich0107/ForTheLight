@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
         ToggleChildren();
 
         hitCount = maxHitCountWhenCharge;
-        transform.localScale = maxScale * _chargePercent;
+        transform.localScale = maxScale * _chargePercent / 100f;
         damage = _damage * maxDmgMultiplier * _chargePercent;
         movingObject.Move(_direction, _speedMultiplier);
     }

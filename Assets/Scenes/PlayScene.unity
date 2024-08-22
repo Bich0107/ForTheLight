@@ -7673,6 +7673,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1303052809520308306, guid: bc063d4d24e700547aed6899c704ee29, type: 3}
   m_PrefabInstance: {fileID: 889799802}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &890140578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6088444531890918873, guid: a2affd87971d7f747adc54becb3ec394, type: 3}
+  m_PrefabInstance: {fileID: 7751722899643845095}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &906674844
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23218,6 +23223,34 @@ PrefabInstance:
     - target: {fileID: 5677911037720275494, guid: a2affd87971d7f747adc54becb3ec394, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702175810491659759, guid: a2affd87971d7f747adc54becb3ec394, type: 3}
+      propertyPath: shotSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 0bc8062cab646744d88ba4777457e1fe, type: 3}
+    - target: {fileID: 5702175810491659759, guid: a2affd87971d7f747adc54becb3ec394, type: 3}
+      propertyPath: chargeVFX
+      value: 
+      objectReference: {fileID: 890140578}
+    - target: {fileID: 5702175810491659759, guid: a2affd87971d7f747adc54becb3ec394, type: 3}
+      propertyPath: maxChargeTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702175810491659759, guid: a2affd87971d7f747adc54becb3ec394, type: 3}
+      propertyPath: minChargeTime
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702175810491659759, guid: a2affd87971d7f747adc54becb3ec394, type: 3}
+      propertyPath: minChargePercent
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5949930113095248548, guid: a2affd87971d7f747adc54becb3ec394, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242912073501880643, guid: a2affd87971d7f747adc54becb3ec394, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7190729206559755444, guid: a2affd87971d7f747adc54becb3ec394, type: 3}
       propertyPath: healthDisplayer

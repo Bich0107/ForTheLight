@@ -7,16 +7,24 @@ public class Gun : MonoBehaviour
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected GameObject bulletSpawnPos;
     [SerializeField] protected int currentAmmo;
+    [SerializeField] protected AudioClip shotSFX;
 
     private void Awake()
     {
         cam = Camera.main;
     }
 
-    public virtual void Shoot(Quaternion _rotation) { }
-    public virtual void ChargeShot(Quaternion _rotation, float _chargePercent) { }
+    public virtual void HoldTrigger(Quaternion _rotation) { }
+    public virtual void ReleaseTrigger(Quaternion _rotation) { }
 
-    public virtual void Reload() { }
+    public void Shoot(Quaternion _rotation)
+    {
+        GameObject bullet = SpawnBullet(_rotation);
+
+        bullet.SetActive(true);
+        bullet.GetComponent<Bullet>().Shoot(GetDirection(), gunScript.GetSpeedMultiplier(), gunScript.GetAttack());
+        AudioManager.Instance.PlaySound(shotSFX);
+    }
 
     protected Vector2 GetDirection()
     {
@@ -25,4 +33,14 @@ public class Gun : MonoBehaviour
     }
 
     public void ChangeBullet(GameObject _bullet) => bullet = _bullet;
+
+    protected GameObject SpawnBullet(Quaternion _rotation)
+    {
+        GameObject instance = ObjectPool.Instance.Spawn(bullet.tag);
+        instance.transform.position = bulletSpawnPos.transform.position;
+        instance.transform.rotation = _rotation;
+        return instance;
+    }
+
+    public virtual void Reset() { }
 }

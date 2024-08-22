@@ -4,46 +4,18 @@ using UnityEngine.InputSystem;
 public class PlayerActionController : MonoBehaviour
 {
     [SerializeField] GunHolder gunHolder;
-    [SerializeField] float minChargeTime;
-    [SerializeField] float maxChargeTime;
-    [SerializeField] float minChargePercent;
-    [SerializeField] GameObject chargeVFX;
-    bool isCharging = false;
-    float chargeTime;
-
-    void Update()
-    {
-        if (isCharging)
-        {
-            chargeTime += Time.deltaTime;
-        }
-    }
 
     void OnFire(InputValue _value)
     {
-        if (!GameManager.Instance.PlayerControlStatus())
-        {
-            ResetChargeStatus();
-            return;
-        }
+        if (!GameManager.Instance.PlayerControlStatus()) return;
 
         if (_value.isPressed)
         {
-            isCharging = true;
-            chargeVFX.SetActive(true);
-            gunHolder.Shoot();
+            gunHolder.HoldTrigger();
         }
         else
         {
-            // calculate charge time to increase gun power
-            if (chargeTime > minChargeTime)
-            {
-                chargeTime = Mathf.Min(chargeTime, maxChargeTime);
-                float chargePercent = chargeTime / maxChargeTime;
-                chargePercent = chargePercent > minChargePercent ? chargePercent : minChargePercent;
-                gunHolder.ChargeShot(chargePercent);
-            }
-            ResetChargeStatus();
+            gunHolder.ReleaseTrigger();
         }
     }
 
@@ -55,15 +27,7 @@ public class PlayerActionController : MonoBehaviour
         }
     }
 
-    void OnDisable()
-    {
-        ResetChargeStatus();
-    }
-
-    public void ResetChargeStatus()
-    {
-        isCharging = false;
-        chargeTime = 0;
-        chargeVFX.SetActive(false);
+    public void Reset() {
+        gunHolder.Reset();
     }
 }
