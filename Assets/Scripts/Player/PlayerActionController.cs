@@ -14,6 +14,21 @@ public class PlayerActionController : MonoBehaviour
         }
     }
 
+    void OnChangeWeapon(InputValue _value)
+    {
+        if (!GameManager.Instance.PlayerControlStatus()) return;
+
+        float value = _value.Get<float>();
+        if (value < 0f)
+        {
+            gunHolder.Back();
+        }
+        else
+        {
+            gunHolder.Next();
+        }
+    }
+
     void OnFire(InputValue _value)
     {
         if (!GameManager.Instance.PlayerControlStatus()) return;

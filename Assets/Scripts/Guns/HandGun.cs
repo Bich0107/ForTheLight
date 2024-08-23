@@ -9,6 +9,7 @@ public class HandGun : Gun
     [SerializeField] GameObject chargeVFX;
     float chargeTime = 0f;
     bool isCharging = false;
+    bool shoot = false;
 
     void Update()
     {
@@ -23,8 +24,11 @@ public class HandGun : Gun
 
     public override void HoldTrigger(Quaternion _rotation)
     {
+        if (shoot) return;
+
         Shoot(_rotation);
         isCharging = true;
+        shoot = true;
     }
 
     public override void ReleaseTrigger(Quaternion _rotation)
@@ -60,6 +64,7 @@ public class HandGun : Gun
 
     public void ResetChargeStatus()
     {
+        shoot = false;
         isCharging = false;
         chargeTime = 0;
         chargeVFX.SetActive(false);

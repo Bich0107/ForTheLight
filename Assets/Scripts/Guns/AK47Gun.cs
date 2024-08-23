@@ -77,7 +77,11 @@ public class AK47Gun : Gun
         timer = baseFireCD;
 
         isShooting = false;
-        StopCoroutine(reduceCDCoroutine);
-        reduceCDCoroutine = null;
+        
+        if (reduceCDCoroutine != null)
+        {
+            StopCoroutine(reduceCDCoroutine);
+            reduceCDCoroutine = null;
+        }
     }
 }

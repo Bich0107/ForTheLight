@@ -4,12 +4,32 @@ using UnityEngine;
 public class GunHolder : MonoBehaviour
 {
     [SerializeField] List<GameObject> gunList;
-    [SerializeField] GameObject gun;
+    [SerializeField] int gunIndex = 0;
+    GameObject gun;
+    List<Gun> gunScriptList;
     Gun gunScript;
 
-    private void Start()
+    void OnEnable()
     {
-        gunScript = gun.GetComponent<Gun>();
+        Initialize();
+    }
+
+    void Initialize()
+    {
+        gunScriptList = new List<Gun>();
+
+        foreach (GameObject gun in gunList)
+        {
+            Gun script = gun.GetComponent<Gun>();
+            if (script != null)
+            {
+                gunScriptList.Add(script);
+            }
+        }
+
+        gunScript = gunScriptList[gunIndex];
+        gun = gunList[gunIndex];
+        gun.SetActive(true);
     }
 
     public void HoldTrigger()
@@ -22,9 +42,34 @@ public class GunHolder : MonoBehaviour
         gunScript.ReleaseTrigger(transform.rotation);
     }
 
-    public void ChangeGun(GameObject _gun) => gun = _gun;
+    public void Next()
+    {
+        gunScript.Reset();
+        gunIndex = (gunIndex + 1) % gunScriptList.Count;
+        gunScript = gunScriptList[gunIndex];
+        ChangeGun();
+        gunScript.Reset();
+    }
 
-    public void Reset() {
+    public void Back()
+    {
+        gunScript.Reset();
+        gunIndex = gunIndex + 1 >= gunScriptList.Count ? 0 : gunIndex + 1;
+        gunScript = gunScriptList[gunIndex];
+        ChangeGun();
+        gunScript.Reset();
+    }
+
+    void ChangeGun()
+    {
+        
+        gun.SetActive(false);
+        gun = gunList[gunIndex];
+        gun.SetActive(true);
+    }
+
+    public void Reset()
+    {
         gunScript.Reset();
     }
 }
