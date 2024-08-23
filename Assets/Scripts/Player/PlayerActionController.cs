@@ -4,6 +4,15 @@ using UnityEngine.InputSystem;
 public class PlayerActionController : MonoBehaviour
 {
     [SerializeField] GunHolder gunHolder;
+    bool isHolding = false;
+
+    void Update()
+    {
+        if (isHolding)
+        {
+            gunHolder.HoldTrigger();
+        }
+    }
 
     void OnFire(InputValue _value)
     {
@@ -11,10 +20,11 @@ public class PlayerActionController : MonoBehaviour
 
         if (_value.isPressed)
         {
-            gunHolder.HoldTrigger();
+            isHolding = true;
         }
         else
         {
+            isHolding = false;
             gunHolder.ReleaseTrigger();
         }
     }
@@ -27,7 +37,9 @@ public class PlayerActionController : MonoBehaviour
         }
     }
 
-    public void Reset() {
+    public void Reset()
+    {
+        isHolding = false;
         gunHolder.Reset();
     }
 }

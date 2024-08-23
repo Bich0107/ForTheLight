@@ -3,7 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Gun script", fileName = "New gun script")]
 public class GunSO : ScriptableObject
 {
-    [SerializeField] GameObject bullet;
     [SerializeField] string gunName;
     [SerializeField] float attack;
     [SerializeField] float speedMultiplier = 1f;

@@ -6,7 +6,6 @@ public class GunHolder : MonoBehaviour
     [SerializeField] List<GameObject> gunList;
     [SerializeField] GameObject gun;
     Gun gunScript;
-    bool isHold;
 
     private void Start()
     {
@@ -15,17 +14,11 @@ public class GunHolder : MonoBehaviour
 
     public void HoldTrigger()
     {
-        if (isHold) return;
-        isHold = true;
-
         gunScript.HoldTrigger(transform.rotation);
     }
 
     public void ReleaseTrigger()
     {
-        if (!isHold) return;
-        isHold = false;
-        
         gunScript.ReleaseTrigger(transform.rotation);
     }
 

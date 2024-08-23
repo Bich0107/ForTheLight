@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] protected Camera cam;
+    protected Camera cam;
     [SerializeField] protected GunSO gunScript;
     [SerializeField] protected GameObject bullet;
     [SerializeField] protected GameObject bulletSpawnPos;
