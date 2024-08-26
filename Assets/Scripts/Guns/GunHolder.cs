@@ -34,11 +34,13 @@ public class GunHolder : MonoBehaviour
 
     public void HoldTrigger()
     {
+        if (!gunScript.isActiveAndEnabled) return;
         gunScript.HoldTrigger(transform.rotation);
     }
 
     public void ReleaseTrigger()
     {
+        if (!gunScript.isActiveAndEnabled) return;
         gunScript.ReleaseTrigger(transform.rotation);
     }
 
@@ -62,7 +64,7 @@ public class GunHolder : MonoBehaviour
 
     void ChangeGun()
     {
-        
+
         gun.SetActive(false);
         gun = gunList[gunIndex];
         gun.SetActive(true);

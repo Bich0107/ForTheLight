@@ -3165,7 +3165,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pick up the gun
+  m_text: 'Pick up the gun(s)
+
+    Q and E to switch'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5316,63 +5318,6 @@ MonoBehaviour:
   loop: 0
   playOnEnable: 1
   minDistanceToPos: 0
---- !u!1001 &531088202
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1399825677866073592, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1399825677866073592, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1399825677866073592, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1399825677866073592, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1399825677866073592, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1399825677866073592, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1399825677866073592, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1399825677866073592, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1399825677866073592, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1399825677866073592, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6983643553639893656, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
-      propertyPath: m_Name
-      value: AudioManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 92f5c0b9cb0664b488d14bbf5525a114, type: 3}
 --- !u!1001 &531498094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9291,7 +9236,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.0225067, y: 0.24923086}
+  m_AnchoredPosition: {x: 6.0225067, y: 0.35}
   m_SizeDelta: {x: 382.7, y: 107.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1083415996
@@ -11635,63 +11580,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10.773729, y: 0.40624666}
   m_EdgeRadius: 0
---- !u!1001 &1425628057
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 823215374526866985, guid: b04e353ca160beb49b905fa6792068b5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 823215374526866985, guid: b04e353ca160beb49b905fa6792068b5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 823215374526866985, guid: b04e353ca160beb49b905fa6792068b5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 823215374526866985, guid: b04e353ca160beb49b905fa6792068b5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 823215374526866985, guid: b04e353ca160beb49b905fa6792068b5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 823215374526866985, guid: b04e353ca160beb49b905fa6792068b5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 823215374526866985, guid: b04e353ca160beb49b905fa6792068b5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 823215374526866985, guid: b04e353ca160beb49b905fa6792068b5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 823215374526866985, guid: b04e353ca160beb49b905fa6792068b5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 823215374526866985, guid: b04e353ca160beb49b905fa6792068b5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1792571905879860627, guid: b04e353ca160beb49b905fa6792068b5, type: 3}
-      propertyPath: m_Name
-      value: SaveManager
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b04e353ca160beb49b905fa6792068b5, type: 3}
 --- !u!4 &1427142443 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5495574924101881417, guid: 4e5ee1b5b2ef4c64b9c8513dfecc0008, type: 3}
@@ -13041,9 +12929,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Use the mouse to aim and shoot
-
-    Hold to charge'
+  m_text: "Use mouse to aim and shoot\nHold to charge (Handgun) or \nfire rapidly
+    (AK)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13106,7 +12993,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: -55.198624, z: -151.35315, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -14904,7 +14791,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.700012, y: 0.24923038}
+  m_AnchoredPosition: {x: 6.700012, y: 0.31}
   m_SizeDelta: {x: 304.91, y: 107.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1745922702
@@ -23777,7 +23664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f55219907a405c47b56873a0271492c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunScript: {fileID: 11400000, guid: 7e64c39d38d609c4690b5bb86e941096, type: 2}
+  gunScript: {fileID: 11400000, guid: e2ee31d6eb5ee924daa91a647c708a41, type: 2}
   bullet: {fileID: 6053714488104486707, guid: 8a320466d07a3db4eace24cf37fe4a12, type: 3}
   bulletSpawnPos: {fileID: 1245232437}
   currentAmmo: 0
@@ -24807,5 +24694,3 @@ SceneRoots:
   - {fileID: 1658984615}
   - {fileID: 773350751}
   - {fileID: 7751722899643845095}
-  - {fileID: 1425628057}
-  - {fileID: 531088202}

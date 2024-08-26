@@ -12,9 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3424907db15fb345b2cd860de54d7e9, type: 3}
   m_Name: AK47SO
   m_EditorClassIdentifier: 
-  bullet: {fileID: 0}
-  gunName: 
-  attack: 0
-  speedMultiplier: 1
-  fireCD: 0
-  maxAmmo: 0
+  gunName: AK47
+  attack: 4
+  speedMultiplier: 2
