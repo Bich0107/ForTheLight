@@ -94,8 +94,8 @@ public class Enemy : MonoBehaviour, IHitByPlayer
     }
 
     public GameObject GetPlayer => player;
-    protected Vector2 GetDirectionToPlayer => (player.transform.position - transform.position).normalized;
-    protected float GetDistanceToPlayer => Vector2.Distance(transform.position, player.transform.position);
-    protected float GetHorizontalDistanceToPlayer => Mathf.Abs(transform.position.x - player.transform.position.x);
-    protected float GetVerticalDistanceToPlayer => Mathf.Abs(transform.position.y - player.transform.position.y);
+    public Vector2 GetDirectionToPlayer => (player.transform.position - transform.position).normalized;
+    public float GetDistanceToPlayer => Vector2.Distance(transform.position, player.transform.position);
+    public float GetHorizontalDistanceToPlayer => Mathf.Abs(transform.position.x - player.transform.position.x);
+    public float GetVerticalDistanceToPlayer => Mathf.Abs(transform.position.y - player.transform.position.y);
 }

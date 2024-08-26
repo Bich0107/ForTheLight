@@ -1,53 +1,67 @@
-
 using System.Collections;
 using UnityEngine;
 
-public class JumpAttack : Projectile
+public class JumpAttack : Attack
 {
-    [SerializeField] Collider2D footCollider;
-    float jumpDelay;
-    float dropDelay;
+    [Header("GO and components")]
+    [SerializeField] GameObject body;
+    [SerializeField] MovementController moveController;
+    [SerializeField] Transform trans;
+    [SerializeField] GameObject target;
+    [Header("Settings")]
+    Vector3 basePosition;
     float maxHeight;
-    int jumpCount;
-    bool isJumping;
+    float minHeight;
+    [SerializeField] float jumpHeight = 30f;
+    [SerializeField] float jumpSpeed;
+    [SerializeField] float dropDelay;
+    [SerializeField] float jumpDelay;
+    [SerializeField] float jumpCount;
+    [SerializeField] GameObject groundHitVFX;
+    [SerializeField] AudioClip groundHitSFX;
 
-    public override void Fire(GameObject target) {
-        StartCoroutine(CR_JumpAttack());
+    public override void Initialize()
+    {
+        trans = body.transform;
+        moveController = body.GetComponent<MovementController>();
+
+        basePosition = trans.position;
+
+        target = FindObjectOfType<Player>().gameObject;
     }
 
-    protected override void OnTriggerEnter2D(Collider2D other)
+    public override IEnumerator Start()
     {
-        if (other.CompareTag(Tags.Ground) && isJumping)
-        {
-            movingObject.Stop();
-            ToggleFoot(); // turn off foot after touching the ground
-        }
-    }
-
-    IEnumerator CR_JumpAttack()
-    {
-        isJumping = true;
         for (int i = 0; i < jumpCount; i++)
         {
-            movingObject.Move(Vector3.up); // jump up
+            groundHitVFX.SetActive(false);
+            moveController.MoveSpeed = jumpSpeed;
+            moveController.Move(Vector2.up);
 
-            while (transform.position.y < maxHeight) yield return null; // wait until that max height
+            // wait until reaching maximum height
+            while (trans.position.y <= maxHeight) yield return null;
+            moveController.Stop();
 
-            // stop and drop down after some delay
-            movingObject.Stop();
-            transform.position = new Vector3(target.transform.position.x, transform.position.y, transform.position.z);
+            trans.position = new Vector3(target.transform.position.x, transform.position.y);
             yield return new WaitForSeconds(dropDelay);
-            movingObject.Move(Vector3.down);
+            moveController.MoveSpeed = jumpSpeed;
+            moveController.Move(Vector2.down);
 
-            // turn on foot to detect the ground
-            ToggleFoot();
+            // wait until reaching minimum height
+            while (trans.position.y >= minHeight) yield return null;
+            groundHitVFX.SetActive(true);
+            moveController.Stop();
+            AudioManager.Instance.PlaySound(groundHitSFX);
+
             yield return new WaitForSeconds(jumpDelay);
         }
-        isJumping = false;
     }
 
-    void ToggleFoot() {
-        if (footCollider == null) return;
-        footCollider.enabled = !footCollider.enabled;
+    public override void Reset()
+    {
+        Stop();
+
+        trans.position = basePosition;
+        moveController.Reset();
     }
 }
