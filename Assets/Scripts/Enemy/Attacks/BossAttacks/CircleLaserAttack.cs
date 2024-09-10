@@ -15,11 +15,11 @@ public class CircleLaserAttack : Attack
     [SerializeField] List<float> rotateSpeedList;
     [SerializeField] Vector2 finalBeamScale;
     [SerializeField] Vector2 baseBeamScale;
-    [SerializeField] float selfDestructDelay;
+    [SerializeField] float deactiveDelay;
 
-    public override void Initialize()
+    public override void Initialize(GameObject _target)
     {
-        rotateObject = GetComponent<RotateObject>();
+        laser.SetActive(false);
 
         float rotateSpeed = rotateSpeedList[Random.Range(0, rotateSpeedList.Count)];
         rotateObject?.SetRotateSpeed(rotateSpeed);
@@ -29,11 +29,7 @@ public class CircleLaserAttack : Attack
 
     public override IEnumerator Start()
     {
-        yield return StartCoroutine(CR_Start());
-    }
-
-    IEnumerator CR_Start()
-    {
+        laser.SetActive(true);
         yield return new WaitForSeconds(attackDelay);
         rotateObject.Stop();
 
@@ -42,7 +38,7 @@ public class CircleLaserAttack : Attack
             beam.transform.localScale = finalBeamScale;
         }
 
-        yield return new WaitForSeconds(selfDestructDelay);
+        yield return new WaitForSeconds(deactiveDelay);
         
         gameObject.SetActive(false);
     }
@@ -53,5 +49,6 @@ public class CircleLaserAttack : Attack
         {
             beam.transform.localScale = baseBeamScale;
         }
+        laser.SetActive(false);
     }
 }

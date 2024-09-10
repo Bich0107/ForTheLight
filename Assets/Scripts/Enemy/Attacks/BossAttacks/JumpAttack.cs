@@ -5,29 +5,29 @@ public class JumpAttack : Attack
 {
     [Header("GO and components")]
     [SerializeField] GameObject body;
-    [SerializeField] MovementController moveController;
-    [SerializeField] Transform trans;
     [SerializeField] GameObject target;
+    [SerializeField] MovementController moveController;
+    Transform trans;
+
     [Header("Settings")]
-    Vector3 basePosition;
-    float maxHeight;
-    float minHeight;
     [SerializeField] float jumpHeight = 30f;
     [SerializeField] float jumpSpeed;
     [SerializeField] float dropDelay;
     [SerializeField] float jumpDelay;
     [SerializeField] float jumpCount;
+    float maxHeight;
+    float minHeight;
     [SerializeField] GameObject groundHitVFX;
     [SerializeField] AudioClip groundHitSFX;
 
-    public override void Initialize()
+    public override void Initialize(GameObject _target)
     {
         trans = body.transform;
-        moveController = body.GetComponent<MovementController>();
 
-        basePosition = trans.position;
+        minHeight = trans.position.y;
+        maxHeight = minHeight + jumpHeight;
 
-        target = FindObjectOfType<Player>().gameObject;
+        target = _target;
     }
 
     public override IEnumerator Start()
@@ -60,8 +60,6 @@ public class JumpAttack : Attack
     public override void Reset()
     {
         Stop();
-
-        trans.position = basePosition;
         moveController.Reset();
     }
 }

@@ -34,13 +34,13 @@ public class GunHolder : MonoBehaviour
 
     public void HoldTrigger()
     {
-        if (!gunScript.isActiveAndEnabled) return;
+        if (gunScript == null) return;
         gunScript.HoldTrigger(transform.rotation);
     }
 
     public void ReleaseTrigger()
     {
-        if (!gunScript.isActiveAndEnabled) return;
+        if (gunScript == null) return;
         gunScript.ReleaseTrigger(transform.rotation);
     }
 

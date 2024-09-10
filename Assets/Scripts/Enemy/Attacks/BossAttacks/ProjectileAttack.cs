@@ -4,19 +4,19 @@ using UnityEngine;
 public class ProjectileAttack : Attack
 {
     [Header("Projectile attack settings")]
-    [SerializeField] GameObject target;
     [SerializeField] ProjectileSO projectileScript;
-    [SerializeField] int amount;
     [SerializeField] Vector3 spawnPos;
     [SerializeField] AudioClip attackSFX;
+    [SerializeField] GameObject target;
     [Tooltip("Max distance from spawn position to real spawn position")]
     [SerializeField] float range;
     [SerializeField] int minAttackCount;
     [SerializeField] int maxAttackCount;
+    int amount;
 
-    public override void Initialize()
+    public override void Initialize(GameObject _target)
     {
-        target = FindObjectOfType<Player>().gameObject;
+        target = _target;
     }
 
     public override IEnumerator Start()

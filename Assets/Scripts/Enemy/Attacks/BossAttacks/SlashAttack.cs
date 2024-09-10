@@ -5,19 +5,16 @@ public class SlashAttack : Attack
 {
     [Header("GO and components")]
     [SerializeField] Enemy enemy;
-    [SerializeField] GameObject target;
     [SerializeField] MovementController moveController;
     [SerializeField] Animator animator;
+    GameObject target;
     [Header("Settings")]
     [SerializeField] float attackDistance;
     [SerializeField] float moveSpeed;
-    [SerializeField] AudioClip slashSFX;
 
-    public override void Initialize()
+    public override void Initialize(GameObject _target)
     {
-        target = FindObjectOfType<Player>().gameObject;
-        moveController = GetComponentInParent<MovementController>();
-        animator = GetComponentInParent<Animator>();
+        target = _target;
     }
 
     public override IEnumerator Start()
@@ -33,11 +30,6 @@ public class SlashAttack : Attack
         Flip(target.transform.position.x > transform.position.x);
 
         animator.SetTrigger("slashAttack");
-    }
-
-    public void PlaySlashSound()
-    {
-        AudioManager.Instance.PlaySound(slashSFX);
     }
 
     public override void Reset()
