@@ -5,14 +5,19 @@ using UnityEngine;
 public class Boss : Enemy
 {
     [SerializeField] List<Attack> attackList;
+    [SerializeField] Attack startAttack;
     [SerializeField] Attack finalAttack;
+    [SerializeField] Attack currentAttack;
     [Tooltip("Wait time before starting to attack")]
     [SerializeField] float waitTime;
     [Tooltip("When boss's HP reach this percent, start charging beam attack and spawn minions")]
     [SerializeField] float hitPointPercent;
     [SerializeField] AudioClip slashSFX;
-    bool isAttacking = false;
+    [SerializeField] bool isAttacking = false;
+    [SerializeField] float deathDelay;
     bool enableByPool = true;
+    bool disableByPool = true;
+    bool finalAttackState = false;
 
     protected new void OnEnable()
     {
@@ -31,8 +36,15 @@ public class Boss : Enemy
 
         healthController.AddEventOnHealthReachZero(_ =>
         {
-            SaveManager.Win = true;
-            GameManager.Instance.GameOver();
+            // prevent the boss from being killed before enter final stage
+            if (!finalAttackState)
+            {
+                EnterFinalState();
+            }
+            else
+            {
+                StartCoroutine(CR_Death());
+            }
         });
 
         foreach (Attack attack in attackList)
@@ -46,17 +58,18 @@ public class Boss : Enemy
 
     IEnumerator CR_Wait()
     {
-        yield return new WaitForSeconds(waitTime);
         isAttacking = true;
+        yield return new WaitForSeconds(waitTime);
+        yield return StartCoroutine(startAttack.StartAttack());
+        currentAttack = startAttack;
+        startAttack.Reset();
 
-        yield return StartCoroutine(attackList[0].Start());
-        attackList[0].Reset();
         isAttacking = false;
     }
 
     void Update()
     {
-        if (healthController.GetHealthPercent > hitPointPercent)
+        if (healthController.GetHealthPercent > hitPointPercent && !finalAttackState)
         {
             ProcessAttacks();
         }
@@ -69,30 +82,62 @@ public class Boss : Enemy
     void ProcessAttacks()
     {
         if (isAttacking) return;
-
+        isAttacking = true;
         StartCoroutine(CR_ChooseRandomAttack());
     }
 
     IEnumerator CR_ChooseRandomAttack()
     {
-        isAttacking = true;
         int num = Random.Range(0, attackList.Count);
-        Debug.Log("start attack number " + num);
-        yield return StartCoroutine(attackList[num].Start());
+        yield return StartCoroutine(attackList[num].StartAttack());
+        currentAttack = attackList[num];
         attackList[num].Reset();
         isAttacking = false;
     }
 
     void EnterFinalState()
     {
-        if (isAttacking) return;
-        Debug.Log("start final attack");
+        if (finalAttackState) return;
+        
+        finalAttackState = true;
+        currentAttack.Reset();
         isAttacking = true;
-        StartCoroutine(finalAttack.Start());
+        StartCoroutine(finalAttack.StartAttack());
     }
 
     public void PlaySlashSound()
     {
         AudioManager.Instance.PlaySound(slashSFX);
+    }
+
+    IEnumerator CR_Death()
+    {
+        deathVFX.SetActive(true);
+
+        disableByPool = true;
+        enableByPool = true;
+
+        yield return new WaitForSeconds(deathDelay);
+        SaveManager.Win = true;
+        GameManager.Instance.GameOver();
+    }
+
+    public override void Reset()
+    {
+        if (disableByPool)
+        {
+            disableByPool = false;
+            return;
+        }
+
+        base.Reset();
+
+        foreach (Attack attack in attackList)
+        {
+            attack.Reset();
+        }
+
+        finalAttackState = false;
+        finalAttack.Reset();
     }
 }

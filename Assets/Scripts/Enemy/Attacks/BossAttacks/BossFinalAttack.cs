@@ -5,11 +5,14 @@ using UnityEngine;
 public class BossFinalAttack : Attack
 {
     [Header("GO & components")]
+    Transform trans;
+    [SerializeField] GameObject body;
     [SerializeField] HealthController healthController;
     [SerializeField] MovementController moveController;
     [SerializeField] GameObject player;
     [Header("Settings")]
     [SerializeField] float jumpSpeed;
+    [SerializeField] float jumpHeight = 30f;
     [SerializeField] Vector2 attackPos;
     [SerializeField] List<EnemyWaveSO> minionWaves;
     [SerializeField] GameObject chargeVFX;
@@ -29,10 +32,15 @@ public class BossFinalAttack : Attack
     public override void Initialize(GameObject _target)
     {
         player = _target;
+
+        trans = body.transform;
+        minHeight = trans.position.y;
+        maxHeight = minHeight + jumpHeight;
+
         spawner = FindObjectOfType<EnemySpawner>();
     }
 
-    public override IEnumerator Start()
+    public override IEnumerator StartAttack()
     {
         EnterFinalStage();
         yield return StartCoroutine(CR_FinalAttackSequence());
@@ -58,16 +66,16 @@ public class BossFinalAttack : Attack
         moveController.Move(Vector2.up);
 
         // wait until reaching maximum height
-        while (transform.position.y <= maxHeight) yield return null;
+        while (trans.position.y <= maxHeight) yield return null;
         moveController.Stop();
 
-        transform.position = new Vector3(attackPos.x, transform.position.y);
+        trans.position = new Vector3(attackPos.x, trans.position.y);
 
         moveController.MoveSpeed = jumpSpeed;
         moveController.Move(Vector2.down);
 
         // wait until reaching minimum height
-        while (transform.position.y >= minHeight) yield return null;
+        while (trans.position.y >= minHeight) yield return null;
         moveController.Stop();
 
         chargeSFXCoroutine = StartCoroutine(CR_PlayChargeSFX());
@@ -90,19 +98,25 @@ public class BossFinalAttack : Attack
         chargeVFX.SetActive(true);
         yield return new WaitForSeconds(chargeTime);
         StopCoroutine(chargeSFXCoroutine);
-        Flip(player.transform.position.x > transform.position.x);
+        Flip(player.transform.position.x < transform.position.x);
 
         AudioManager.Instance.PlaySound(beamFireSFX);
         chargeVFX.SetActive(false);
         beamVFX.SetActive(true);
+        Debug.Log("attack end");
     }
 
     void Flip(bool _left)
     {
-        transform.localScale = new Vector3(_left ? -1f : 1f, transform.localScale.y, transform.localScale.z);
+        transform.localScale = new Vector3(_left ? 1f : -1f, transform.localScale.y, transform.localScale.z);
     }
 
     public override void Reset()
     {
+        StopAllCoroutines();
+        spawner.Reset();
+        chargeVFX.SetActive(false);
+        beamVFX.SetActive(false);
+        moveController.Stop();
     }
 }

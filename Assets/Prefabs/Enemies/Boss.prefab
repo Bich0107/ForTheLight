@@ -5234,37 +5234,6 @@ MonoBehaviour:
   ps: {fileID: 1764149180980926198}
   player: {fileID: 0}
   damage: 999999
---- !u!1 &584531411311705440
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8360441675532591347}
-  m_Layer: 8
-  m_Name: CollideVFX
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8360441675532591347
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 584531411311705440}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1523130690318662833}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &588068066420051468
 GameObject:
   m_ObjectHideFlags: 0
@@ -5404,7 +5373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
-  health: 0
+  health: 1000
   invincibleTime: 0
 --- !u!114 &2506376681961392341
 MonoBehaviour:
@@ -5482,10 +5451,14 @@ MonoBehaviour:
   - {fileID: 8514439877087372566}
   - {fileID: 232302052748705286}
   - {fileID: 466474360878669409}
+  startAttack: {fileID: 8653464679990531004}
   finalAttack: {fileID: 3462735008139368372}
-  waitTime: 5
+  currentAttack: {fileID: 0}
+  waitTime: 3
   hitPointPercent: 15
   slashSFX: {fileID: 8300000, guid: 2ec52c5afa19f854f92544610f4d4b77, type: 3}
+  isAttacking: 0
+  deathDelay: 5
 --- !u!1 &621303661830065466
 GameObject:
   m_ObjectHideFlags: 0
@@ -5531,7 +5504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileScript: {fileID: 11400000, guid: 657c8777b8c86f54a97564bd9b08f72f, type: 2}
-  spawnPos: {x: 0, y: 7.28, z: 0}
+  spawnPos: {fileID: 2266929420438738051}
   attackSFX: {fileID: 8300000, guid: f00512bd980eaed42b161ae8df2481cb, type: 3}
   target: {fileID: 0}
   range: 1
@@ -18451,6 +18424,7 @@ MonoBehaviour:
   animator: {fileID: 2019477216657439705}
   attackDistance: 6
   moveSpeed: 8
+  attackDuration: 3.3
 --- !u!1 &6854351396661475228
 GameObject:
   m_ObjectHideFlags: 0
@@ -18814,7 +18788,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1523130690318662833
 Transform:
   m_ObjectHideFlags: 0
@@ -18830,7 +18804,6 @@ Transform:
   m_Children:
   - {fileID: 3512768878168685786}
   - {fileID: 2999825234911342699}
-  - {fileID: 8360441675532591347}
   m_Father: {fileID: 2203355125620203472}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1811817405468078534
@@ -24359,11 +24332,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d2aba14e4b8734ba304f5284a00a2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  body: {fileID: 588068066420051468}
   healthController: {fileID: 1701778127858188184}
   moveController: {fileID: 2506376681961392341}
   player: {fileID: 0}
   jumpSpeed: 50
-  attackPos: {x: 240.9, y: 48.8}
+  jumpHeight: 30
+  attackPos: {x: 241, y: 49}
   minionWaves:
   - {fileID: 11400000, guid: efc3ce17aadd8494cb972690d51a4868, type: 2}
   chargeVFX: {fileID: 5406768032747555443}

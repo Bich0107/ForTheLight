@@ -7,7 +7,7 @@ public abstract class Attack : MonoBehaviour
 
     public abstract void Initialize(GameObject target);
 
-    public abstract IEnumerator Start();
+    public abstract IEnumerator StartAttack();
     public abstract void Reset();
     public virtual void Stop()
     {

@@ -88,6 +88,7 @@ public class Enemy : MonoBehaviour, IHitByPlayer
     public virtual void Reset()
     {
         StopAllCoroutines();
+        deathVFX?.SetActive(false);
         moveController?.Reset();
         healthController?.Reset();
         isDead = false;

@@ -30,7 +30,7 @@ public class JumpAttack : Attack
         target = _target;
     }
 
-    public override IEnumerator Start()
+    public override IEnumerator StartAttack()
     {
         for (int i = 0; i < jumpCount; i++)
         {
@@ -60,6 +60,7 @@ public class JumpAttack : Attack
     public override void Reset()
     {
         Stop();
+        StopAllCoroutines();
         moveController.Reset();
     }
 }

@@ -5,7 +5,7 @@ public class ProjectileAttack : Attack
 {
     [Header("Projectile attack settings")]
     [SerializeField] ProjectileSO projectileScript;
-    [SerializeField] Vector3 spawnPos;
+    [SerializeField] Transform spawnPos;
     [SerializeField] AudioClip attackSFX;
     [SerializeField] GameObject target;
     [Tooltip("Max distance from spawn position to real spawn position")]
@@ -19,7 +19,7 @@ public class ProjectileAttack : Attack
         target = _target;
     }
 
-    public override IEnumerator Start()
+    public override IEnumerator StartAttack()
     {
         amount = GetAttackAmount();
 
@@ -32,7 +32,7 @@ public class ProjectileAttack : Attack
                 yield break;
             }
 
-            g.transform.position = GetSpawnPos(spawnPos, range);
+            g.transform.position = GetSpawnPos(spawnPos.position, range);
             g.SetActive(true);
             g.GetComponent<Projectile>().Fire(GetTargetDirection(g.transform.position));
             AudioManager.Instance.PlaySound(attackSFX);
@@ -41,7 +41,9 @@ public class ProjectileAttack : Attack
         }
     }
 
-    public override void Reset() {}
+    public override void Reset() {
+        StopAllCoroutines();
+    }
 
     int GetAttackAmount() {
         return Random.Range(minAttackCount, maxAttackCount + 1);

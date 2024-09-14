@@ -19,15 +19,14 @@ public class CircleLaserAttack : Attack
 
     public override void Initialize(GameObject _target)
     {
-        laser.SetActive(false);
-
         float rotateSpeed = rotateSpeedList[Random.Range(0, rotateSpeedList.Count)];
         rotateObject?.SetRotateSpeed(rotateSpeed);
 
         laserHit.Initialize(damage);
+        laser.SetActive(false);
     }
 
-    public override IEnumerator Start()
+    public override IEnumerator StartAttack()
     {
         laser.SetActive(true);
         yield return new WaitForSeconds(attackDelay);
@@ -39,12 +38,13 @@ public class CircleLaserAttack : Attack
         }
 
         yield return new WaitForSeconds(deactiveDelay);
-        
-        gameObject.SetActive(false);
+
+        laser.SetActive(false);
     }
 
     public override void Reset()
     {
+        StopAllCoroutines();
         foreach (GameObject beam in beams)
         {
             beam.transform.localScale = baseBeamScale;

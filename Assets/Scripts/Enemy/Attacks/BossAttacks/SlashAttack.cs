@@ -11,13 +11,14 @@ public class SlashAttack : Attack
     [Header("Settings")]
     [SerializeField] float attackDistance;
     [SerializeField] float moveSpeed;
+    [SerializeField] float attackDuration;
 
     public override void Initialize(GameObject _target)
     {
         target = _target;
     }
 
-    public override IEnumerator Start()
+    public override IEnumerator StartAttack()
     {
         // move until player is in attack range
         moveController.MoveSpeed = moveSpeed;
@@ -27,18 +28,21 @@ public class SlashAttack : Attack
         moveController.Stop();
 
         // flip base on the position of player to the boss
-        Flip(target.transform.position.x > transform.position.x);
+        Flip(target.transform.position.x < transform.position.x);
 
         animator.SetTrigger("slashAttack");
+
+        yield return new WaitForSeconds(attackDuration);
     }
 
     public override void Reset()
     {
+        StopAllCoroutines();
         moveController.Reset();
     }
 
     void Flip(bool _left)
     {
-        transform.localScale = new Vector3(_left ? -1f : 1f, transform.localScale.y, transform.localScale.z);
+        transform.localScale = new Vector3(_left ? 1f : -1f, transform.localScale.y, transform.localScale.z);
     }
 }
